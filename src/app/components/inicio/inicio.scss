@@ -1,0 +1,470 @@
+// src/app/components/inicio/inicio.component.scss
+
+.inicio-container {
+  min-height: calc(100vh - 80px);
+}
+
+// Hero Section
+.hero-section {
+  padding: 80px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+
+  .hero-contenido {
+    max-width: 800px;
+  }
+
+  .hero-titulo {
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    color: #000;
+    letter-spacing: -1px;
+  }
+
+  .hero-subtitulo {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .hero-descripcion {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #666;
+    margin-bottom: 40px;
+    max-width: 600px;
+  }
+
+  .hero-acciones {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+}
+
+// Botones
+.btn-primario {
+  background: #000;
+  color: white;
+  border: 1px solid #000;
+  padding: 12px 32px;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: white;
+    color: #000;
+  }
+}
+
+.btn-secundario {
+  background: transparent;
+  color: #000;
+  border: 1px solid #000;
+  padding: 12px 32px;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #000;
+    color: white;
+  }
+}
+
+.link-ver-todos {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #000;
+  }
+}
+
+// Secciones generales
+section {
+  padding: 60px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.seccion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+
+  h2 {
+    font-size: 28px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #000;
+  }
+}
+
+// Proyectos Destacados
+.proyectos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+}
+
+.proyecto-card {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .proyecto-imagen {
+    margin-bottom: 20px;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+
+    .imagen-placeholder {
+      width: 100%;
+      height: 100%;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      font-weight: 300;
+      color: #999;
+      border: 1px solid #eee;
+    }
+  }
+
+  .proyecto-info {
+    .proyecto-meta {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+
+      .proyecto-anio {
+        color: #999;
+      }
+
+      .proyecto-tipo {
+        color: #666;
+      }
+    }
+
+    .proyecto-titulo {
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 8px;
+      color: #000;
+    }
+
+    .proyecto-ubicacion {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 12px;
+    }
+
+    .proyecto-descripcion {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .proyecto-detalles {
+      display: flex;
+      gap: 15px;
+
+      .detalle {
+        font-size: 12px;
+        padding: 4px 8px;
+        background: #f5f5f5;
+        border-radius: 2px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+
+        &.estado {
+          background: #e8f4f8;
+          color: #2c5aa0;
+        }
+      }
+    }
+  }
+}
+
+// Sección Estudio
+.seccion-estudio {
+  background: #fafafa;
+  margin: 60px 0;
+  padding: 60px 40px;
+
+  .estudio-contenido {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .estudio-texto {
+    h2 {
+      font-size: 32px;
+      font-weight: 300;
+      margin-bottom: 24px;
+      color: #000;
+    }
+
+    .estudio-descripcion {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .estudio-filosofia {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #666;
+      margin-bottom: 40px;
+      font-style: italic;
+    }
+
+    .estudio-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-bottom: 40px;
+
+      .stat {
+        text-align: center;
+
+        .stat-numero {
+          display: block;
+          font-size: 36px;
+          font-weight: 300;
+          color: #000;
+          margin-bottom: 8px;
+        }
+
+        .stat-label {
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          color: #666;
+        }
+      }
+    }
+  }
+
+  .estudio-servicios {
+    h3 {
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #000;
+    }
+
+    .servicios-lista {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #666;
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}
+
+// Noticias Destacadas
+.noticias-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 40px;
+}
+
+.noticia-card {
+  padding: 30px;
+  border: 1px solid #eee;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: #ccc;
+    transform: translateY(-2px);
+  }
+
+  .noticia-meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    .noticia-fecha {
+      color: #999;
+    }
+
+    .noticia-categoria {
+      color: #666;
+    }
+  }
+
+  .noticia-titulo {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: #000;
+  }
+
+  .noticia-descripcion {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 15px;
+  }
+
+  .noticia-autor {
+    font-size: 12px;
+    color: #999;
+    font-style: italic;
+  }
+}
+
+// Loading State
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+
+  .loading-content {
+    text-align: center;
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 2px solid #f3f3f3;
+      border-top: 2px solid #000;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    p {
+      color: #666;
+      font-size: 14px;
+    }
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 40px 20px;
+
+    .hero-titulo {
+      font-size: 36px;
+    }
+
+    .hero-subtitulo {
+      font-size: 18px;
+    }
+
+    .hero-acciones {
+      flex-direction: column;
+      align-items: flex-start;
+
+      button {
+        width: 100%;
+        max-width: 250px;
+      }
+    }
+  }
+
+  section {
+    padding: 40px 20px;
+  }
+
+  .seccion-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .proyectos-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .estudio-contenido {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .estudio-stats {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .noticias-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 30px 15px;
+
+    .hero-titulo {
+      font-size: 28px;
+    }
+  }
+
+  section {
+    padding: 30px 15px;
+  }
+
+  .noticia-card {
+    padding: 20px;
+  }
+}

@@ -1,0 +1,59 @@
+<!-- src/app/components/header/header.component.html -->
+
+<header class="header">
+  <div class="header-container">
+    
+    <!-- Logo/Nombre del estudio -->
+    <div class="logo" (click)="navegarA('/')">
+      <h1>Estudio Zuñiga</h1>
+      <span class="subtitulo">Arquitectos</span>
+    </div>
+
+    <!-- Navegación desktop -->
+    <nav class="nav-desktop">
+      <a 
+        *ngFor="let item of itemsNavegacion" 
+        [routerLink]="item.ruta"
+        [class.activo]="esRutaActiva(item.ruta)"
+        class="nav-item">
+        {{ item.etiqueta }}
+      </a>
+    </nav>
+
+    <!-- Botón menú móvil -->
+    <button 
+      class="menu-movil-btn"
+      (click)="alternarMenuMovil()"
+      [class.activo]="menuMovilAbierto"
+      aria-label="Abrir menú">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+  </div>
+
+  <!-- Navegación móvil -->
+  <nav 
+    class="nav-movil"
+    [class.abierto]="menuMovilAbierto">
+    <div class="nav-movil-contenido">
+      <a 
+        *ngFor="let item of itemsNavegacion" 
+        [routerLink]="item.ruta"
+        [class.activo]="esRutaActiva(item.ruta)"
+        class="nav-item-movil"
+        (click)="cerrarMenuMovil()">
+        {{ item.etiqueta }}
+      </a>
+    </div>
+  </nav>
+
+  <!-- Overlay para cerrar menú móvil -->
+  <div 
+    class="overlay"
+    [class.visible]="menuMovilAbierto"
+    (click)="cerrarMenuMovil()">
+  </div>
+
+</header>
