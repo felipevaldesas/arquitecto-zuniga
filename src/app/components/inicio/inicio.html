@@ -1,7 +1,5 @@
-<div class="inicio-container">
-  
-  <!-- Hero Section -->
-  @if (!cargando) {
+@if(!cargando) {
+  <div class="inicio-container">
     <section class="hero-section">
       <div class="hero-contenido">
         <h1 class="hero-titulo">{{ textoHero.titulo }}</h1>
@@ -19,7 +17,6 @@
       </div>
     </section>
 
-    <!-- Sección Proyectos Destacados -->
     <section class="seccion-proyectos">
       <div class="seccion-header">
         <h2>Proyectos Destacados</h2>
@@ -27,17 +24,16 @@
           Ver todos los proyectos
         </button>
       </div>
-
       <div class="proyectos-grid">
-        @for (proyecto of proyectosDestacados; track proyecto.id) {
-          <article class="proyecto-card" (click)="verProyecto(proyecto.id)">
-            
+        @for (proyecto of proyectosDestacados; track $index) {
+          <article 
+            class="proyecto-card"
+            (click)="verProyecto(proyecto.id)">
             <div class="proyecto-imagen">
               <div class="imagen-placeholder">
                 <span>{{ proyecto.titulo.charAt(0) }}</span>
               </div>
             </div>
-            
             <div class="proyecto-info">
               <div class="proyecto-meta">
                 <span class="proyecto-anio">{{ proyecto.anio }}</span>
@@ -63,7 +59,6 @@
       </div>
     </section>
 
-    <!-- Sección Información del Estudio -->
     @if (informacionEstudio) {
       <section class="seccion-estudio">
         <div class="estudio-contenido">
@@ -85,9 +80,7 @@
               </div>
               @if (informacionEstudio.reconocimientos) {
                 <div class="stat">
-                  <span class="stat-numero">
-                    {{ informacionEstudio.reconocimientos.length }}
-                  </span>
+                  <span class="stat-numero">{{ informacionEstudio.reconocimientos.length }}</span>
                   <span class="stat-label">Reconocimientos</span>
                 </div>
               }
@@ -101,7 +94,7 @@
           <div class="estudio-servicios">
             <h3>Nuestros Servicios</h3>
             <ul class="servicios-lista">
-              @for (servicio of informacionEstudio.servicios.slice(0,6); track $index) {
+              @for (servicio of informacionEstudio.servicios.slice(0, 6); track $index) {
                 <li>{{ servicio }}</li>
               }
             </ul>
@@ -110,47 +103,81 @@
       </section>
     }
 
-    <!-- Sección Noticias Destacadas -->
-    @if (noticiasDestacadas.length > 0) {
-      <section class="seccion-noticias">
-        <div class="seccion-header">
-          <h2>Últimas Noticias</h2>
-          <button class="link-ver-todos" (click)="navegarANoticias()">
-            Ver todas las noticias
-          </button>
+    <section class="seccion-contacto-artistico">
+      <div class="contacto-grid">
+        
+        <div class="contacto-principal">
+          <div class="contacto-header">
+            <span class="contacto-numero">03</span>
+            <div class="contacto-titulo">
+              <h2>HABLEMOS DE<br>TU PROYECTO</h2>
+              <p>Cada proyecto es una oportunidad única de crear algo extraordinario</p>
+            </div>
+          </div>
+          
+          <div class="contacto-info">
+            <div class="info-item">
+              <span class="info-label">UBICACIÓN</span>
+              <span class="info-valor">Santiago, Chile</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">EMAIL</span>
+              <span class="info-valor">contacto@estudiozuniga.cl</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">TELÉFONO</span>
+              <span class="info-valor">+56 2 2234 5678</span>
+            </div>
+          </div>
         </div>
-
-        <div class="noticias-grid">
-          @for (noticia of noticiasDestacadas; track noticia.id) {
-            <article class="noticia-card" (click)="verNoticia(noticia.id)">
-              <div class="noticia-meta">
-                <span class="noticia-fecha">{{ noticia.fecha }}</span>
-                @if (noticia.categoria) {
-                  <span class="noticia-categoria">{{ noticia.categoria }}</span>
-                }
-              </div>
-              <h3 class="noticia-titulo">{{ noticia.titulo }}</h3>
-              <p class="noticia-descripcion">{{ noticia.descripcion }}</p>
-              @if (noticia.autor) {
-                <div class="noticia-autor">
-                  <span>Por {{ noticia.autor }}</span>
+        
+        <div class="contacto-visual">
+          <div class="visual-composition">
+            <div class="contact-geo-1"></div>
+            <div class="contact-geo-2"></div>
+            <div class="contact-line"></div>
+            
+            <!-- CTA principal -->
+            <div class="cta-principal">
+              <button class="btn-contacto" (click)="navegarAEstudio()">
+                <span class="btn-text">INICIAR CONVERSACIÓN</span>
+                <div class="btn-icon">
+                  <div class="icon-circle"></div>
+                  <span class="icon-arrow">→</span>
                 </div>
-              }
-            </article>
-          }
+              </button>
+            </div>
+          </div>
         </div>
-      </section>
-    }
-  }
-
-  <!-- Loading State -->
-  @if (cargando) {
-    <div class="loading-container">
-      <div class="loading-content">
-        <div class="spinner"></div>
-        <p>Cargando contenido...</p>
+        
       </div>
-    </div>
-  }
+      
+      <!-- Footer minimalista -->
+      <div class="footer-minimal">
+        <div class="footer-content">
+          <span class="footer-copy">© 2024 Estudio Zuniga</span>
+          <div class="footer-links">
+            <button class="footer-link" (click)="navegarAProyectos()">Proyectos</button>
+            <button class="footer-link" (click)="navegarANoticias()">Noticias</button>
+            <button class="footer-link" (click)="navegarAEstudio()">Estudio</button>
+          </div>
+          <span class="footer-location">Santiago, Chile</span>
+        </div>
+      </div>
+    </section>
+  </div>
+}
 
-</div>
+<!-- Loading State Artístico -->
+@if (cargando) {
+  <div class="loading-artistico">
+    <div class="loading-composition">
+      <div class="loading-geometric">
+        <div class="load-rect-1"></div>
+        <div class="load-rect-2"></div>
+        <div class="load-line"></div>
+      </div>
+      <p class="loading-text">CARGANDO EXPERIENCIA</p>
+    </div>
+  </div>
+}
