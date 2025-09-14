@@ -1,0 +1,42 @@
+<div class="estudio-container">
+    <!-- Hero Section -->
+    <section class="estudio-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="hero-label">DESDE 2005</span>
+            <h1 class="hero-titulo">
+                <span class="linea-1">Diseñando el</span>
+                <span class="linea-2">Futuro Arquitectónico</span>
+            </h1>
+            <p class="hero-descripcion">
+                Transformamos espacios en experiencias, creando arquitectura que trasciende el tiempo
+            </p>
+        </div>
+        <div class="hero-decoration">
+            <div class="deco-line"></div>
+            <div class="deco-circle"></div>
+        </div>
+    </section>
+    <section class="seccion-servicios">
+        <div class="container">
+            <div class="seccion-header">
+                <span class="seccion-numero">03</span>
+                <h2 class="seccion-titulo">Nuestros Servicios</h2>
+            </div>
+            <div class="servicios-grid">
+                @for (servicio of servicios; track $index) {
+                    <div class="servicio-card" [attr.data-index]="formatearIndice($index + 1)">
+                        <div class="servicio-icon">
+                            <div class="icon-shape">
+                                <span>{{ obtenerIconoServicio($index) }}</span>
+                            </div>
+                        </div>
+                        <h3 class="servicio-titulo">{{ servicio.titulo }}</h3>
+                        <p class="servicio-descripcion">{{ servicio.descripcion }}</p>
+                        <div class="servicio-hover-line"></div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,6 +1,5 @@
-<!-- estudio.html -->
 <div class="estudio-container">
-  <!-- Hero Section con parallax -->
+  <!-- Hero Section -->
   <section class="estudio-hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -22,34 +21,47 @@
   <!-- Filosofía y Visión -->
   <section class="seccion-filosofia">
     <div class="container">
-      <div class="filosofia-grid">
+      <header class="seccion-header">
+        <span class="seccion-numero">01</span>
+        <h2 class="seccion-titulo">Nuestra Filosofía</h2>
+        <p class="seccion-descripcion">
+          "La arquitectura no es solo construir espacios, es crear emociones,
+          contar historias y mejorar la vida de las personas que habitan nuestras creaciones."
+        </p>
+      </header>
+
+      <div class="filosofia-content">
+        <!-- Texto -->
         <div class="filosofia-texto">
-          <span class="seccion-numero">01</span>
-          <h2 class="seccion-titulo">Nuestra Filosofía</h2>
-          <p class="filosofia-principal">
-            "La arquitectura no es solo construir espacios, es crear emociones, 
-            contar historias y mejorar la vida de las personas que habitan nuestras creaciones."
-          </p>
           <div class="filosofia-detalles">
+            <h3>Misión</h3>
             <p>
-              En Estudio Zúñiga, cada proyecto es una oportunidad para desafiar los límites 
-              del diseño convencional. Nuestro enfoque combina la innovación tecnológica con 
-              el respeto por el contexto cultural y ambiental de cada obra.
+              Contribuir al desarrollo sostenible de ciudades y territorios, 
+              diseñando proyectos que integren innovación, identidad cultural 
+              y respeto por el medio ambiente.
             </p>
+
+            <h3>Visión</h3>
             <p>
-              Creemos en una arquitectura sostenible, funcional y estéticamente impactante 
-              que dialogue con su entorno y perdure en el tiempo.
+              Ser líderes en la transformación urbana sostenible, generando 
+              impacto positivo en la calidad de vida de las comunidades.
             </p>
+
+            <h3>Valores</h3>
+            <ul>
+              <li><strong>Innovación:</strong> Diseños vanguardistas con tecnología aplicada.</li>
+              <li><strong>Sustentabilidad:</strong> Compromiso con el medio ambiente y la eficiencia.</li>
+              <li><strong>Inclusión:</strong> Espacios que promueven cohesión social.</li>
+              <li><strong>Ética:</strong> Transparencia y responsabilidad en cada proyecto.</li>
+            </ul>
           </div>
         </div>
+
+        <!-- Visual -->
         <div class="filosofia-visual">
           <div class="visual-composition">
-            <div class="img-placeholder main-img">
-              <span>Innovación</span>
-            </div>
-            <div class="img-placeholder secondary-img">
-              <span>Sustentabilidad</span>
-            </div>
+            <div class="visual-item main-img"><span>Innovación</span></div>
+            <div class="visual-item secondary-img"><span>Sustentabilidad</span></div>
             <div class="accent-square"></div>
           </div>
         </div>
@@ -57,132 +69,28 @@
     </div>
   </section>
 
-  <!-- Nuestro Equipo -->
-  <section class="seccion-equipo">
-    <div class="container">
-      <div class="equipo-header">
-        <span class="seccion-numero">02</span>
-        <h2 class="seccion-titulo">Nuestro Equipo</h2>
-        <p class="seccion-descripcion">
-          Profesionales apasionados comprometidos con la excelencia arquitectónica
-        </p>
-      </div>
-      
-      <div class="equipo-grid">
-        @for (miembro of equipo; track miembro.id) {
-          <article class="miembro-card" [class.principal]="$index === 0">
-            <div class="miembro-imagen">
-              <div class="imagen-container">
-                <div class="imagen-placeholder">
-                  <span>{{ obtenerIniciales(miembro.nombre) }}</span>
-                </div>
-                <div class="imagen-overlay">
-                  <div class="overlay-content">
-                    <p class="miembro-bio">{{ miembro.biografia || 'Arquitecto con amplia experiencia en diseño innovador y sostenible.' }}</p>
-                    @if (miembro.email) {
-                      <a href="mailto:{{ miembro.email }}" class="miembro-contacto">
-                        <span class="icon">✉</span>
-                        Contactar
-                      </a>
-                    }
-                  </div>
-                </div>
-              </div>
-              @if (miembro.especialidad) {
-                <span class="especialidad-badge">{{ miembro.especialidad }}</span>
-              }
-            </div>
-            <div class="miembro-info">
-              <h3 class="miembro-nombre">{{ miembro.nombre }}</h3>
-              <p class="miembro-cargo">{{ miembro.cargo }}</p>
-            </div>
-          </article>
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- Servicios -->
-  <section class="seccion-servicios">
-    <div class="container">
-      <div class="servicios-header">
-        <span class="seccion-numero">03</span>
-        <h2 class="seccion-titulo">Nuestros Servicios</h2>
-      </div>
-      
-      <div class="servicios-grid">
-        @for (servicio of servicios; track $index) {
-          <div class="servicio-card" [attr.data-index]="formatearIndice($index + 1)">
-            <div class="servicio-icon">
-              <div class="icon-shape">
-                <span>{{ obtenerIconoServicio($index) }}</span>
-              </div>
-            </div>
-            <h3 class="servicio-titulo">{{ servicio.titulo }}</h3>
-            <p class="servicio-descripcion">{{ servicio.descripcion }}</p>
-            <div class="servicio-hover-line"></div>
-          </div>
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- Reconocimientos y Logros -->
+  <!-- Reconocimientos -->
   <section class="seccion-reconocimientos">
     <div class="container">
+      <div class="seccion-header">
+        <span class="seccion-numero">02</span>
+        <h2 class="seccion-titulo">Reconocimientos</h2>
+        <p class="seccion-descripcion">
+          Nuestro trabajo ha sido reconocido nacional e internacionalmente, 
+          validando nuestro compromiso con la excelencia arquitectónica.
+        </p>
+      </div>
       <div class="reconocimientos-content">
-        <div class="reconocimientos-texto">
-          <span class="seccion-numero">04</span>
-          <h2 class="seccion-titulo">Reconocimientos</h2>
-          <p class="reconocimientos-intro">
-            Nuestro trabajo ha sido reconocido nacional e internacionalmente, 
-            validando nuestro compromiso con la excelencia arquitectónica.
-          </p>
-          
-          <div class="reconocimientos-lista">
-            @for (reconocimiento of reconocimientos; track $index) {
-              <div class="reconocimiento-item">
-                <span class="reconocimiento-year">{{ reconocimiento.anio }}</span>
-                <div class="reconocimiento-info">
-                  <h4>{{ reconocimiento.titulo }}</h4>
-                  <p>{{ reconocimiento.organizacion }}</p>
-                </div>
+        <div class="reconocimientos-lista">
+          @for (reconocimiento of reconocimientos; track $index) {
+            <div class="reconocimiento-item">
+              <span class="reconocimiento-year">{{ reconocimiento.anio }}</span>
+              <div class="reconocimiento-info">
+                <h4>{{ reconocimiento.titulo }}</h4>
+                <p>{{ reconocimiento.organizacion }}</p>
               </div>
-            }
-          </div>
-        </div>
-        
-        <div class="reconocimientos-stats">
-          <div class="stat-card">
-            <div class="stat-numero">
-              <span class="numero">{{ aniosExperiencia }}</span>
-              <span class="simbolo">+</span>
             </div>
-            <p class="stat-label">Años de experiencia</p>
-          </div>
-          
-          <div class="stat-card">
-            <div class="stat-numero">
-              <span class="numero">{{ proyectosCompletados }}</span>
-              <span class="simbolo">+</span>
-            </div>
-            <p class="stat-label">Proyectos completados</p>
-          </div>
-          
-          <div class="stat-card">
-            <div class="stat-numero">
-              <span class="numero">{{ premiosGanados }}</span>
-            </div>
-            <p class="stat-label">Premios ganados</p>
-          </div>
-          
-          <div class="stat-card">
-            <div class="stat-numero">
-              <span class="numero">{{ clientesSatisfechos }}</span>
-              <span class="simbolo">%</span>
-            </div>
-            <p class="stat-label">Clientes satisfechos</p>
-          </div>
+          }
         </div>
       </div>
     </div>
@@ -191,11 +99,10 @@
   <!-- Timeline de Historia -->
   <section class="seccion-historia">
     <div class="container">
-      <div class="historia-header">
-        <span class="seccion-numero">05</span>
+      <div class="seccion-header">
+        <span class="seccion-numero">03</span>
         <h2 class="seccion-titulo">Nuestra Historia</h2>
       </div>
-      
       <div class="timeline">
         @for (evento of historia; track $index) {
           <div class="timeline-item" [class.left]="$index % 2 === 0" [class.right]="$index % 2 !== 0">
@@ -204,9 +111,7 @@
               <h3 class="timeline-titulo">{{ evento.titulo }}</h3>
               <p class="timeline-descripcion">{{ evento.descripcion }}</p>
             </div>
-            <div class="timeline-point">
-              <div class="point-inner"></div>
-            </div>
+            <div class="timeline-point"><div class="point-inner"></div></div>
           </div>
         }
         <div class="timeline-line"></div>
@@ -214,17 +119,16 @@
     </div>
   </section>
 
-  <!-- Proceso de Trabajo -->
+  <!-- Proceso -->
   <section class="seccion-proceso">
     <div class="container">
-      <div class="proceso-header">
-        <span class="seccion-numero">06</span>
+      <div class="seccion-header">
+        <span class="seccion-numero">04</span>
         <h2 class="seccion-titulo">Nuestro Proceso</h2>
         <p class="seccion-descripcion">
           Un enfoque metodológico que garantiza resultados excepcionales
         </p>
       </div>
-      
       <div class="proceso-steps">
         @for (paso of procesoTrabajo; track $index) {
           <div class="proceso-step" [attr.data-step]="formatearIndice($index + 1)">
@@ -233,78 +137,29 @@
               <h3 class="step-titulo">{{ paso.titulo }}</h3>
               <p class="step-descripcion">{{ paso.descripcion }}</p>
             </div>
-            <div class="step-icon">
-              <span>{{ paso.icono }}</span>
-            </div>
+            <div class="step-icon"><span>{{ paso.icono }}</span></div>
           </div>
         }
       </div>
     </div>
   </section>
 
-  <!-- Call to Action -->
+  <!-- CTA -->
   <section class="seccion-cta">
-    <div class="cta-background">
-      <div class="cta-pattern"></div>
-    </div>
+    <div class="cta-background"><div class="cta-pattern"></div></div>
     <div class="container">
       <div class="cta-content">
-        <h2 class="cta-titulo">
-          ¿Listo para crear algo extraordinario?
-        </h2>
+        <h2 class="cta-titulo">¿Listo para crear algo extraordinario?</h2>
         <p class="cta-descripcion">
           Conversemos sobre tu próximo proyecto y cómo podemos hacerlo realidad
         </p>
         <div class="cta-buttons">
           <button class="btn-primary" (click)="navegarAContacto()">
-            <span>Iniciar Proyecto</span>
-            <span class="btn-arrow">→</span>
+            <span>Iniciar Proyecto</span><span class="btn-arrow">→</span>
           </button>
           <button class="btn-secondary" (click)="descargarPortfolio()">
-            <span>Descargar Portfolio</span>
-            <span class="btn-icon">↓</span>
+            <span>Descargar Portfolio</span><span class="btn-icon">↓</span>
           </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Información de Contacto -->
-  <section class="seccion-contacto-info">
-    <div class="container">
-      <div class="contacto-grid">
-        <div class="contacto-item">
-          <div class="contacto-icon">📍</div>
-          <div class="contacto-details">
-            <h4>Ubicación</h4>
-            <p>{{ informacionContacto.direccion }}</p>
-            <p>{{ informacionContacto.ciudad }}, {{ informacionContacto.region }}</p>
-          </div>
-        </div>
-        
-        <div class="contacto-item">
-          <div class="contacto-icon">📧</div>
-          <div class="contacto-details">
-            <h4>Email</h4>
-            <a href="mailto:{{ informacionContacto.email }}">{{ informacionContacto.email }}</a>
-          </div>
-        </div>
-        
-        <div class="contacto-item">
-          <div class="contacto-icon">📱</div>
-          <div class="contacto-details">
-            <h4>Teléfono</h4>
-            <a href="tel:{{ informacionContacto.telefono }}">{{ informacionContacto.telefono }}</a>
-          </div>
-        </div>
-        
-        <div class="contacto-item">
-          <div class="contacto-icon">🌐</div>
-          <div class="contacto-details">
-            <h4>Horario</h4>
-            <p>Lunes a Viernes: 9:00 - 18:00</p>
-            <p>Sábados: 9:00 - 13:00</p>
-          </div>
         </div>
       </div>
     </div>

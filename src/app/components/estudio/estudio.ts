@@ -2,12 +2,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { MiembroEquipo, InformacionContacto } from '../../models/interfaces';
-
-interface Servicio {
-  titulo: string;
-  descripcion: string;
-}
+import { InformacionContacto } from '../../models/interfaces';
 
 interface Reconocimiento {
   anio: string;
@@ -35,77 +30,6 @@ interface PasoProceso {
   styleUrl: './estudio.scss'
 })
 export class Estudio {
-  // Datos del equipo
-  equipo: MiembroEquipo[] = [
-    {
-      id: 1,
-      nombre: 'Felipe Zúñiga',
-      cargo: 'Arquitecto Principal & Fundador',
-      email: 'azuniga@estudiozuniga.cl',
-      biografia: 'Con más de 20 años de experiencia, Felipe ha liderado proyectos emblemáticos que han redefinido el paisaje urbano de Santiago.',
-      especialidad: 'Diseño Sostenible'
-    },
-    {
-      id: 2,
-      nombre: 'María Fernanda Zúñiga',
-      cargo: 'Jefe de Proyectos',
-      email: 'mftorres@estudiozuniga.cl',
-      biografia: 'Experto en gestión de proyectos complejos y coordinación de equipos multidisciplinarios.',
-      especialidad: 'Gestión BIM'
-    },
-    {
-      id: 3,
-      nombre: 'Isabella Rojas',
-      cargo: 'Arquitecta Senior',
-      email: 'irojas@estudiozuniga.cl',
-      biografia: 'Apasionada por el diseño paramétrico y la integración de tecnología en la arquitectura.',
-      especialidad: 'Diseño Paramétrico'
-    },
-    {
-      id: 4,
-      nombre: 'Diego Valenzuela',
-      cargo: 'Arquitecto de Interiores',
-      email: 'dvalenzuela@estudiozuniga.cl',
-      biografia: 'Especialista en crear espacios interiores que reflejan la identidad y necesidades de cada cliente.',
-      especialidad: 'Interiorismo'
-    },
-    {
-      id: 5,
-      nombre: 'Ana Lucía Campos',
-      cargo: 'Arquitecta de Paisaje',
-      email: 'alcampos@estudiozuniga.cl',
-      biografia: 'Integra naturaleza y arquitectura creando espacios verdes sostenibles y funcionales.',
-      especialidad: 'Paisajismo'
-    }
-  ];
-
-  // Servicios ofrecidos
-  servicios: Servicio[] = [
-    {
-      titulo: 'Diseño Arquitectónico',
-      descripcion: 'Creación de proyectos únicos que combinan estética, funcionalidad y sostenibilidad.'
-    },
-    {
-      titulo: 'Planificación Urbana',
-      descripcion: 'Desarrollo integral de espacios urbanos que mejoran la calidad de vida comunitaria.'
-    },
-    {
-      titulo: 'Consultoría Inmobiliaria',
-      descripcion: 'Asesoramiento experto para maximizar el valor y potencial de proyectos inmobiliarios.'
-    },
-    {
-      titulo: 'Diseño de Interiores',
-      descripcion: 'Espacios interiores que reflejan personalidad y optimizan la funcionalidad.'
-    },
-    {
-      titulo: 'Gestión de Proyectos',
-      descripcion: 'Coordinación integral desde la concepción hasta la entrega final del proyecto.'
-    },
-    {
-      titulo: 'Modelado BIM',
-      descripcion: 'Tecnología avanzada para visualización y gestión eficiente de proyectos.'
-    }
-  ];
 
   // Reconocimientos
   reconocimientos: Reconocimiento[] = [
@@ -199,16 +123,6 @@ export class Estudio {
     }
   ];
 
-  // Información de contacto
-  informacionContacto: InformacionContacto = {
-    direccion: 'Av. Providencia 2594, Piso 12',
-    email: 'contacto@estudiozuniga.cl',
-    telefono: '+56 2 2234 5678',
-    sitioWeb: 'www.estudiozuniga.cl',
-    ciudad: 'Santiago',
-    region: 'Región Metropolitana'
-  };
-
   // Estadísticas
   aniosExperiencia: number = 19;
   proyectosCompletados: number = 127;
@@ -225,11 +139,6 @@ export class Estudio {
       .join('')
       .toUpperCase()
       .slice(0, 2);
-  }
-
-  obtenerIconoServicio(index: number): string {
-    const iconos = ['📐', '🏙️', '📊', '🎨', '📋', '💻'];
-    return iconos[index] || '🏗️';
   }
 
   formatearIndice(numero: number): string {

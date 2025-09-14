@@ -1,86 +1,6 @@
-// Variables consistentes con el diseño principal
-$color-primario: #1a1a1a;
-$color-acento: #c9a961;
-$color-acento-hover: #b8974f;
-$color-texto: #2c2c2c;
-$color-texto-claro: #6b6b6b;
-$color-fondo: #ffffff;
-$color-fondo-alt: #f8f7f5;
-$color-borde: #e5e5e5;
-
-// Gradientes premium
-$gradient-premium: linear-gradient(135deg, $color-acento 0%, #e6c074 100%);
-$gradient-dark: linear-gradient(180deg, rgba(26,26,26,0.95) 0%, rgba(26,26,26,0.98) 100%);
-
-// Espaciado
-$spacing-xs: 0.5rem;
-$spacing-sm: 1rem;
-$spacing-md: 2rem;
-$spacing-lg: 3rem;
-
-// Tipografía
-$font-display: 'Playfair Display', 'Georgia', serif;
-$font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-$font-mono: 'JetBrains Mono', 'Courier New', monospace;
-
-// Breakpoints
-$mobile: 480px;
-$tablet: 768px;
-$desktop: 1024px;
-$wide: 1440px;
-
-// Z-index layers
-$z-header: 1000;
-$z-menu: 999;
-$z-overlay: 998;
-
-// Animaciones
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes lineGrow {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
-}
-
-@keyframes morphHamburger {
-  0% {
-    transform: rotate(0) translateY(0);
-  }
-  100% {
-    transform: rotate(45deg) translateY(0);
-  }
-}
+@use './../../../styles/variables' as *;
+@use './../../../styles/mixins' as *;
+@use './../../../styles/animations' as *;
 
 // Header principal
 .header {
@@ -111,16 +31,6 @@ $z-overlay: 998;
     background: rgba(26, 26, 26, 0.95);
     border-bottom-color: rgba(255, 255, 255, 0.1);
     
-    .logo {
-      h1 {
-        color: $color-fondo;
-      }
-      
-      .subtitulo {
-        color: $color-acento;
-      }
-    }
-    
     .nav-desktop .nav-item {
       color: rgba(255, 255, 255, 0.9);
       
@@ -148,78 +58,15 @@ $z-overlay: 998;
     }
   }
 
-  // Logo animado y elegante
   .logo {
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    position: relative;
-    transition: all 0.3s ease;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      top: -5px;
-      left: -10px;
-      width: 40px;
-      height: 40px;
-      border: 2px solid $color-acento;
-      opacity: 0;
-      transform: rotate(45deg) scale(0.8);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      pointer-events: none;
-    }
-
-    &:hover {
-      transform: translateX(5px);
-      
-      &::before {
-        opacity: 0.2;
-        transform: rotate(45deg) scale(1);
-      }
-      
-      h1 {
-        background-size: 200% auto;
-        animation: shimmer 3s linear infinite;
-      }
-    }
-
-    h1 {
-      font-family: $font-display;
-      font-size: 1.75rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin: 0;
-      color: $color-primario;
-      line-height: 1;
-      background: linear-gradient(
-        90deg, 
-        $color-primario 0%, 
-        $color-acento 50%, 
-        $color-primario 100%
-      );
-      background-size: 100% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      transition: all 0.3s ease;
-      
-      @media (max-width: $mobile) {
-        font-size: 1.5rem;
-      }
-    }
-
-    .subtitulo {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: $color-texto-claro;
-      margin-top: 0.25rem;
-      font-weight: 500;
-      opacity: 0.8;
-      transition: all 0.3s ease;
-    }
+    width: 50px;
+    height: 50px;
   }
+
+  .img-logo {
+    width: 100%;
+  }
+
 
   // Navegación desktop
   .nav-desktop {
@@ -557,10 +404,6 @@ $z-overlay: 998;
     border-bottom: none;
     
     &:not(.scrolled) {
-      .logo h1 {
-        color: $color-fondo;
-        -webkit-text-fill-color: $color-fondo;
-      }
       
       .nav-desktop .nav-item {
         color: rgba(255, 255, 255, 0.9);
@@ -581,16 +424,6 @@ $z-overlay: 998;
   &.compact {
     .header-container {
       padding: 0.5rem 2rem;
-    }
-    
-    .logo {
-      h1 {
-        font-size: 1.5rem;
-      }
-      
-      .subtitulo {
-        display: none;
-      }
     }
   }
 }
@@ -616,8 +449,7 @@ $z-overlay: 998;
 .header {
   .nav-item,
   .nav-item-movil,
-  .menu-movil-btn,
-  .logo {
+  .menu-movil-btn {
     &:focus {
       outline: 2px solid $color-acento;
       outline-offset: 4px;
@@ -632,10 +464,6 @@ $z-overlay: 998;
     &:not(.dark-mode) {
       background: rgba(26, 26, 26, 0.95);
       border-bottom-color: rgba(255, 255, 255, 0.1);
-      
-      .logo h1 {
-        color: $color-fondo;
-      }
       
       .nav-desktop .nav-item {
         color: rgba(255, 255, 255, 0.9);

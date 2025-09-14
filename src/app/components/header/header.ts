@@ -20,7 +20,9 @@ export class Header {
     { id: 'inicio', etiqueta: 'Inicio', ruta: '/' },
     { id: 'proyectos', etiqueta: 'Proyectos', ruta: '/proyectos' },
     { id: 'noticias', etiqueta: 'Noticias', ruta: '/noticias' },
-    { id: 'estudio', etiqueta: 'Estudio', ruta: '/estudio' }
+    { id: 'estudio', etiqueta: 'Estudio', ruta: '/estudio' },
+    { id: 'equipo', etiqueta: 'Equipo', ruta: '/equipo' },
+    { id: 'servicios', etiqueta: 'Servicios', ruta: '/servicios' }
   ];
 
   constructor(private router: Router) {

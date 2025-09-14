@@ -1,1 +1,291 @@
-/* You can add global styles to this file, and also import other style files */
+@use './styles/variables' as *;
+@use './styles/mixins' as *;
+@use './styles/animations' as *;
+
+// =========================================================
+// Layout Global
+// =========================================================
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  position: relative;
+
+  @media (max-width: $tablet) {
+    padding: 0 $spacing-sm;
+  }
+}
+
+// =========================================================
+// Hero Section Mejorado
+// =========================================================
+.estudio-hero {
+  position: relative;
+  height: 85vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, $color-primario 0%, #2d2d2d 50%, $color-primario 100%);
+  overflow: hidden;
+
+  @media (max-width: $tablet) {
+    height: 70vh;
+    min-height: 500px;
+  }
+
+  // Overlay con patrones geométricos
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba($color-acento, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba($color-acento, 0.1) 0%, transparent 50%);
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 500px;
+      height: 500px;
+      border: 2px solid rgba($color-acento, 0.1);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: $spacing-md;
+    max-width: 1000px;
+    animation: fadeInUp 1s ease-out;
+
+    .hero-label {
+      display: inline-block;
+      font-size: 0.875rem;
+      color: $color-acento;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      margin-bottom: $spacing-md;
+      font-weight: 600;
+      position: relative;
+      animation: fadeInUp 0.8s ease-out;
+      
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        width: 50px;
+        height: 1px;
+        background: $gradient-premium;
+        transform: translateY(-50%);
+      }
+      
+      &::before {
+        left: -70px;
+      }
+      
+      &::after {
+        right: -70px;
+      }
+    }
+
+    .hero-titulo {
+      font-family: $font-display;
+      font-size: clamp(2.5rem, 8vw, 5.5rem);
+      color: $color-fondo;
+      line-height: 1.1;
+      margin-bottom: $spacing-md;
+      font-weight: 700;
+
+      .linea-1 { 
+        display: block; 
+        animation: slideInLeft 1s ease-out 0.2s backwards;
+        letter-spacing: -0.02em;
+      }
+      
+      .linea-2 { 
+        display: block; 
+        background: $gradient-premium;
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: slideInRight 1s ease-out 0.4s backwards, shimmer 3s linear infinite;
+      }
+    }
+
+    .hero-descripcion {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.7;
+      animation: fadeInUp 1s ease-out 0.6s backwards;
+      font-weight: 300;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+  }
+
+  .hero-decoration {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+
+    .deco-line { 
+      width: 2px; 
+      height: 100px; 
+      background: $gradient-premium; 
+      margin: 0 auto $spacing-sm; 
+      animation: drawLine 1.5s ease-out 0.8s backwards;
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        border: 2px solid $color-acento;
+        border-radius: 50%;
+        transform: translateX(-50%);
+        animation: pulse 2s ease-in-out infinite;
+      }
+    }
+  }
+
+  // Scroll indicator
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    width: 30px;
+    height: 50px;
+    border: 2px solid rgba($color-fondo, 0.3);
+    border-radius: 25px;
+    transform: translateX(-50%);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      width: 6px;
+      height: 10px;
+      background: $color-acento;
+      border-radius: 3px;
+      transform: translateX(-50%);
+      animation: float 2s ease-in-out infinite;
+    }
+  }
+}
+
+.estudio-container {
+  margin-top: 80px;
+  background: $color-fondo;
+  overflow-x: hidden;
+  position: relative;
+  
+  // Patrón de fondo sutil
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 50%, rgba($color-acento, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba($color-acento, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+// =========================================================
+// Dark Mode Support
+// =========================================================
+@media (prefers-color-scheme: dark) {
+  .estudio-container {
+    --color-fondo: #{$color-primario};
+    --color-texto: #{$color-fondo};
+    --color-fondo-alt: #222;
+    --color-texto-claro: #ccc;
+  }
+}
+
+// =========================================================
+// Print Styles
+// =========================================================
+@media print {
+  .estudio-hero,
+  .hero-decoration,
+  .seccion-cta { 
+    display: none; 
+  }
+  
+  body { 
+    background: white; 
+    color: black; 
+  }
+  
+  .miembro,
+  .servicio-item {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+}
+
+// Custom Selection
+::selection {
+  background: $color-acento;
+  color: $color-fondo;
+}
+
+::-moz-selection {
+  background: $color-acento;
+  color: $color-fondo;
+}
+
+// Smooth Scroll
+html {
+  scroll-behavior: smooth;
+}
+
+// =========================================================
+// Responsive Final
+// =========================================================
+@media (max-width: $mobile) {
+  .seccion-filosofia, 
+  .seccion-equipo, 
+  .seccion-servicios,
+  .seccion-reconocimientos,
+  .seccion-historia,
+  .seccion-proceso,
+  .seccion-contacto-info { 
+    padding: $spacing-xl $spacing-sm; 
+  }
+
+  .estudio-hero {
+    height: 60vh;
+    min-height: 400px;
+
+    .hero-content {
+      .hero-titulo {
+        font-size: 2rem;
+      }
+    }
+  }
+}

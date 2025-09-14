@@ -1,0 +1,33 @@
+@use 'variables' as *;
+
+// =========================================================
+// Mixins
+// =========================================================
+@mixin section-padding {
+  padding: $spacing-3xl $spacing-md;
+
+  @media (max-width: $tablet) {
+    padding: $spacing-xl $spacing-sm;
+  }
+}
+
+@mixin hover-lift {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  }
+}
+
+@mixin glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

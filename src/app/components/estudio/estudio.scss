@@ -1,375 +1,35 @@
-// =========================================================
-// Variables
-// =========================================================
-$color-primario: #1a1a1a;
-$color-acento: #c9a961;
-$color-acento-hover: #b8974f;
-$color-texto: #2c2c2c;
-$color-texto-claro: #6b6b6b;
-$color-fondo: #ffffff;
-$color-fondo-alt: #f8f7f5;
-$color-borde: #e5e5e5;
+@use './../../../styles/variables' as *;
+@use './../../../styles/mixins' as *;
+@use './../../../styles/animations' as *;
 
-// Gradientes premium
-$gradient-premium: linear-gradient(135deg, $color-acento 0%, #e6c074 100%);
-$gradient-dark: linear-gradient(180deg, rgba(26,26,26,0) 0%, rgba(26,26,26,0.9) 100%);
-$gradient-overlay: linear-gradient(45deg, rgba(26,26,26,0.95) 0%, rgba(26,26,26,0.7) 100%);
-$gradient-subtle: linear-gradient(135deg, rgba($color-acento, 0.05) 0%, transparent 100%);
+.seccion-header {
+  text-align: center;
+  margin-bottom: $spacing-2xl;
 
-// Espaciado
-$spacing-xs: 0.5rem;
-$spacing-sm: 1rem;
-$spacing-md: 2rem;
-$spacing-lg: 3rem;
-$spacing-xl: 4rem;
-$spacing-2xl: 6rem;
-$spacing-3xl: 8rem;
-
-// Tipografía
-$font-display: 'Playfair Display', 'Georgia', serif;
-$font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-$font-mono: 'JetBrains Mono', 'Courier New', monospace;
-
-// Breakpoints
-$mobile: 480px;
-$tablet: 768px;
-$desktop: 1024px;
-$wide: 1440px;
-
-// Z-index layers
-$z-base: 1;
-$z-dropdown: 10;
-$z-sticky: 100;
-$z-modal: 1000;
-
-// =========================================================
-// Mixins
-// =========================================================
-@mixin section-padding {
-  padding: $spacing-3xl $spacing-md;
-
-  @media (max-width: $tablet) {
-    padding: $spacing-xl $spacing-sm;
-  }
-}
-
-@mixin hover-lift {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-  }
-}
-
-@mixin glass-effect {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-// =========================================================
-// Animaciones Mejoradas
-// =========================================================
-@keyframes fadeInUp {
-  from { 
-    opacity: 0; 
-    transform: translateY(30px); 
-  }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
-  }
-}
-
-@keyframes slideInLeft {
-  from { 
-    opacity: 0; 
-    transform: translateX(-50px); 
-  }
-  to { 
-    opacity: 1; 
-    transform: translateX(0); 
-  }
-}
-
-@keyframes slideInRight {
-  from { 
-    opacity: 0; 
-    transform: translateX(50px); 
-  }
-  to { 
-    opacity: 1; 
-    transform: translateX(0); 
-  }
-}
-
-@keyframes scaleIn {
-  from { 
-    opacity: 0; 
-    transform: scale(0.8); 
-  }
-  to { 
-    opacity: 1; 
-    transform: scale(1); 
-  }
-}
-
-@keyframes drawLine {
-  from { 
-    height: 0;
-    opacity: 0;
-  }
-  to { 
-    height: 100px;
-    opacity: 1;
-  }
-}
-
-@keyframes pulse {
-  0%, 100% { 
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% { 
-    transform: scale(1.05);
-    opacity: 0.8;
-  }
-}
-
-@keyframes float {
-  0%, 100% { 
-    transform: translateY(0) rotate(0deg); 
-  }
-  50% { 
-    transform: translateY(-20px) rotate(5deg); 
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
-}
-
-// =========================================================
-// Layout Global
-// =========================================================
-* {
-  box-sizing: border-box;
-}
-
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 $spacing-md;
-  position: relative;
-
-  @media (max-width: $tablet) {
-    padding: 0 $spacing-sm;
-  }
-}
-
-.estudio-container {
-  margin-top: 80px;
-  background: $color-fondo;
-  overflow-x: hidden;
-  position: relative;
-  
-  // Patrón de fondo sutil
-  &::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-      radial-gradient(circle at 20% 50%, rgba($color-acento, 0.03) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba($color-acento, 0.02) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 0;
-  }
-}
-
-// =========================================================
-// Hero Section Mejorado
-// =========================================================
-.estudio-hero {
-  position: relative;
-  height: 85vh;
-  min-height: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, $color-primario 0%, #2d2d2d 50%, $color-primario 100%);
-  overflow: hidden;
-
-  @media (max-width: $tablet) {
-    height: 70vh;
-    min-height: 500px;
+  .seccion-numero {
+    display: inline-block;
+    font-family: $font-mono;
+    font-size: 5rem;
+    color: $color-acento;
+    opacity: 0.15;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: -$spacing-md;
   }
 
-  // Overlay con patrones geométricos
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: 
-      radial-gradient(circle at 20% 50%, rgba($color-acento, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba($color-acento, 0.1) 0%, transparent 50%);
-    
-    &::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 500px;
-      height: 500px;
-      border: 2px solid rgba($color-acento, 0.1);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      animation: pulse 4s ease-in-out infinite;
-    }
+  .seccion-titulo {
+    font-family: $font-display;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: $color-primario;
   }
 
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: $spacing-md;
-    max-width: 1000px;
-    animation: fadeInUp 1s ease-out;
-
-    .hero-label {
-      display: inline-block;
-      font-size: 0.875rem;
-      color: $color-acento;
-      text-transform: uppercase;
-      letter-spacing: 0.3em;
-      margin-bottom: $spacing-md;
-      font-weight: 600;
-      position: relative;
-      animation: fadeInUp 0.8s ease-out;
-      
-      &::before,
-      &::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        width: 50px;
-        height: 1px;
-        background: $gradient-premium;
-        transform: translateY(-50%);
-      }
-      
-      &::before {
-        left: -70px;
-      }
-      
-      &::after {
-        right: -70px;
-      }
-    }
-
-    .hero-titulo {
-      font-family: $font-display;
-      font-size: clamp(2.5rem, 8vw, 5.5rem);
-      color: $color-fondo;
-      line-height: 1.1;
-      margin-bottom: $spacing-md;
-      font-weight: 700;
-
-      .linea-1 { 
-        display: block; 
-        animation: slideInLeft 1s ease-out 0.2s backwards;
-        letter-spacing: -0.02em;
-      }
-      
-      .linea-2 { 
-        display: block; 
-        background: $gradient-premium;
-        background-size: 200% auto;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        animation: slideInRight 1s ease-out 0.4s backwards, shimmer 3s linear infinite;
-      }
-    }
-
-    .hero-descripcion {
-      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      color: rgba(255, 255, 255, 0.9);
-      line-height: 1.7;
-      animation: fadeInUp 1s ease-out 0.6s backwards;
-      font-weight: 300;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-  }
-
-  .hero-decoration {
-    position: absolute;
-    bottom: 5%;
-    right: 5%;
-    pointer-events: none;
-    animation: float 6s ease-in-out infinite;
-
-    .deco-line { 
-      width: 2px; 
-      height: 100px; 
-      background: $gradient-premium; 
-      margin: 0 auto $spacing-sm; 
-      animation: drawLine 1.5s ease-out 0.8s backwards;
-      position: relative;
-      
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        width: 20px;
-        height: 20px;
-        border: 2px solid $color-acento;
-        border-radius: 50%;
-        transform: translateX(-50%);
-        animation: pulse 2s ease-in-out infinite;
-      }
-    }
-  }
-
-  // Scroll indicator
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    width: 30px;
-    height: 50px;
-    border: 2px solid rgba($color-fondo, 0.3);
-    border-radius: 25px;
-    transform: translateX(-50%);
-    
-    &::before {
-      content: '';
-      position: absolute;
-      top: 8px;
-      left: 50%;
-      width: 6px;
-      height: 10px;
-      background: $color-acento;
-      border-radius: 3px;
-      transform: translateX(-50%);
-      animation: float 2s ease-in-out infinite;
-    }
+  .seccion-descripcion {
+    font-size: 1.25rem;
+    color: $color-texto;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 300;
   }
 }
 
@@ -382,580 +42,108 @@ $z-modal: 1000;
   position: relative;
   overflow: hidden;
 
-  // Decoración de fondo
-  &::before {
-    content: '01';
-    position: absolute;
-    top: 10%;
-    right: 5%;
-    font-family: $font-mono;
-    font-size: 15rem;
-    font-weight: 700;
-    color: $color-acento;
-    opacity: 0.03;
-    z-index: 0;
-  }
-
-  .container {
-    position: relative;
-    z-index: 1;
-  }
-
-  .seccion-header {
-    text-align: center;
-    margin-bottom: $spacing-2xl;
-    animation: fadeInUp 0.8s ease-out;
-
-    .seccion-numero {
-      display: inline-block;
-      font-family: $font-mono;
-      font-size: 0.875rem;
-      color: $color-acento;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      margin-bottom: $spacing-sm;
-      font-weight: 600;
-    }
-
-    .seccion-titulo {
-      font-family: $font-display;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      color: $color-primario;
-      margin-bottom: $spacing-md;
-      position: relative;
-      line-height: 1.1;
-      
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: -$spacing-sm;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 3px;
-        background: $gradient-premium;
-      }
-    }
-
-    .seccion-descripcion {
-      font-size: 1.25rem;
-      color: $color-texto;
-      line-height: 1.6;
-      max-width: 700px;
-      margin: 0 auto;
-      font-weight: 300;
-    }
-  }
-
   .filosofia-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: $spacing-2xl;
     align-items: center;
-    margin-bottom: $spacing-2xl;
+    max-width: 1200px;
+    margin: 0 auto;
 
-    @media (max-width: $desktop) {
+    @media (max-width: $tablet) {
       grid-template-columns: 1fr;
-      gap: $spacing-xl;
+      gap: $spacing-lg;
     }
 
     .filosofia-texto {
-      animation: slideInLeft 0.8s ease-out 0.2s backwards;
-
-      .filosofia-quote {
-        font-family: $font-display;
-        font-size: clamp(1.5rem, 3vw, 2rem);
-        color: $color-texto;
-        line-height: 1.5;
-        font-style: italic;
-        position: relative;
-        padding-left: $spacing-lg;
-        margin-bottom: $spacing-lg;
-        
-        &::before {
-          content: '"';
-          position: absolute;
-          left: 0;
-          top: -20px;
-          font-size: 5rem;
-          color: $color-acento;
-          opacity: 0.2;
+      animation: slideInLeft 0.8s ease-out;
+      
+      .filosofia-detalles {
+        h3 {
           font-family: $font-display;
+          font-size: 1.25rem;
+          margin-top: $spacing-md;
+          margin-bottom: $spacing-xs;
+          color: $color-primario;
         }
-      }
 
-      .filosofia-descripcion {
-        color: $color-texto-claro;
-        line-height: 1.8;
-        margin-bottom: $spacing-md;
-        font-size: 1.1rem;
+        p {
+          margin-bottom: $spacing-md;
+          line-height: 1.7;
+          color: $color-texto;
+        }
+
+        ul {
+          list-style: none;
+          padding: 0;
+
+          li {
+            margin-bottom: $spacing-sm;
+            position: relative;
+            padding-left: 1.5rem;
+            color: $color-texto-claro;
+
+            &::before {
+              content: '•';
+              position: absolute;
+              left: 0;
+              color: $color-acento;
+              font-weight: bold;
+            }
+          }
+        }
       }
     }
 
     .filosofia-visual {
-      position: relative;
-      animation: slideInRight 0.8s ease-out 0.4s backwards;
-
-      .visual-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: $spacing-md;
-        transform: rotate(-5deg);
-        
-        .visual-item {
-          aspect-ratio: 1;
-          background: $gradient-overlay;
-          border-radius: 16px;
-          @include flex-center;
-          color: $color-fondo;
-          font-family: $font-display;
-          font-size: 1.25rem;
-          position: relative;
-          overflow: hidden;
-          cursor: pointer;
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          
-          &::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: $gradient-premium;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-          }
-          
-          &:hover {
-            transform: scale(1.05);
-            
-            &::before {
-              opacity: 0.3;
-            }
-          }
-          
-          &:nth-child(1) {
-            grid-column: span 2;
-          }
-          
-          &:nth-child(2) {
-            transform: translateY(20px);
-          }
-          
-          &:nth-child(3) {
-            transform: translateY(-20px);
-          }
-        }
-      }
-    }
-  }
-
-  .filosofia-lista {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: $spacing-lg;
-    animation: fadeInUp 0.8s ease-out 0.6s backwards;
-
-    .filosofia-item {
-      background: $color-fondo;
-      padding: $spacing-lg;
-      border-radius: 16px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-      
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background: $gradient-premium;
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.4s ease;
-      }
-
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-        
-        &::before {
-          transform: scaleX(1);
-        }
-        
-        .item-icono {
-          transform: rotate(10deg) scale(1.1);
-          background: $gradient-premium;
-        }
-      }
-
-      .item-icono {
-        width: 60px;
-        height: 60px;
-        background: $gradient-subtle;
-        border-radius: 12px;
-        @include flex-center;
-        font-size: 1.5rem;
-        margin-bottom: $spacing-md;
-        transition: all 0.4s ease;
-      }
-
-      .item-titulo { 
-        font-family: $font-display; 
-        font-size: 1.5rem; 
-        color: $color-primario; 
-        margin-bottom: $spacing-sm;
-        line-height: 1.2;
-      }
-      
-      .item-descripcion { 
-        font-size: 1rem; 
-        color: $color-texto-claro; 
-        line-height: 1.7;
-      }
-    }
-  }
-}
-
-// =========================================================
-// Sección Equipo Mejorada
-// =========================================================
-.seccion-equipo {
-  @include section-padding;
-  background: $color-fondo;
-  position: relative;
-  overflow: hidden;
-
-  // Patrón decorativo
-  &::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: -200px;
-    width: 400px;
-    height: 400px;
-    border: 3px solid rgba($color-acento, 0.05);
-    border-radius: 50%;
-    transform: translateY(-50%);
-  }
-
-  .seccion-header {
-    text-align: center;
-    margin-bottom: $spacing-2xl;
-    position: relative;
-    z-index: 1;
-
-    .seccion-numero {
-      display: inline-block;
-      font-family: $font-mono;
-      font-size: 0.875rem;
-      color: $color-acento;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      margin-bottom: $spacing-sm;
-      font-weight: 600;
-    }
-
-    .seccion-titulo {
-      font-family: $font-display;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      color: $color-primario;
-      margin-bottom: $spacing-sm;
-    }
-  }
-
-  .equipo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: $spacing-lg;
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-
-    @media (max-width: $tablet) {
-      grid-template-columns: 1fr;
-      gap: $spacing-md;
-    }
-
-    .miembro {
-      background: $color-fondo;
-      border: 1px solid $color-borde;
-      border-radius: 16px;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-      position: relative;
-      animation: scaleIn 0.6s ease-out backwards;
-      
-      @for $i from 1 through 6 {
-        &:nth-child(#{$i}) {
-          animation-delay: #{$i * 0.1}s;
-        }
-      }
-
-      &:hover { 
-        transform: translateY(-10px);
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-        border-color: $color-acento;
-        
-        .foto-container {
-          &::after {
-            opacity: 1;
-          }
-          
-          .foto {
-            transform: scale(1.1);
-          }
-        }
-        
-        .info {
-          background: linear-gradient(180deg, $color-fondo 0%, $color-fondo-alt 100%);
-        }
-        
-        .nombre {
-          color: $color-acento;
-        }
-      }
-
-      .foto-container {
+      animation: slideInRight 0.8s ease-out;
+      .visual-composition {
         position: relative;
-        width: 100%;
-        height: 250px;
-        overflow: hidden;
-        background: $gradient-overlay;
-        
-        &::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: $gradient-premium;
-          opacity: 0;
-          transition: opacity 0.4s ease;
-          mix-blend-mode: overlay;
-        }
-        
-        .foto { 
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.4s ease;
-        }
-        
-        // Placeholder cuando no hay foto
-        .foto-placeholder {
-          width: 100%;
-          height: 100%;
-          @include flex-center;
-          background: linear-gradient(135deg, $color-primario 0%, #3a3a3a 100%);
-          
-          span {
-            font-family: $font-display;
-            font-size: 4rem;
-            color: $color-acento;
-            opacity: 0.5;
-            font-weight: 700;
-          }
-        }
-        
-        .especialidad {
-          position: absolute;
-          top: $spacing-sm;
-          right: $spacing-sm;
-          padding: 0.375rem 0.75rem;
-          background: $gradient-premium;
-          color: $color-fondo;
-          font-size: 0.75rem;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          border-radius: 20px;
-        }
-      }
-      
-      .info {
-        padding: $spacing-md;
-        text-align: center;
-        background: $color-fondo;
-        transition: background 0.3s ease;
-        
-        .nombre { 
-          font-family: $font-display; 
-          font-size: 1.5rem; 
-          color: $color-primario;
-          margin-bottom: $spacing-xs;
-          transition: color 0.3s ease;
-        }
-        
-        .rol { 
-          font-size: 1rem; 
-          color: $color-texto-claro;
-          margin-bottom: $spacing-sm;
-          font-weight: 500;
-        }
-        
-        .bio {
-          font-size: 0.95rem;
-          color: $color-texto-claro;
-          line-height: 1.6;
-          margin-bottom: $spacing-sm;
-        }
-        
-        .contacto {
-          display: inline-flex;
+        display: flex;
+        gap: $spacing-md;
+        justify-content: center;
+
+        .visual-item {
+          flex: 1;
+          height: 250px;
+          border-radius: 16px;
+          display: flex;
           align-items: center;
-          gap: $spacing-xs;
-          color: $color-acento;
-          text-decoration: none;
-          font-size: 0.9rem;
+          justify-content: center;
+          font-family: $font-display;
+          font-size: 1.5rem;
           font-weight: 600;
-          transition: all 0.3s ease;
-          
+          color: $color-fondo;
+          text-align: center;
+          transition: transform 0.4s ease, box-shadow 0.4s ease;
+          cursor: pointer;
+
           &:hover {
-            transform: translateX(5px);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+          }
+
+          &.main-img {
+            background: $gradient-premium;
+          }
+
+          &.secondary-img {
+            background: $gradient-subtle;
+            color: $color-primario;
           }
         }
-      }
-    }
-  }
-}
 
-// =========================================================
-// Sección Servicios Mejorada
-// =========================================================
-.seccion-servicios {
-  @include section-padding;
-  background: linear-gradient(180deg, $color-fondo-alt 0%, $color-fondo 100%);
-  position: relative;
-
-  .seccion-header {
-    text-align: center;
-    margin-bottom: $spacing-2xl;
-
-    .seccion-numero {
-      display: inline-block;
-      font-family: $font-mono;
-      font-size: 0.875rem;
-      color: $color-acento;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      margin-bottom: $spacing-sm;
-      font-weight: 600;
-    }
-
-    .seccion-titulo {
-      font-family: $font-display;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      color: $color-primario;
-    }
-  }
-
-  .servicios-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: $spacing-lg;
-    max-width: 1200px;
-    margin: 0 auto;
-
-    @media (max-width: $tablet) {
-      grid-template-columns: 1fr;
-      gap: $spacing-md;
-    }
-
-    .servicio-item {
-      background: $color-fondo;
-      padding: $spacing-lg;
-      border-radius: 16px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-      border: 1px solid transparent;
-      animation: fadeInUp 0.8s ease-out backwards;
-      
-      @for $i from 1 through 6 {
-        &:nth-child(#{$i}) {
-          animation-delay: #{$i * 0.1}s;
+        .accent-square {
+          position: absolute;
+          bottom: -20px;
+          right: -20px;
+          width: 80px;
+          height: 80px;
+          background: $color-acento;
+          opacity: 0.2;
+          border-radius: 12px;
+          transform: rotate(15deg);
         }
-      }
-
-      &::before {
-        content: attr(data-number);
-        position: absolute;
-        top: $spacing-sm;
-        right: $spacing-sm;
-        font-family: $font-mono;
-        font-size: 3rem;
-        color: $color-acento;
-        opacity: 0.08;
-        font-weight: 700;
-        transition: all 0.4s ease;
-      }
-      
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background: $gradient-premium;
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.4s ease;
-      }
-
-      &:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
-        border-color: $color-acento;
-        
-        &::before {
-          opacity: 0.15;
-          transform: scale(1.2);
-        }
-        
-        &::after {
-          transform: scaleX(1);
-        }
-        
-        .icono {
-          transform: rotate(-10deg) scale(1.15);
-          background: $gradient-premium;
-        }
-        
-        .titulo {
-          color: $color-acento;
-        }
-      }
-
-      .icono { 
-        width: 70px;
-        height: 70px;
-        background: $gradient-subtle;
-        border-radius: 16px;
-        @include flex-center;
-        font-size: 2rem; 
-        margin-bottom: $spacing-md;
-        transition: all 0.4s ease;
-      }
-      
-      .titulo { 
-        font-family: $font-display; 
-        font-size: 1.5rem; 
-        margin-bottom: $spacing-sm; 
-        color: $color-primario;
-        transition: color 0.3s ease;
-        line-height: 1.2;
-      }
-      
-      .descripcion { 
-        font-size: 1rem; 
-        color: $color-texto-claro; 
-        line-height: 1.7;
       }
     }
   }
@@ -982,57 +170,167 @@ $z-modal: 1000;
     transform: rotate(-15deg);
   }
 
-  .seccion-header {
-    margin-bottom: $spacing-2xl;
-    position: relative;
-    z-index: 1;
+  .reconocimientos-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-2xl;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
 
-    .seccion-titulo {
-      font-family: $font-display;
-        font-size: clamp(2.5rem, 5vw, 4rem);
-        color: $color-primario;
-        margin-bottom: $spacing-md;
-        }
+    @media (max-width: $desktop) {
+      grid-template-columns: 1fr;
     }
 
-    .reconocimientos-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: $spacing-2xl;
-        align-items: start;
-        max-width: 1200px;
-        margin: 0 auto;
+    .reconocimientos-lista {
+      text-align: left;
 
-        @media (max-width: $desktop) {
-        grid-template-columns: 1fr;
+      .reconocimiento-item {
+        display: flex;
+        gap: $spacing-md;
+        padding: $spacing-md 0;
+        border-bottom: 1px solid $color-borde;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        animation: slideInLeft 0.8s ease-out backwards;
+        
+        @for $i from 1 through 4 {
+          &:nth-child(#{$i}) {
+            animation-delay: #{$i * 0.1}s;
+          }
         }
 
+        &:hover {
+          padding-left: $spacing-sm;
+          
+          .year {
+            color: $color-acento;
+            transform: scale(1.1);
+          }
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .year {
+          font-family: $font-mono;
+          font-size: 1.5rem;
+          color: $color-texto-claro;
+          font-weight: 700;
+          min-width: 80px;
+          transition: all 0.3s ease;
+        }
+
+        .info {
+          flex: 1;
+
+          .titulo {
+            font-size: 1.25rem;
+            color: $color-primario;
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+          }
+
+          .organizacion {
+            font-size: 1rem;
+            color: $color-texto-claro;
+          }
+        }
+      }
     }
+
+    .reconocimientos-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-md;
+      animation: slideInRight 0.8s ease-out 0.2s backwards;
+
+      .stat-card {
+        background: linear-gradient(135deg, $color-fondo 0%, $color-fondo-alt 100%);
+        padding: $spacing-lg;
+        border-radius: 16px;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        border: 1px solid $color-borde;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: $gradient-premium;
+          opacity: 0;
+          transition: opacity 0.4s ease;
+        }
+
+        &:hover {
+          transform: translateY(-5px) scale(1.02);
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+          border-color: $color-acento;
+
+          &::before {
+            opacity: 0.05;
+          }
+
+          .numero-grande {
+            transform: scale(1.1);
+            color: $color-acento;
+          }
+        }
+
+        .numero-grande {
+          font-family: $font-display;
+          font-size: 3.5rem;
+          color: $color-acento;
+          font-weight: 700;
+          line-height: 1;
+          margin-bottom: $spacing-sm;
+          transition: all 0.3s ease;
+          display: flex;
+          align-items: baseline;
+          justify-content: center;
+          gap: 0.25rem;
+
+          .simbolo {
+            font-size: 2rem;
+            opacity: 0.6;
+          }
+        }
+
+        .label {
+          font-size: 0.95rem;
+          color: $color-texto-claro;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          font-weight: 600;
+        }
+      }
+    }
+  }
 }
-// Sección Historia (Timeline)
+
+// =========================================================
+// Timeline Historia
+// =========================================================
 .seccion-historia {
   @include section-padding;
-  background: $color-fondo;
+  background: linear-gradient(180deg, $color-fondo-alt 0%, $color-fondo 100%);
   position: relative;
 
-  .historia-header {
+  .seccion-header {
     text-align: center;
     margin-bottom: $spacing-2xl;
 
-    .seccion-numero {
-      display: block;
-      font-family: $font-mono;
-      font-size: 5rem;
-      color: $color-acento;
-      opacity: 0.15;
-      font-weight: 700;
-      line-height: 1;
-      margin-bottom: -$spacing-md;
-    }
-
     .seccion-titulo {
       font-family: $font-display;
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(2.5rem, 5vw, 4rem);
       color: $color-primario;
     }
   }
@@ -1043,7 +341,8 @@ $z-modal: 1000;
     margin: 0 auto;
     padding: $spacing-lg 0;
 
-    .timeline-line {
+    &::before {
+      content: '';
       position: absolute;
       left: 50%;
       top: 0;
@@ -1053,11 +352,13 @@ $z-modal: 1000;
       transform: translateX(-50%);
 
       @media (max-width: $tablet) {
-        left: 20px;
+        left: 30px;
       }
     }
 
     .timeline-item {
+      display: flex;
+      justify-content: flex-end;
       position: relative;
       width: 50%;
       padding: $spacing-md 0;
@@ -1069,21 +370,9 @@ $z-modal: 1000;
         }
       }
 
-      &.left {
-        left: 0;
-        padding-right: $spacing-xl;
-        text-align: right;
-
-        .timeline-content {
-          animation: slideInLeft 0.8s ease-out backwards;
-        }
-
-        .timeline-point {
-          right: -10px;
-        }
-      }
-
-      &.right {
+      &:nth-child(odd) {
+        align-self: flex-end;
+        justify-content: flex-start;
         left: 50%;
         padding-left: $spacing-xl;
 
@@ -1091,46 +380,59 @@ $z-modal: 1000;
           animation: slideInRight 0.8s ease-out backwards;
         }
 
-        .timeline-point {
-          left: -10px;
+        .timeline-dot {
+          left: -($spacing-xl - 0.5625rem);
+        }
+      }
+
+      &:nth-child(even) {
+        padding-right: $spacing-xl;
+
+        .timeline-content {
+          animation: slideInLeft 0.8s ease-out backwards;
+        }
+
+        .timeline-dot {
+          right: -($spacing-xl - 0.5625rem);
         }
       }
 
       @media (max-width: $tablet) {
         width: 100%;
-        padding-left: 60px !important;
+        padding-left: 80px !important;
         padding-right: $spacing-sm !important;
-        text-align: left !important;
 
-        &.left,
-        &.right {
+        &:nth-child(odd) {
           left: 0;
+        }
 
-          .timeline-point {
-            left: 15px !important;
-            right: auto !important;
-          }
+        .timeline-dot {
+          left: 21px !important;
+          right: auto !important;
         }
       }
 
       .timeline-content {
         background: $color-fondo;
         padding: $spacing-md;
-        border-radius: 12px;
+        border-radius: 16px;
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
         transition: all 0.3s ease;
         cursor: pointer;
+        position: relative;
+        border: 1px solid $color-borde;
 
         &:hover {
           transform: scale(1.05);
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+          border-color: $color-acento;
 
-          .timeline-year {
+          .year {
             color: $color-acento;
           }
         }
 
-        .timeline-year {
+        .year {
           font-family: $font-mono;
           font-size: 1.25rem;
           color: $color-texto-claro;
@@ -1139,49 +441,50 @@ $z-modal: 1000;
           transition: color 0.3s ease;
         }
 
-        .timeline-titulo {
+        .titulo {
           font-family: $font-display;
-          font-size: 1.25rem;
+          font-size: 1.5rem;
           color: $color-primario;
           margin-bottom: $spacing-xs;
+          line-height: 1.2;
         }
 
-        .timeline-descripcion {
-          font-size: 0.95rem;
+        .descripcion {
+          font-size: 1rem;
           color: $color-texto-claro;
           line-height: 1.6;
         }
       }
 
-      .timeline-point {
+      .timeline-dot {
         position: absolute;
-        top: 50%;
         width: 20px;
         height: 20px;
         background: $color-fondo;
         border: 3px solid $color-acento;
         border-radius: 50%;
-        transform: translateY(-50%);
         z-index: 2;
         transition: all 0.3s ease;
 
-        .point-inner {
+        &::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
           width: 8px;
           height: 8px;
           background: $color-acento;
           border-radius: 50%;
-          position: absolute;
-          top: 50%;
-          left: 50%;
           transform: translate(-50%, -50%);
           transition: all 0.3s ease;
         }
 
         &:hover {
-          transform: translateY(-50%) scale(1.3);
+          transform: scale(1.3);
           
-          .point-inner {
-            background: $color-acento-hover;
+          &::after {
+            width: 10px;
+            height: 10px;
           }
         }
       }
@@ -1189,6 +492,9 @@ $z-modal: 1000;
   }
 }
 
+// =========================================================
+// Proceso de Trabajo
+// =========================================================
 // Sección Proceso
 .seccion-proceso {
   @include section-padding;
@@ -1348,7 +654,9 @@ $z-modal: 1000;
   }
 }
 
-// Sección CTA
+// =========================================================
+// CTA Section
+// =========================================================
 .seccion-cta {
   position: relative;
   padding: $spacing-3xl 0;
@@ -1479,10 +787,12 @@ $z-modal: 1000;
   }
 }
 
-// Sección Información de Contacto
+// =========================================================
+// Contacto Info Footer
+// =========================================================
 .seccion-contacto-info {
   padding: $spacing-xl 0;
-  background: $color-fondo;
+  background: $color-fondo-alt;
   border-top: 1px solid $color-borde;
 
   .contacto-grid {
@@ -1497,329 +807,66 @@ $z-modal: 1000;
       grid-template-columns: 1fr;
       gap: $spacing-md;
     }
-  }
 
-  .contacto-item {
-    display: flex;
-    gap: $spacing-sm;
-    padding: $spacing-md;
-    background: $color-fondo-alt;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      background: $color-fondo;
-
-      .contacto-icon {
-        transform: rotate(10deg) scale(1.1);
-      }
-    }
-
-    .contacto-icon {
-      font-size: 2rem;
-      transition: transform 0.3s ease;
+    .contacto-item {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      background: linear-gradient(135deg, rgba($color-acento, 0.1) 0%, rgba($color-acento, 0.05) 100%);
-      border-radius: 12px;
-    }
-
-    .contacto-details {
-      flex: 1;
-
-      h4 {
-        font-size: 0.875rem;
-        color: $color-texto-claro;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: $spacing-xs;
-        font-weight: 600;
-      }
-
-      p, a {
-        color: $color-primario;
-        font-size: 1rem;
-        line-height: 1.5;
-        text-decoration: none;
-        transition: color 0.3s ease;
-
-        &:hover {
-          color: $color-acento;
-        }
-      }
-    }
-  }
-}
-
-// Animaciones especiales para scroll
-[data-scroll] {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-
-  &.in-view {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-// Efectos de parallax
-@media (min-width: $desktop) {
-  .estudio-hero {
-    background-attachment: fixed;
-  }
-
-  .seccion-proceso::before {
-    will-change: transform;
-  }
-}
-
-// Utilidades adicionales
-.text-accent {
-  color: $color-acento;
-}
-
-.bg-gradient {
-  background: $gradient-premium;
-}
-
-.shadow-soft {
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-}
-
-// Loading skeleton (opcional)
-.skeleton {
-  background: linear-gradient(90deg, $color-fondo-alt 25%, $color-fondo 50%, $color-fondo-alt 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-
-// Optimizaciones de rendimiento
-.gpu-accelerated {
-  transform: translateZ(0);
-  will-change: transform;
-  backface-visibility: hidden;
-}
-
-// Responsive final
-@media (max-width: $mobile) {
-  .seccion-filosofia,
-  .seccion-equipo,
-  .seccion-servicios,
-  .seccion-reconocimientos,
-  .seccion-historia,
-  .seccion-proceso {
-    padding: $spacing-xl $spacing-sm;
-  }
-
-  .estudio-hero {
-    height: 60vh;
-    min-height: 400px;
-
-    .hero-content {
-      .hero-titulo {
-        font-size: 2rem;
-
-        .linea-1,
-        .linea-2 {
-          font-size: inherit;
-        }
-      }
-
-      .hero-descripcion {
-        font-size: 0.95rem;
-      }
-    }
-  }
-
-  .filosofia-principal {
-    font-size: 1.25rem !important;
-  }
-
-  .equipo-grid {
-    .miembro-card {
-      .miembro-info {
-        .miembro-nombre {
-          font-size: 1.25rem;
-        }
-      }
-    }
-  }
-
-  .servicio-card {
-    padding: $spacing-md;
-
-    .servicio-titulo {
-      font-size: 1.25rem;
-    }
-  }
-
-  .reconocimientos-stats {
-    grid-template-columns: 1fr;
-
-    .stat-card {
+      gap: $spacing-md;
       padding: $spacing-md;
+      background: $color-fondo;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 
-      .stat-numero .numero {
-        font-size: 2.5rem;
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+        .icono {
+          transform: rotate(10deg) scale(1.1);
+          background: $gradient-premium;
+        }
+      }
+
+      .icono {
+        width: 50px;
+        height: 50px;
+        background: $gradient-subtle;
+        border-radius: 12px;
+        @include flex-center;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+      }
+
+      .info {
+        flex: 1;
+
+        .label {
+          font-size: 0.875rem;
+          color: $color-texto-claro;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-bottom: $spacing-xs;
+          font-weight: 600;
+        }
+
+        .valor {
+          font-size: 1rem;
+          color: $color-primario;
+          line-height: 1.5;
+
+          a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+            &:hover {
+              color: $color-acento;
+            }
+          }
+        }
       }
     }
   }
-
-  .proceso-step {
-    padding: $spacing-md;
-
-    .step-icon {
-      width: 60px;
-      height: 60px;
-      font-size: 1.5rem;
-    }
-
-    .step-titulo {
-      font-size: 1.1rem;
-    }
-  }
-
-  .cta-content {
-    .cta-titulo {
-      font-size: 1.75rem;
-    }
-
-    .cta-descripcion {
-      font-size: 1rem;
-    }
-  }
-}
-
-// Tablet optimizations
-@media (min-width: $tablet) and (max-width: $desktop) {
-  .filosofia-grid {
-    gap: $spacing-lg;
-  }
-
-  .equipo-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .servicios-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .reconocimientos-stats {
-    .stat-card {
-      .stat-numero .numero {
-        font-size: 2.5rem;
-      }
-    }
-  }
-}
-
-// Print styles
-@media print {
-  .estudio-hero {
-    height: auto;
-    min-height: auto;
-    background: none;
-    color: $color-primario;
-
-    .hero-content {
-      .hero-titulo {
-        color: $color-primario;
-        -webkit-text-fill-color: $color-primario;
-      }
-    }
-  }
-
-  .seccion-cta {
-    display: none;
-  }
-
-  .miembro-card {
-    .imagen-overlay {
-      display: none;
-    }
-  }
-
-  .shadow-soft,
-  .miembro-card,
-  .servicio-card,
-  .stat-card {
-    box-shadow: none;
-    border: 1px solid $color-borde;
-  }
-}
-
-// Dark mode support (opcional)
-@media (prefers-color-scheme: dark) {
-  .estudio-container {
-    --color-fondo: #{$color-primario};
-    --color-texto: #{$color-fondo};
-    // Puedes añadir más variables CSS custom aquí
-  }
-}
-
-// Accesibilidad
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-// Focus visible para accesibilidad
-button:focus-visible,
-a:focus-visible {
-  outline: 2px solid $color-acento;
-  outline-offset: 4px;
-  border-radius: 4px;
-}
-
-// Smooth scroll behavior
-html {
-  scroll-behavior: smooth;
-}
-
-// Custom selection
-::selection {
-  background: $color-acento;
-  color: $color-fondo;
-}
-
-::-moz-selection {
-  background: $color-acento;
-  color: $color-fondo;
-}
-
-// Final touches
-.overflow-hidden {
-  overflow: hidden;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
 }
