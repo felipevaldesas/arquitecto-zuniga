@@ -1138,3 +1138,130 @@
     }
   }
 }
+
+@media (max-width: $mobile-xs) {
+  // Hero más compacto
+  .seccion-hero, 
+  .estudio-hero {
+    height: 65vh;
+    min-height: 400px;
+
+    .hero-content {
+      padding: $spacing-sm;
+
+      .hero-titulo {
+        font-size: 1.75rem; // más compacto
+        line-height: 1.2;
+      }
+
+      .hero-descripcion {
+        font-size: 0.95rem;
+      }
+    }
+  }
+
+  // Objetivos
+  .seccion-objetivos {
+    .objetivos-content {
+      gap: $spacing-lg;
+
+      .objetivos-estrategicos {
+        .objetivos-grid {
+          grid-template-columns: 1fr; // ya no hace falta !important
+          gap: $spacing-md;
+
+          .objetivo-card {
+            padding: $spacing-md; // menos padding
+            h4 {
+              font-size: 1rem;
+            }
+            p {
+              font-size: 0.9rem;
+            }
+          }
+        }
+      }
+
+      .objetivos-operativos {
+        padding: $spacing-md;
+
+        h3 {
+          font-size: 1.5rem;
+        }
+
+        .operativo-item {
+          flex-direction: column; // número arriba del texto
+          align-items: flex-start;
+
+          .operativo-numero {
+            margin-bottom: $spacing-xs;
+          }
+        }
+      }
+    }
+  }
+
+  // Beneficios
+  .seccion-beneficios {
+    .beneficios-grid {
+      grid-template-columns: 1fr;
+
+      .beneficio-item {
+        padding: $spacing-md;
+      }
+    }
+    .consulta-cta {
+      padding: 2rem;
+    }
+  }
+
+  // Filosofía compacta
+  .seccion-filosofia {
+    .filosofia-grid {
+      .filosofia-item {
+        padding: $spacing-md;
+        h3 { font-size: 1.25rem; }
+        p { font-size: 0.95rem; }
+      }
+    }
+  }
+
+  // Stats más chicos
+  .seccion-filosofia {
+    .impacto-stats {
+      .stat-item {
+        padding: $spacing-md;
+
+        .stat-numero {
+          font-size: 1.75rem;
+        }
+      }
+    }
+  }
+
+  // Timeline simplificado
+  .seccion-historia {
+    .timeline {
+      &::before { left: 20px; }
+
+      .timeline-item {
+        padding-left: 60px;
+        .timeline-dot { left: 10px; }
+        .timeline-content { padding: $spacing-sm; }
+      }
+    }
+  }
+
+  // Botones CTA full width
+  .seccion-cta {
+    .cta-buttons {
+      flex-direction: column;
+      gap: $spacing-sm;
+
+      button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}

@@ -182,6 +182,8 @@
       .proyecto-meta {
         display: flex;
         justify-content: space-between;
+        gap: 15px;
+        align-items: center;
         margin-bottom: $spacing-sm;
 
         .proyecto-anio {
@@ -314,6 +316,96 @@
       &:hover {
         transform: translateY(-2px);
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+}
+
+// Extra Small (≤ 376px)
+@media (max-width: 376px) {
+  .seccion-filtros {
+    .filtros-header h2 {
+      font-size: 1.5rem !important;
+    }
+    .filtros-header p {
+      font-size: 0.9rem !important;
+    }
+
+    .filtros-buttons {
+      flex-direction: column;
+      gap: $spacing-sm;
+      button {
+        width: 100%;
+        font-size: 0.85rem;
+      }
+    }
+  }
+
+  .seccion-proyectos-grid {
+    .proyectos-grid {
+      grid-template-columns: 1fr !important; // siempre 1 columna
+      gap: $spacing-md;
+    }
+
+    .proyecto-card {
+      .proyecto-imagen {
+        height: 180px; // más compacto
+        .proyecto-inicial {
+          font-size: 2.5rem !important;
+        }
+      }
+
+      .proyecto-info {
+        padding: $spacing-sm !important;
+
+        .proyecto-titulo {
+          font-size: 1.2rem !important;
+        }
+
+        .proyecto-descripcion {
+          font-size: 0.85rem !important;
+          line-height: 1.4;
+        }
+
+        .proyecto-meta {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: $spacing-xs;
+        }
+      }
+    }
+
+    .no-proyectos {
+      text-align: center;
+      h3 { font-size: 1.2rem !important; }
+      p { font-size: 0.9rem !important; }
+      .btn-secondary { width: 100%; }
+    }
+  }
+
+  .seccion-cta-proyectos {
+    .cta-content {
+      h2 {
+        font-size: 1.8rem !important;
+        line-height: 1.2;
+      }
+      p {
+        font-size: 1rem !important;
+      }
+
+      .cta-stats {
+        grid-template-columns: 1fr !important;
+        gap: $spacing-sm;
+        .stat-numero {
+          font-size: 1.8rem !important;
+        }
+      }
+
+      .btn-primary {
+        width: 100%;
+        justify-content: center;
+        font-size: 0.9rem;
+        padding: 0.75rem 1rem;
       }
     }
   }

@@ -589,13 +589,11 @@
   .seccion-titulo {
     font-family: $font-display;
     font-size: clamp(2.5rem, 5vw, 4rem);
-    color: $color-primario;
     margin-bottom: $spacing-md;
   }
 
   .seccion-descripcion {
     font-size: 1.25rem;
-    color: $color-texto;
     line-height: 1.6;
     max-width: 800px;
     margin: 0 auto;
@@ -697,3 +695,30 @@
     }
   }
 }
+
+@media (max-width: $mobile-xs) {
+  .seccion-metricas {
+    .metricas-grid {
+      grid-template-columns: 1fr !important; // forzamos una sola columna
+      gap: $spacing-sm;
+
+      .metrica-card {
+        padding: $spacing-sm !important;
+
+        .metrica-valor {
+          font-size: 1.4rem !important; // más chico para que no desborde
+        }
+
+        .metrica-descripcion {
+          font-size: 0.8rem !important;
+        }
+
+        .metrica-categoria {
+          font-size: 0.7rem !important;
+          letter-spacing: 0.05em;
+        }
+      }
+    }
+  }
+}
+

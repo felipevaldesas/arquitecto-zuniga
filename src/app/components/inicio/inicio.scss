@@ -1330,3 +1330,124 @@ html {
   backface-visibility: hidden;
   perspective: 1000px;
 }
+
+// Ajustes específicos para pantallas muy pequeñas (320px–375px)
+@media (max-width: $mobile-xs) {
+  // Hero Section
+  .hero-section {
+    min-height: 90vh; // evita scroll extra con barra superior del navegador
+    .hero-contenido {
+      padding: 1rem;
+
+      .hero-titulo {
+        font-size: 1.8rem;   // mucho más legible
+        line-height: 1.2;
+      }
+      .hero-subtitulo {
+        font-size: 0.9rem;
+      }
+      .hero-descripcion {
+        font-size: 0.85rem;
+        line-height: 1.5;
+      }
+    }
+  }
+
+  // Botones
+  .btn-primario,
+  .btn-secundario {
+    width: 100%;        // siempre ocupan todo el ancho
+    padding: 0.9rem 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+  }
+
+  // Grid de proyectos
+  .proyectos-grid {
+    grid-template-columns: 1fr; // una sola columna
+    gap: 1rem;
+
+    .proyecto-card {
+      .proyecto-imagen {
+        height: 180px; // más compacto
+      }
+      .proyecto-info {
+        .proyecto-titulo {
+          font-size: 1.2rem;
+        }
+        .proyecto-descripcion {
+          font-size: 0.85rem;
+          line-height: 1.4;
+        }
+      }
+    }
+  }
+
+  // Sección estudio
+  .seccion-estudio {
+    padding: 2rem 1rem;
+    .estudio-texto {
+      h2 {
+        font-size: 1.5rem;
+      }
+      .estudio-descripcion {
+        font-size: 0.9rem;
+      }
+      .estudio-filosofia {
+        font-size: 0.85rem;
+      }
+    }
+    .estudio-servicios {
+      padding: 1rem;
+      h3 {
+        font-size: 1.2rem;
+      }
+      li {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  // Menú hamburguesa y móvil
+  .menu-movil-btn {
+    width: 28px;
+    height: 28px;
+    gap: 4px;
+  }
+
+  .nav-movil {
+    width: 100%;
+    max-width: none;
+    .nav-item-movil {
+      font-size: 1.1rem;
+      padding: 1rem 0;
+    }
+  }
+
+  // Contacto y footer
+  .seccion-contacto-artistico {
+    .contacto-principal {
+      padding: 2rem 1rem;
+      .contacto-header .contacto-numero {
+        font-size: 2.5rem;
+      }
+      .contacto-titulo h2 {
+        font-size: 1.4rem;
+      }
+      .info-item .info-valor {
+        font-size: 0.9rem;
+      }
+    }
+
+    .footer-minimal {
+      .footer-content {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+        .footer-links {
+          gap: 1rem;
+        }
+      }
+    }
+  }
+}
