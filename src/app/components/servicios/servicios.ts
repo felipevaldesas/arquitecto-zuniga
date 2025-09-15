@@ -15,30 +15,30 @@ export class Servicios {
 
   servicios: Servicio[] = [
     {
-      titulo: 'Diseño Arquitectónico',
-      descripcion: 'Creación de proyectos únicos que combinan estética, funcionalidad y sostenibilidad.'
+      titulo: 'Planificación Urbana Sostenible',
+      descripcion: 'Desarrollo de planes urbanos que integran criterios ambientales, sociales y de gobernanza para ciudades resilientes.'
     },
     {
-      titulo: 'Planificación Urbana',
-      descripcion: 'Desarrollo integral de espacios urbanos que mejoran la calidad de vida comunitaria.'
+      titulo: 'Gestión Territorial',
+      descripcion: 'Administración integral del territorio considerando ecosistemas, riesgos naturales y adaptación climática.'
     },
     {
-      titulo: 'Consultoría Inmobiliaria',
-      descripcion: 'Asesoramiento experto para maximizar el valor y potencial de proyectos inmobiliarios.'
+      titulo: 'Participación Ciudadana',
+      descripcion: 'Metodologías de colaboración comunitaria para incorporar necesidades locales en proyectos territoriales.'
     },
     {
-      titulo: 'Diseño de Interiores',
-      descripcion: 'Espacios interiores que reflejan personalidad y optimizan la funcionalidad.'
+      titulo: 'Infraestructura Verde',
+      descripcion: 'Soluciones basadas en naturaleza para gestión de aguas, mitigación climática y biodiversidad urbana.'
     },
     {
-      titulo: 'Gestión de Proyectos',
-      descripcion: 'Coordinación integral desde la concepción hasta la entrega final del proyecto.'
+      titulo: 'Evaluación ESG',
+      descripcion: 'Implementación de criterios ambientales, sociales y de gobernanza en proyectos de desarrollo.'
     },
     {
-      titulo: 'Modelado BIM',
-      descripcion: 'Tecnología avanzada para visualización y gestión eficiente de proyectos.'
+      titulo: 'Diseño Urbano Inclusivo',
+      descripcion: 'Espacios públicos accesibles y seguros que fomenten cohesión social y calidad de vida.'
     }
-  ];
+  ]
 
   obtenerIconoServicio(index: number): string {
     const iconos = ['📐', '🏙️', '📊', '🎨', '📋', '💻'];
