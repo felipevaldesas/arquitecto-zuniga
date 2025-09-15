@@ -204,28 +204,22 @@ export class DatosService {
   };
 
   private informacionEstudio: InformacionEstudio = {
-    nombre: 'Estudio Zuñiga Arquitectos',
-    arquitectoPrincipal: 'Felipe Zuñiga',
-    anioFundacion: 2015,
-    descripcion: 'Estudio de arquitectura chileno especializado en diseño sustentable, espacios públicos y vivienda social. Nuestro trabajo busca crear arquitectura que responda a las necesidades locales mientras contribuye al desarrollo urbano responsable.',
-    filosofia: 'Creemos en una arquitectura que dialogue con su contexto, respete el medio ambiente y mejore la calidad de vida de las personas. Cada proyecto es una oportunidad para generar un impacto positivo en la comunidad.',
+    nombre: 'Get - Gestión Territorial',
+    arquitectoPrincipal: 'Felipe Zúñiga',
+    anioFundacion: 2005,
+    descripcion: 'Contribuimos al desarrollo sostenible de ciudades y territorios mediante soluciones innovadoras de diseño y gestión, que promuevan la calidad de vida, la equidad social y el respeto por el medio ambiente.',
+    filosofia: 'Trabajamos en colaboración con comunidades, instituciones y otros actores clave para crear espacios urbanos y rurales resilientes, inclusivos y funcionales.',
     servicios: [
-      'Diseño Arquitectónico',
-      'Arquitectura Sustentable',
-      'Espacios Públicos',
-      'Vivienda Social',
-      'Consultoría en Certificaciones Ambientales',
-      'Diseño Urbano',
-      'Restauración Patrimonial',
-      'Gestión de Proyectos'
-    ],
-    reconocimientos: [
-      'Premio Nacional de Arquitectura Sustentable 2024',
-      'Mención Honrosa Bienal de Arquitectura 2023',
-      'Premio Arquitectura + Comunidad 2022',
-      'Certificación LEED Platino - Casa Los Dominicos'
+      'Planificación Urbana y Territorial',
+      'Diseño Urbano Sostenible', 
+      'Gestión Territorial',
+      'Participación Ciudadana',
+      'Evaluación de Impacto Ambiental',
+      'Infraestructura Verde',
+      'Desarrollo Comunitario',
+      'Criterios ESG en Proyectos'
     ]
-  };
+  }
 
   constructor() { }
 
