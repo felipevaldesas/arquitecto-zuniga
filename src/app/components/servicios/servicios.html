@@ -1,15 +1,16 @@
 <div class="estudio-container">
-    <!-- Hero Section -->
+    <!-- Hero Section (mantener igual) -->
     <section class="estudio-hero">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <span class="hero-label">DESDE 2005</span>
+            <span class="hero-label">NUESTRAS ESPECIALIDADES</span>
             <h1 class="hero-titulo">
-                <span class="linea-1">Diseñando el</span>
-                <span class="linea-2">Futuro Arquitectónico</span>
+                <span class="linea-1">Soluciones</span>
+                <span class="linea-2">Territoriales Integrales</span>
             </h1>
             <p class="hero-descripcion">
-                Transformamos espacios en experiencias, creando arquitectura que trasciende el tiempo
+                Planificación urbana, gestión territorial y criterios ESG aplicados 
+                para proyectos que perduran en el tiempo
             </p>
         </div>
         <div class="hero-decoration">
@@ -17,25 +18,77 @@
             <div class="deco-circle"></div>
         </div>
     </section>
+
     <section class="seccion-servicios">
         <div class="container">
             <div class="seccion-header">
-                <span class="seccion-numero">03</span>
+                <span class="seccion-numero">01</span>
                 <h2 class="seccion-titulo">Nuestros Servicios</h2>
+                <p class="seccion-descripcion">
+                    Servicios especializados en gestión territorial sustentable con criterios ESG aplicados
+                </p>
             </div>
+            
             <div class="servicios-grid">
                 @for (servicio of servicios; track $index) {
-                    <div class="servicio-card" [attr.data-index]="formatearIndice($index + 1)">
+                    <div class="servicio-card" 
+                         [attr.data-index]="formatearIndice($index + 1)"
+                         [attr.data-categoria]="servicio.categoria">
+                        
+                        <!-- Icono del servicio -->
                         <div class="servicio-icon">
                             <div class="icon-shape">
-                                <span>{{ obtenerIconoServicio($index) }}</span>
+                                <span>{{ obtenerIconoServicio(servicio.categoria) }}</span>
                             </div>
                         </div>
+                        
+                        <!-- Información principal -->
                         <h3 class="servicio-titulo">{{ servicio.titulo }}</h3>
                         <p class="servicio-descripcion">{{ servicio.descripcion }}</p>
+                        
+                        <!-- Criterios ESG aplicados -->
+                        <div class="criterios-esg">
+                            <h4>Criterios ESG aplicados:</h4>
+                            <div class="criterios-tags">
+                                @for (criterio of servicio.criteriosESG; track criterio) {
+                                    <span class="criterio-tag">{{ criterio }}</span>
+                                }
+                            </div>
+                        </div>
+                        
+                        <!-- Línea hover y botón -->
+                        <div class="servicio-footer">
+                            <button class="btn-servicio">
+                                <span>Solicitar Información</span>
+                                <span class="btn-arrow">→</span>
+                            </button>
+                        </div>
+                        
                         <div class="servicio-hover-line"></div>
                     </div>
                 }
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva sección: CTA -->
+    <section class="seccion-cta-servicios">
+        <div class="container">
+            <div class="cta-content">
+                <h2>¿Necesitas una solución territorial específica?</h2>
+                <p>
+                    Desarrollamos propuestas personalizadas que integran criterios ESG 
+                    para maximizar el impacto positivo de tu proyecto
+                </p>
+                <div class="cta-buttons">
+                    <button class="btn-primary">
+                        <span>Consulta Personalizada</span>
+                        <span class="btn-arrow">→</span>
+                    </button>
+                    <button class="btn-secondary">
+                        <span>Ver Proyectos</span>
+                    </button>
+                </div>
             </div>
         </div>
     </section>

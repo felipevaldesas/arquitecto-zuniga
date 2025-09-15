@@ -33,28 +33,22 @@ export class Inicio {
 
   cargarDatos(): void {
     this.cargando = true;
-
-    // Cargar proyectos destacados
     this.datosService.getProyectosDestacados().subscribe({
       next: (proyectos) => {
-        this.proyectosDestacados = proyectos.slice(0, 3); // Solo los primeros 3
+        this.proyectosDestacados = proyectos.slice(0, 3);
       },
       error: (error) => {
         console.error('Error al cargar proyectos destacados:', error);
       }
     });
-
-    // Cargar noticias destacadas
     this.datosService.getNoticiasDestacadas().subscribe({
       next: (noticias) => {
-        this.noticiasDestacadas = noticias.slice(0, 2); // Solo las primeras 2
+        this.noticiasDestacadas = noticias.slice(0, 2);
       },
       error: (error) => {
         console.error('Error al cargar noticias destacadas:', error);
       }
     });
-
-    // Cargar información del estudio
     this.datosService.getInformacionEstudio().subscribe({
       next: (info) => {
         this.informacionEstudio = info;

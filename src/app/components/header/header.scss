@@ -227,7 +227,7 @@
   width: 85%;
   max-width: 400px;
   height: 100vh;
-  background: $gradient-dark;
+  background: linear-gradient(180deg, rgba(26, 26, 26, 1) 85%, rgba(26, 26, 26, 0.9) 100%);
   z-index: $z-menu;
   transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: -10px 0 40px rgba(0, 0, 0, 0.3);

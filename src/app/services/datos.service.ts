@@ -12,85 +12,106 @@ export class DatosService {
   private proyectos: Proyecto[] = [
     {
       id: 1,
-      titulo: 'Casa Los Dominicos',
+      titulo: 'Plan Maestro Territorial Sustentable Los Dominicos',
       anio: '2024',
       ubicacion: 'Las Condes, Santiago',
-      tipo: 'Residencial',
-      descripcion: 'Vivienda unifamiliar que integra arquitectura contemporánea con el paisaje cordillerano.',
-      area: '280 m²',
+      tipo: 'Planificación Territorial',
+      descripcion: 'Desarrollo integral de plan maestro que integra criterios ESG para transformación territorial sustentable con participación ciudadana.',
+      area: '45 hectáreas',
       estado: 'Completado',
       destacado: true
     },
     {
       id: 2,
-      titulo: 'Plaza Comunitaria Ñuñoa',
+      titulo: 'Revitalización Urbana Participativa Ñuñoa',
       anio: '2023',
       ubicacion: 'Ñuñoa, Santiago',
-      tipo: 'Espacio Público',
-      descripcion: 'Revitalización de espacio público con enfoque en sustentabilidad y participación ciudadana.',
-      area: '1,200 m²',
+      tipo: 'Gestión Territorial',
+      descripcion: 'Proyecto de revitalización urbana con metodologías participativas, infraestructura verde y criterios de inclusión social.',
+      area: '2.5 hectáreas',
       estado: 'Completado',
       destacado: true
     },
     {
       id: 3,
-      titulo: 'Oficinas Corporativas Providencia',
+      titulo: 'Evaluación ESG Desarrollo Corporativo Providencia',
       anio: '2023',
       ubicacion: 'Providencia, Santiago',
-      tipo: 'Comercial',
-      descripcion: 'Espacio de trabajo flexible que promueve la colaboración y el bienestar laboral.',
-      area: '450 m²',
+      tipo: 'Evaluación Ambiental',
+      descripcion: 'Implementación integral de criterios ESG en complejo corporativo, incluyendo certificación ambiental y social.',
+      area: '1.2 hectáreas',
       estado: 'Completado'
     },
     {
       id: 4,
-      titulo: 'Casa de Playa Algarrobo',
+      titulo: 'Plan de Adaptación Climática Algarrobo',
       anio: '2022',
       ubicacion: 'Algarrobo, Valparaíso',
-      tipo: 'Residencial',
-      descripcion: 'Refugio costero que dialoga armoniosamente con el entorno natural.',
-      area: '180 m²',
+      tipo: 'Gestión de Riesgos',
+      descripcion: 'Estrategia territorial de adaptación al cambio climático para zona costera, integrando gestión de riesgos y resiliencia.',
+      area: '15 km de borde costero',
       estado: 'Completado'
     },
     {
       id: 5,
-      titulo: 'Centro Cultural Maipú',
+      titulo: 'Centro Comunitario Sustentable Maipú',
       anio: '2022',
       ubicacion: 'Maipú, Santiago',
-      tipo: 'Cultural',
-      descripcion: 'Espacio multifuncional que fomenta el arte y la cultura local.',
-      area: '800 m²',
+      tipo: 'Desarrollo Comunitario',
+      descripcion: 'Espacio multifuncional diseñado con participación ciudadana, eficiencia energética e identidad local.',
+      area: '3,200 m²',
       estado: 'Completado'
     },
     {
       id: 6,
-      titulo: 'Conjunto Habitacional Sustentable',
+      titulo: 'Eco-Barrio Resiliente Quilicura',
       anio: '2024',
       ubicacion: 'Quilicura, Santiago',
-      tipo: 'Residencial',
-      descripcion: 'Desarrollo habitacional con certificación LEED y sistemas de energía renovable.',
-      area: '2,500 m²',
+      tipo: 'Vivienda Sustentable',
+      descripcion: 'Desarrollo habitacional certificado ESG con sistemas de energía renovable, gestión de aguas y cohesión social.',
+      area: '8 hectáreas',
       estado: 'En construcción',
       destacado: true
     },
     {
       id: 7,
-      titulo: 'Campus Tecnológico',
+      titulo: 'Campus Territorial Innovación Las Condes',
       anio: '2024',
       ubicacion: 'Las Condes, Santiago',
-      tipo: 'Educacional',
-      descripcion: 'Complejo educativo con espacios de innovación y áreas verdes integradas.',
-      area: '3,200 m²',
+      tipo: 'Infraestructura Educativa',
+      descripcion: 'Complejo educativo que integra investigación territorial, espacios verdes y tecnologías sostenibles.',
+      area: '12 hectáreas',
       estado: 'En diseño'
     },
     {
       id: 8,
-      titulo: 'Biblioteca Regional Valparaíso',
+      titulo: 'Plan de Recuperación Patrimonial Valparaíso',
       anio: '2021',
       ubicacion: 'Valparaíso',
-      tipo: 'Cultural',
-      descripcion: 'Biblioteca pública que rescata la identidad porteña con materiales locales.',
-      area: '650 m²',
+      tipo: 'Patrimonio Territorial',
+      descripcion: 'Estrategia integral de recuperación patrimonial con criterios de sostenibilidad y participación comunitaria.',
+      area: '25 manzanas',
+      estado: 'Completado'
+    },
+    {
+      id: 9,
+      titulo: 'Corredor Verde Metropolitano',
+      anio: '2023',
+      ubicacion: 'Región Metropolitana',
+      tipo: 'Infraestructura Verde',
+      descripcion: 'Red de espacios verdes conectados que mejora calidad del aire, biodiversidad y movilidad sustentable.',
+      area: '120 km lineales',
+      estado: 'En construcción',
+      destacado: true
+    },
+    {
+      id: 10,
+      titulo: 'Estrategia Territorial Rural Sustentable',
+      anio: '2022',
+      ubicacion: 'Valle del Maipo',
+      tipo: 'Desarrollo Rural',
+      descripcion: 'Plan integral para desarrollo rural sustentable que potencia economía local y protege recursos naturales.',
+      area: '2,500 hectáreas',
       estado: 'Completado'
     }
   ];
@@ -143,62 +164,11 @@ export class DatosService {
     }
   ];
 
-  private miembrosEquipo: MiembroEquipo[] = [
-    {
-      id: 1,
-      nombre: 'Felipe Zuñiga',
-      cargo: 'Arquitecto Principal',
-      email: 'felipe@estudiozuniga.cl',
-      biografia: 'Arquitecto titulado de la Universidad de Chile con 15 años de experiencia en arquitectura sustentable y diseño urbano.',
-      especialidad: 'Arquitectura Sustentable, Diseño Bioclimático'
-    },
-    {
-      id: 2,
-      nombre: 'María Fernanda Rodríguez',
-      cargo: 'Arquitecta Socia',
-      email: 'maria@estudiozuniga.cl',
-      biografia: 'Especialista en certificaciones ambientales y eficiencia energética en edificaciones.',
-      especialidad: 'Certificaciones LEED, Eficiencia Energética'
-    },
-    {
-      id: 3,
-      nombre: 'Carlos Mendoza',
-      cargo: 'Jefe de Proyectos',
-      email: 'carlos@estudiozuniga.cl',
-      biografia: 'Arquitecto con experiencia en gestión de proyectos de gran escala y coordinación multidisciplinaria.',
-      especialidad: 'Gestión de Proyectos, BIM'
-    },
-    {
-      id: 4,
-      nombre: 'Javiera Lagos',
-      cargo: 'Arquitecta Senior',
-      email: 'javiera@estudiozuniga.cl',
-      biografia: 'Arquitecta especializada en espacios públicos y participación ciudadana.',
-      especialidad: 'Espacios Públicos, Diseño Participativo'
-    },
-    {
-      id: 5,
-      nombre: 'Rodrigo Silva',
-      cargo: 'Arquitecto Paisajista',
-      email: 'rodrigo@estudiozuniga.cl',
-      biografia: 'Especialista en diseño de paisaje y integración de arquitectura con entorno natural.',
-      especialidad: 'Paisajismo, Arquitectura del Paisaje'
-    },
-    {
-      id: 6,
-      nombre: 'Sofía Herrera',
-      cargo: 'Arquitecta Junior',
-      email: 'sofia@estudiozuniga.cl',
-      biografia: 'Recién titulada con especialización en diseño computacional y fabricación digital.',
-      especialidad: 'Diseño Paramétrico, Modelado 3D'
-    }
-  ];
-
   private informacionContacto: InformacionContacto = {
     direccion: 'Avenida Providencia 1208, Oficina 502',
-    email: 'contacto@estudiozuniga.cl',
+    email: 'contacto@gestionterritorial.cl',
     telefono: '+56 2 2234 5678',
-    sitioWeb: 'www.estudiozuniga.cl',
+    sitioWeb: 'www.gestionterritorial.cl',
     ciudad: 'Santiago',
     region: 'Región Metropolitana'
   };
@@ -211,15 +181,16 @@ export class DatosService {
     filosofia: 'Trabajamos en colaboración con comunidades, instituciones y otros actores clave para crear espacios urbanos y rurales resilientes, inclusivos y funcionales.',
     servicios: [
       'Planificación Urbana y Territorial',
-      'Diseño Urbano Sostenible', 
-      'Gestión Territorial',
+      'Evaluación de Impacto Socioambiental',
+      'Gestión de Riesgos y Desastres',
       'Participación Ciudadana',
-      'Evaluación de Impacto Ambiental',
-      'Infraestructura Verde',
-      'Desarrollo Comunitario',
-      'Criterios ESG en Proyectos'
+      'Infraestructura Verde y Azul',
+      'Certificación y Auditoría ESG',
+      'Diseño de Políticas Territoriales',
+      'Capacitación en Desarrollo Sostenible',
+      'Economía Circular Territorial'
     ]
-  }
+  };
 
   constructor() { }
 
@@ -242,10 +213,6 @@ export class DatosService {
 
   getNoticiasDestacadas(): Observable<Noticia[]> {
     return of(this.noticias.filter(noticia => noticia.destacada));
-  }
-
-  getMiembrosEquipo(): Observable<MiembroEquipo[]> {
-    return of(this.miembrosEquipo);
   }
 
   getInformacionContacto(): Observable<InformacionContacto> {

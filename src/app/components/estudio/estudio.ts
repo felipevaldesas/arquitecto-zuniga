@@ -2,7 +2,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { InformacionContacto } from '../../models/interfaces';
 
 interface Reconocimiento {
   anio: string;
@@ -10,16 +9,22 @@ interface Reconocimiento {
   organizacion: string;
 }
 
-interface EventoHistoria {
-  anio: string;
-  titulo: string;
-  descripcion: string;
-}
-
 interface PasoProceso {
   titulo: string;
   descripcion: string;
   icono: string;
+}
+
+interface ObjetivoEstrategico {
+  titulo: string;
+  descripcion: string;
+  items: string[];
+  icono: string;
+}
+
+interface ObjetivoOperativo {
+  titulo: string;
+  descripcion: string;
 }
 
 @Component({
@@ -52,40 +57,6 @@ export class Estudio {
       anio: '2020',
       titulo: 'Estudio del Año',
       organizacion: 'Revista Arquitectura & Diseño'
-    }
-  ];
-
-  // Historia del estudio
-  historia: EventoHistoria[] = [
-    {
-      anio: '2005',
-      titulo: 'Fundación',
-      descripcion: 'Alejandro Zúñiga establece el estudio con la visión de crear arquitectura transformadora.'
-    },
-    {
-      anio: '2010',
-      titulo: 'Primer Premio Internacional',
-      descripcion: 'Reconocimiento en la Bienal de Venecia por proyecto de vivienda social sostenible.'
-    },
-    {
-      anio: '2015',
-      titulo: 'Expansión del Equipo',
-      descripcion: 'El estudio crece a 15 profesionales y abre nueva sede en Providencia.'
-    },
-    {
-      anio: '2018',
-      titulo: 'Proyectos Emblemáticos',
-      descripcion: 'Completamos Torre Horizonte y el Centro Cultural Metropolitano.'
-    },
-    {
-      anio: '2020',
-      titulo: 'Innovación Digital',
-      descripcion: 'Implementación completa de tecnología BIM y diseño paramétrico.'
-    },
-    {
-      anio: '2024',
-      titulo: 'Liderazgo Sostenible',
-      descripcion: 'Certificación como estudio carbono neutral y líder en arquitectura verde.'
     }
   ];
 
@@ -123,6 +94,76 @@ export class Estudio {
     }
   ];
 
+  // Agregar estas propiedades a la clase Estudio
+  objetivosEstrategicos: ObjetivoEstrategico[] = [
+    {
+      titulo: 'Promover la Sostenibilidad',
+      descripcion: 'Implementar proyectos que reduzcan el impacto ambiental y optimicen la gestión de recursos',
+      icono: '🌱',
+      items: [
+        'Implementar proyectos que reduzcan el impacto ambiental',
+        'Integrar criterios de sostenibilidad en todas las etapas'
+      ]
+    },
+    {
+      titulo: 'Impulsar la Innovación',
+      descripcion: 'Desarrollar soluciones creativas y tecnológicas para desafíos urbanos y territoriales',
+      icono: '💡',
+      items: [
+        'Desarrollar soluciones creativas y tecnológicas',
+        'Fomentar investigación y desarrollo de nuevas metodologías'
+      ]
+    },
+    {
+      titulo: 'Mejorar la Calidad de Vida',
+      descripcion: 'Crear espacios públicos inclusivos, seguros y accesibles para todos',
+      icono: '🏙️',
+      items: [
+        'Crear espacios públicos inclusivos y seguros',
+        'Promover movilidad sostenible y conectividad',
+        'Generar soluciones para vivienda social digna'
+      ]
+    },
+    {
+      titulo: 'Fortalecer Participación Ciudadana',
+      descripcion: 'Establecer mecanismos de diálogo con comunidades en todos los proyectos',
+      icono: '🤝',
+      items: [
+        'Establecer mecanismos de diálogo y colaboración',
+        'Promover educación sobre desarrollo urbano y territorial'
+      ]
+    },
+    {
+      titulo: 'Consolidar el Liderazgo',
+      descripcion: 'Expandir presencia nacional e internacional como referentes en buenas prácticas',
+      icono: '🏆',
+      items: [
+        'Expandir presencia en mercado nacional e internacional',
+        'Establecer alianzas estratégicas con instituciones clave',
+        'Generar proyectos referentes de buenas prácticas'
+      ]
+    }
+  ];
+
+  objetivosOperativos: ObjetivoOperativo[] = [
+    {
+      titulo: 'Eficiencia en Gestión',
+      descripcion: 'Aumentar la eficiencia en la gestión de proyectos, optimizando los recursos y los plazos'
+    },
+    {
+      titulo: 'Fortalecimiento del Equipo',
+      descripcion: 'Fortalecer el equipo de profesionales, promoviendo la formación continua y la especialización'
+    },
+    {
+      titulo: 'Sistemas de Calidad',
+      descripcion: 'Implementar sistemas de gestión de calidad para garantizar la excelencia en los servicios'
+    },
+    {
+      titulo: 'Viabilidad Económica',
+      descripcion: 'Aumentar la rentabilidad de la empresa, asegurando la viabilidad económica de los proyectos'
+    }
+  ];
+
   // Estadísticas
   aniosExperiencia: number = 19;
   proyectosCompletados: number = 127;
@@ -154,5 +195,12 @@ export class Estudio {
     console.log('Descargando portfolio...');
     // Aquí podrías implementar la descarga real del PDF
     window.open('/assets/portfolio-estudio-zuniga.pdf', '_blank');
+  }
+
+  // Agregar al final de la clase Estudio
+  iniciarConsultaGratuita(): void {
+    this.router.navigate(['/contacto'], { 
+      queryParams: { tipo: 'consulta-gratuita' } 
+    });
   }
 }

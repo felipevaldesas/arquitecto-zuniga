@@ -8,5 +8,6 @@ export const routes: Routes = [
   { path: 'estudio', loadComponent: () => import('./components/estudio/estudio').then(m => m.Estudio) },
   { path: 'equipo', loadComponent: () => import('./components/equipo/equipo').then(m => m.Equipo) },
   { path: 'servicios', loadComponent: () => import('./components/servicios/servicios').then(m => m.Servicios) },
+  { path: 'criterios-esg', loadComponent: () => import('./components/criterios-esg/criterios-esg').then(m => m.CriteriosESG) },
   { path: '**', redirectTo: '' }
-];
+]

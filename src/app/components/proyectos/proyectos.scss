@@ -1,0 +1,320 @@
+// proyectos.scss
+@use './../../../styles/variables' as *;
+@use './../../../styles/mixins' as *;
+@use './../../../styles/animations' as *;
+
+.proyectos-container {
+  background: $color-fondo;
+}
+
+// Sección Filtros
+.seccion-filtros {
+  @include section-padding;
+  background: $color-fondo-alt;
+
+  .filtros-header {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+
+    h2 {
+      font-family: $font-display;
+      font-size: 2.5rem;
+      color: $color-primario;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
+      color: $color-texto-claro;
+      font-size: 1.1rem;
+    }
+  }
+
+  .filtros-buttons {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+
+    .filtro-btn {
+      padding: $spacing-sm $spacing-md;
+      border: 2px solid $color-borde;
+      background: $color-fondo;
+      color: $color-texto;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+
+      &:hover, &.activo {
+        background: $gradient-premium;
+        color: $color-fondo;
+        border-color: $color-acento;
+      }
+    }
+  }
+}
+
+// Grid de Proyectos
+.seccion-proyectos-grid {
+  @include section-padding;
+
+  .proyectos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: $spacing-xl;
+
+    @media (max-width: $tablet) {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
+  }
+
+  .proyecto-card {
+    background: $color-fondo;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid $color-borde;
+    position: relative;
+
+    @include hover-lift;
+
+    .proyecto-badges {
+      position: absolute;
+      top: $spacing-sm;
+      left: $spacing-sm;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-xs;
+
+      .badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+
+        &.destacado {
+          background: $gradient-premium;
+          color: $color-fondo;
+        }
+
+        &.estado[data-estado="Completado"] {
+          background: #22c55e;
+          color: white;
+        }
+
+        &.estado[data-estado="En construcción"] {
+          background: #f59e0b;
+          color: white;
+        }
+
+        &.estado[data-estado="En diseño"] {
+          background: #3b82f6;
+          color: white;
+        }
+      }
+    }
+
+    .proyecto-imagen {
+      height: 250px;
+      position: relative;
+      overflow: hidden;
+
+      .imagen-placeholder {
+        width: 100%;
+        height: 100%;
+        background: $gradient-overlay;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        .proyecto-inicial {
+          font-family: $font-display;
+          font-size: 4rem;
+          color: $color-acento;
+          opacity: 0.3;
+          font-weight: 700;
+        }
+
+        .proyecto-overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba($color-primario, 0.9);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+
+          .overlay-content {
+            text-align: center;
+            color: $color-fondo;
+
+            .ver-mas {
+              display: block;
+              font-size: 1.1rem;
+              font-weight: 600;
+              margin-bottom: $spacing-xs;
+            }
+
+            .arrow {
+              font-size: 1.5rem;
+              color: $color-acento;
+            }
+          }
+        }
+      }
+
+      &:hover .proyecto-overlay {
+        opacity: 1;
+      }
+    }
+
+    .proyecto-info {
+      padding: $spacing-md;
+
+      .proyecto-meta {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: $spacing-sm;
+
+        .proyecto-anio {
+          color: $color-texto-claro;
+          font-family: $font-mono;
+          font-weight: 700;
+        }
+
+        .proyecto-tipo {
+          color: $color-acento;
+          font-weight: 600;
+          text-transform: uppercase;
+          font-size: 0.875rem;
+          letter-spacing: 0.05em;
+        }
+      }
+
+      .proyecto-titulo {
+        font-family: $font-display;
+        font-size: 1.5rem;
+        color: $color-primario;
+        margin-bottom: $spacing-sm;
+        line-height: 1.2;
+      }
+
+      .proyecto-ubicacion {
+        display: flex;
+        align-items: center;
+        gap: $spacing-xs;
+        color: $color-texto-claro;
+        margin-bottom: $spacing-sm;
+        font-size: 0.95rem;
+      }
+
+      .proyecto-descripcion {
+        color: $color-texto;
+        line-height: 1.6;
+        margin-bottom: $spacing-sm;
+      }
+
+      .proyecto-area {
+        display: flex;
+        justify-content: space-between;
+        padding-top: $spacing-sm;
+        border-top: 1px solid $color-borde;
+
+        .area-label {
+          color: $color-texto-claro;
+          font-size: 0.9rem;
+        }
+
+        .area-valor {
+          color: $color-acento;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+// CTA Proyectos
+.seccion-cta-proyectos {
+  @include section-padding;
+  background: linear-gradient(135deg, $color-primario 0%, #2d2d2d 100%);
+  color: $color-fondo;
+
+  .cta-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+
+    h2 {
+      font-family: $font-display;
+      font-size: 3rem;
+      margin-bottom: $spacing-md;
+    }
+
+    p {
+      font-size: 1.25rem;
+      margin-bottom: $spacing-xl;
+      opacity: 0.9;
+    }
+
+    .cta-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: $spacing-lg;
+      margin-bottom: $spacing-xl;
+
+      @media (max-width: $mobile) {
+        grid-template-columns: 1fr;
+        gap: $spacing-md;
+      }
+
+      .stat {
+        text-align: center;
+
+        .stat-numero {
+          display: block;
+          font-family: $font-display;
+          font-size: 2.5rem;
+          color: $color-acento;
+          font-weight: 700;
+          line-height: 1;
+        }
+
+        .stat-label {
+          font-size: 0.9rem;
+          opacity: 0.8;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+      }
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: $spacing-sm;
+      background: $gradient-premium;
+      color: $color-fondo;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+}

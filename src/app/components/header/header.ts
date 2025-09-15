@@ -19,10 +19,11 @@ export class Header {
   itemsNavegacion: ItemNavegacion[] = [
     { id: 'inicio', etiqueta: 'Inicio', ruta: '/' },
     { id: 'proyectos', etiqueta: 'Proyectos', ruta: '/proyectos' },
-    { id: 'noticias', etiqueta: 'Noticias', ruta: '/noticias' },
+    //{ id: 'noticias', etiqueta: 'Noticias', ruta: '/noticias' },
     { id: 'estudio', etiqueta: 'Estudio', ruta: '/estudio' },
     { id: 'equipo', etiqueta: 'Equipo', ruta: '/equipo' },
-    { id: 'servicios', etiqueta: 'Servicios', ruta: '/servicios' }
+    { id: 'servicios', etiqueta: 'Servicios', ruta: '/servicios' },
+    { id: 'criterios-esg', etiqueta: 'Criterios ESG', ruta: '/criterios-esg' }
   ];
 
   constructor(private router: Router) {

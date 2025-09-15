@@ -34,120 +34,388 @@
 }
 
 // =========================================================
-// Sección Filosofía Mejorada
+// Sección Beneficios (01)
+// =========================================================
+.seccion-beneficios {
+  @include section-padding;
+  background: linear-gradient(180deg, $color-fondo 0%, $color-fondo-alt 100%);
+
+  .beneficios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: $spacing-lg;
+    margin-bottom: $spacing-2xl;
+
+    .beneficio-item {
+      background: $color-fondo;
+      padding: $spacing-lg;
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid $color-borde;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+
+      &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        border-color: $color-acento;
+      }
+
+      .beneficio-icon {
+        font-size: 3rem;
+        margin-bottom: $spacing-md;
+        display: block;
+      }
+
+      h4 {
+        font-family: $font-display;
+        font-size: 1.25rem;
+        color: $color-primario;
+        margin-bottom: $spacing-sm;
+      }
+
+      p {
+        color: $color-texto-claro;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  .consulta-cta {
+    text-align: center;
+    background: $color-fondo;
+    padding: $spacing-2xl;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid $color-borde;
+
+    h3 {
+      font-family: $font-display;
+      font-size: 1.75rem;
+      color: $color-primario;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
+      color: $color-texto-claro;
+      margin-bottom: $spacing-lg;
+      font-size: 1.1rem;
+    }
+
+    .btn-consulta-gratuita {
+      display: inline-flex;
+      align-items: center;
+      gap: $spacing-sm;
+      background: $gradient-premium;
+      color: $color-fondo;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+
+        .btn-arrow {
+          transform: translateX(5px);
+        }
+      }
+    }
+  }
+}
+
+// =========================================================
+// Sección Filosofía (02) 
 // =========================================================
 .seccion-filosofia {
   @include section-padding;
-  background: linear-gradient(180deg, $color-fondo 0%, $color-fondo-alt 100%);
-  position: relative;
-  overflow: hidden;
+  background: $color-fondo-alt;
 
-  .filosofia-content {
+  .filosofia-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: $spacing-2xl;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+    gap: $spacing-xl;
+    margin-bottom: $spacing-2xl;
 
     @media (max-width: $tablet) {
       grid-template-columns: 1fr;
       gap: $spacing-lg;
     }
 
-    .filosofia-texto {
-      animation: slideInLeft 0.8s ease-out;
-      
-      .filosofia-detalles {
-        h3 {
-          font-family: $font-display;
-          font-size: 1.25rem;
-          margin-top: $spacing-md;
-          margin-bottom: $spacing-xs;
-          color: $color-primario;
+    .filosofia-item {
+      background: $color-fondo;
+      padding: $spacing-xl;
+      border-radius: 16px;
+      border-left: 4px solid $color-acento;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .filosofia-icon {
+        font-size: 2.5rem;
+        margin-bottom: $spacing-md;
+        display: block;
+      }
+
+      h3 {
+        font-family: $font-display;
+        font-size: 1.5rem;
+        color: $color-primario;
+        margin-bottom: $spacing-md;
+      }
+
+      p {
+        color: $color-texto;
+        line-height: 1.7;
+        font-size: 1.05rem;
+      }
+    }
+  }
+
+  .impacto-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: $spacing-md;
+
+    .stat-item {
+      text-align: center;
+      padding: $spacing-lg;
+      background: linear-gradient(135deg, $color-acento 0%, $color-acento-hover 100%);
+      color: $color-fondo;
+      border-radius: 16px;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      .stat-numero {
+        display: block;
+        font-family: $font-display;
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: $spacing-xs;
+      }
+
+      .stat-label {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+    }
+  }
+}
+
+// =========================================================
+// Sección Objetivos Estratégicos
+// =========================================================
+.seccion-objetivos {
+  @include section-padding;
+  background: $color-fondo;
+  position: relative;
+
+  .objetivos-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-2xl;
+
+    // Objetivos Estratégicos
+    .objetivos-estrategicos {
+      h3 {
+        font-family: $font-display;
+        font-size: 2rem;
+        color: $color-primario;
+        text-align: center;
+        margin-bottom: $spacing-xl;
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60px;
+          height: 3px;
+          background: $gradient-premium;
+        }
+      }
+
+      .objetivos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: $spacing-lg;
+
+        @media (max-width: $tablet) {
+          grid-template-columns: 1fr;
+          gap: $spacing-md;
         }
 
-        p {
-          margin-bottom: $spacing-md;
-          line-height: 1.7;
-          color: $color-texto;
-        }
+        .objetivo-card {
+          background: $color-fondo;
+          padding: $spacing-xl;
+          border-radius: 16px;
+          box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+          border: 1px solid $color-borde;
+          text-align: center;
+          transition: all 0.4s ease;
+          position: relative;
+          overflow: hidden;
 
-        ul {
-          list-style: none;
-          padding: 0;
+          &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: $gradient-premium;
+          }
 
-          li {
+          &:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            border-color: $color-acento;
+          }
+
+          .objetivo-icon {
+            font-size: 3rem;
+            margin-bottom: $spacing-md;
+            display: block;
+          }
+
+          h4 {
+            font-family: $font-display;
+            font-size: 1.25rem;
+            color: $color-primario;
             margin-bottom: $spacing-sm;
-            position: relative;
-            padding-left: 1.5rem;
-            color: $color-texto-claro;
+          }
 
-            &::before {
-              content: '•';
-              position: absolute;
-              left: 0;
-              color: $color-acento;
-              font-weight: bold;
+          p {
+            color: $color-texto;
+            line-height: 1.6;
+            margin-bottom: $spacing-md;
+          }
+
+          .objetivo-items {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+
+            li {
+              padding: $spacing-xs 0;
+              color: $color-texto-claro;
+              font-size: 0.9rem;
+              line-height: 1.5;
+              position: relative;
+              padding-left: 1.5rem;
+
+              &::before {
+                content: '✓';
+                position: absolute;
+                left: 0;
+                color: $color-acento;
+                font-weight: bold;
+              }
             }
           }
         }
       }
     }
 
-    .filosofia-visual {
-      animation: slideInRight 0.8s ease-out;
-      .visual-composition {
-        position: relative;
-        display: flex;
-        gap: $spacing-md;
-        justify-content: center;
+    // Objetivos Operativos
+    .objetivos-operativos {
+      background: $color-fondo-alt;
+      padding: $spacing-xl;
+      border-radius: 20px;
 
-        .visual-item {
-          flex: 1;
-          height: 250px;
-          border-radius: 16px;
+      h3 {
+        font-family: $font-display;
+        font-size: 2rem;
+        color: $color-primario;
+        text-align: center;
+        margin-bottom: $spacing-xl;
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60px;
+          height: 3px;
+          background: $gradient-premium;
+        }
+      }
+
+      .operativos-list {
+        display: grid;
+        gap: $spacing-md;
+
+        .operativo-item {
           display: flex;
-          align-items: center;
-          justify-content: center;
-          font-family: $font-display;
-          font-size: 1.5rem;
-          font-weight: 600;
-          color: $color-fondo;
-          text-align: center;
-          transition: transform 0.4s ease, box-shadow 0.4s ease;
-          cursor: pointer;
+          gap: $spacing-md;
+          align-items: flex-start;
+          padding: $spacing-md;
+          background: $color-fondo;
+          border-radius: 12px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+          transition: all 0.3s ease;
 
           &:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
           }
 
-          &.main-img {
+          .operativo-numero {
+            width: 40px;
+            height: 40px;
             background: $gradient-premium;
+            color: $color-fondo;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: $font-mono;
+            font-weight: 700;
+            flex-shrink: 0;
           }
 
-          &.secondary-img {
-            background: $gradient-subtle;
-            color: $color-primario;
-          }
-        }
+          .operativo-content {
+            flex: 1;
 
-        .accent-square {
-          position: absolute;
-          bottom: -20px;
-          right: -20px;
-          width: 80px;
-          height: 80px;
-          background: $color-acento;
-          opacity: 0.2;
-          border-radius: 12px;
-          transform: rotate(15deg);
+            h4 {
+              font-family: $font-display;
+              font-size: 1.1rem;
+              color: $color-primario;
+              margin-bottom: $spacing-xs;
+            }
+
+            p {
+              color: $color-texto-claro;
+              line-height: 1.6;
+              font-size: 0.95rem;
+            }
+          }
         }
       }
     }
   }
 }
+
 
 // =========================================================
 // Sección Reconocimientos Mejorada

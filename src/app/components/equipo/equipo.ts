@@ -15,7 +15,7 @@ export class Equipo {
       id: 1,
       nombre: 'Felipe Zúñiga',
       cargo: 'Arquitecto Principal & Fundador',
-      email: 'azuniga@estudiozuniga.cl',
+      email: 'azuniga@gestionterritorial.cl',
       biografia: 'Con más de 20 años de experiencia, Felipe ha liderado proyectos emblemáticos que han redefinido el paisaje urbano de Santiago.',
       especialidad: 'Diseño Sostenible'
     },
@@ -23,7 +23,7 @@ export class Equipo {
       id: 2,
       nombre: 'María Fernanda Zúñiga',
       cargo: 'Jefe de Proyectos',
-      email: 'mftorres@estudiozuniga.cl',
+      email: 'mftorres@gestionterritorial.cl',
       biografia: 'Experto en gestión de proyectos complejos y coordinación de equipos multidisciplinarios.',
       especialidad: 'Gestión BIM'
     },
@@ -31,7 +31,7 @@ export class Equipo {
       id: 3,
       nombre: 'Isabella Rojas',
       cargo: 'Arquitecta Senior',
-      email: 'irojas@estudiozuniga.cl',
+      email: 'irojas@gestionterritorial.cl',
       biografia: 'Apasionada por el diseño paramétrico y la integración de tecnología en la arquitectura.',
       especialidad: 'Diseño Paramétrico'
     },
@@ -39,7 +39,7 @@ export class Equipo {
       id: 4,
       nombre: 'Diego Valenzuela',
       cargo: 'Arquitecto de Interiores',
-      email: 'dvalenzuela@estudiozuniga.cl',
+      email: 'dvalenzuela@gestionterritorial.cl',
       biografia: 'Especialista en crear espacios interiores que reflejan la identidad y necesidades de cada cliente.',
       especialidad: 'Interiorismo'
     },
@@ -47,7 +47,7 @@ export class Equipo {
       id: 5,
       nombre: 'Ana Lucía Campos',
       cargo: 'Arquitecta de Paisaje',
-      email: 'alcampos@estudiozuniga.cl',
+      email: 'alcampos@gestionterritorial.cl',
       biografia: 'Integra naturaleza y arquitectura creando espacios verdes sostenibles y funcionales.',
       especialidad: 'Paisajismo'
     }
