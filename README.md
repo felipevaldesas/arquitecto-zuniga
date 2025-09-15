@@ -1,59 +1,38 @@
-# ArquitectosZuniga
+# Arquitectos Zúñiga - Angular App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1.
+Aplicación web estática desarrollada en Angular 20 y desplegada en **Vercel** 🚀.
 
-## Development server
+## 🚀 Scripts principales
 
-To start a local development server, run:
+- `npm install` → Instala dependencias
+- `npm start` → Levanta servidor local de desarrollo
+- `npm run build` → Compila la app en modo producción (`dist/arquitectos-zuniga/browser`)
 
-```bash
-ng serve
-```
+## 🌍 Deploy en Vercel
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+1. Subir proyecto a GitHub.
+2. Conectar el repo en [Vercel](https://vercel.com).
+3. Configurar:
+   - **Build Command** → `npm run build`
+   - **Output Directory** → `dist/arquitectos-zuniga/browser`
+4. Incluir `vercel.json` en la raíz del proyecto:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```json
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "angular.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/arquitectos-zuniga/browser"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
