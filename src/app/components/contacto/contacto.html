@@ -1,0 +1,198 @@
+<div class="contacto-minimal">
+
+  <!-- Header simple -->
+  <header class="contacto-header">
+    <div class="header-content">
+      <h1 class="titulo-principal">Contacto</h1>
+      <p class="subtitulo">Conversemos sobre tu proyecto</p>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="contacto-content">
+    <div class="container">
+      
+      <!-- Grid de contacto -->
+      <div class="contacto-grid">
+        
+        <!-- Información de contacto -->
+        <section class="info-contacto">
+          <h2 class="titulo-seccion">Información</h2>
+          
+          <div class="contacto-items">
+            @for (item of informacionContacto; track item.tipo) {
+              <div class="contacto-item">
+                <div class="item-icon">
+                  @switch (item.tipo) {
+                    @case ('email') {
+                      <svg viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                      </svg>
+                    }
+                    @case ('telefono') {
+                      <svg viewBox="0 0 24 24">
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                      </svg>
+                    }
+                    @case ('direccion') {
+                      <svg viewBox="0 0 24 24">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                      </svg>
+                    }
+                    @case ('web') {
+                      <svg viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                      </svg>
+                    }
+                  }
+                </div>
+                <div class="item-content">
+                  <div class="item-label">{{ item.label }}</div>
+                  <div class="item-valor">
+                    @if (item.tipo === 'email') {
+                      <a [href]="'mailto:' + item.valor">{{ item.valor }}</a>
+                    } @else if (item.tipo === 'telefono') {
+                      <a [href]="'tel:' + item.valor">{{ item.valor }}</a>
+                    } @else if (item.tipo === 'web') {
+                      <a [href]="'https://' + item.valor" target="_blank">{{ item.valor }}</a>
+                    } @else {
+                      <span>{{ item.valor }}</span>
+                    }
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+          
+          <!-- Horarios -->
+          <div class="horarios-atencion">
+            <h3>Horarios de atención</h3>
+            <div class="horario-item">
+              <span class="dia">Lunes a Viernes</span>
+              <span class="hora">09:00 - 18:00</span>
+            </div>
+            <div class="horario-item">
+              <span class="dia">Sábados</span>
+              <span class="hora">10:00 - 14:00</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Formulario simple -->
+        <section class="formulario-contacto">
+          <h2 class="titulo-seccion">Mensaje</h2>
+          
+          <form class="form-minimal" (ngSubmit)="enviarMensaje()" #contactoForm="ngForm">
+            
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input 
+                type="text" 
+                id="nombre" 
+                name="nombre"
+                [(ngModel)]="formulario.nombre"
+                required
+                placeholder="Tu nombre completo">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email"
+                [(ngModel)]="formulario.email"
+                required
+                placeholder="tu@email.com">
+            </div>
+
+            <div class="form-group">
+              <label for="telefono">Teléfono</label>
+              <input 
+                type="tel" 
+                id="telefono" 
+                name="telefono"
+                [(ngModel)]="formulario.telefono"
+                placeholder="+56 9 1234 5678">
+            </div>
+
+            <div class="form-group">
+              <label for="mensaje">Mensaje</label>
+              <textarea 
+                id="mensaje" 
+                name="mensaje"
+                [(ngModel)]="formulario.mensaje"
+                required
+                rows="5"
+                placeholder="Cuéntanos sobre tu proyecto territorial..."></textarea>
+            </div>
+
+            <button 
+              type="submit" 
+              class="btn-enviar"
+              [disabled]="!contactoForm.form.valid || enviando">
+              @if (enviando) {
+                <span>Enviando...</span>
+              } @else {
+                <span>Enviar mensaje</span>
+                <svg viewBox="0 0 24 24">
+                  <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+              }
+            </button>
+
+          </form>
+
+          <!-- Estado del envío -->
+          @if (mensajeEnviado) {
+            <div class="mensaje-exito">
+              <p>¡Mensaje enviado correctamente!</p>
+              <p>Te contactaremos pronto.</p>
+            </div>
+          }
+
+          @if (errorEnvio) {
+            <div class="mensaje-error">
+              <p>Error al enviar el mensaje.</p>
+              <p>Por favor, intenta nuevamente.</p>
+            </div>
+          }
+
+        </section>
+
+      </div>
+
+      <!-- Ubicación simple -->
+      <section class="ubicacion-section">
+        <h2 class="titulo-seccion">Ubicación</h2>
+        
+        <div class="ubicacion-content">
+          <div class="direccion-info">
+            <h3>Oficina Principal</h3>
+            <p>Santiago, Chile</p>
+            <p>Región Metropolitana</p>
+          </div>
+          
+          <!-- Placeholder para mapa -->
+          <div class="mapa-placeholder">
+            <div class="mapa-content">
+              <p>Mapa interactivo</p>
+              <span>Santiago, Chile</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Botón volver flotante -->
+  <button class="btn-volver" 
+          (click)="volverAtras()"
+          aria-label="Volver atrás">
+    <svg viewBox="0 0 24 24">
+      <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+    </svg>
+  </button>
+
+</div>

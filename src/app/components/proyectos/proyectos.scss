@@ -1,411 +1,640 @@
-// proyectos.scss
 @use './../../../styles/variables' as *;
 @use './../../../styles/mixins' as *;
 @use './../../../styles/animations' as *;
 
-.proyectos-container {
+// Contenedor principal minimalista
+.proyectos-minimal {
+  min-height: 100vh;
   background: $color-fondo;
+  font-family: $font-body;
 }
 
-// Sección Filtros
-.seccion-filtros {
-  @include section-padding;
-  background: $color-fondo-alt;
+// Loading state
+.loading-minimal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: $color-fondo;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
 
-  .filtros-header {
+  .loading-content {
     text-align: center;
-    margin-bottom: $spacing-xl;
 
-    h2 {
-      font-family: $font-display;
-      font-size: 2.5rem;
-      color: $color-primario;
-      margin-bottom: $spacing-sm;
+    .loading-logo {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1.5rem;
+      opacity: 0.8;
+      animation: pulse 2s ease-in-out infinite;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
     }
 
-    p {
+    .loading-text {
+      font-size: 0.9rem;
       color: $color-texto-claro;
-      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 500;
     }
   }
+}
 
-  .filtros-buttons {
+// Header minimalista
+.proyectos-header {
+  padding: 8rem 2rem 4rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+  @media (max-width: $tablet) {
+    padding: 6rem 1.5rem 3rem;
+  }
+
+  @media (max-width: $mobile) {
+    padding: 5rem 1rem 2rem;
+  }
+
+  @media (max-width: 375px) {
+    padding: 4rem 0.75rem 1.5rem;
+  }
+
+  .header-content {
+    max-width: 600px;
+    margin: 0 auto;
+
+    .titulo-principal {
+      font-family: $font-display;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      color: $color-primario;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitulo {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      color: $color-texto-claro;
+      font-weight: 400;
+    }
+  }
+}
+
+// Filtros minimalistas
+.filtros-minimal {
+  padding: 2rem;
+  background: $color-fondo;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+  @media (max-width: $tablet) {
+    padding: 1.5rem;
+  }
+
+  @media (max-width: $mobile) {
+    padding: 1rem;
+  }
+
+  .filtros-container {
     display: flex;
     justify-content: center;
-    gap: $spacing-md;
-    flex-wrap: wrap;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+
+    @media (max-width: $mobile) {
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 375px) {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
 
     .filtro-btn {
-      padding: $spacing-sm $spacing-md;
-      border: 2px solid $color-borde;
-      background: $color-fondo;
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      border: 1px solid rgba(0, 0, 0, 0.1);
       color: $color-texto;
-      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
       cursor: pointer;
       transition: all 0.3s ease;
-      font-weight: 500;
+      border-radius: 50px;
 
-      &:hover, &.activo {
-        background: $gradient-premium;
-        color: $color-fondo;
+      @media (max-width: $mobile) {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.85rem;
+      }
+
+      @media (max-width: 375px) {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 0.8rem;
+      }
+
+      &:hover {
         border-color: $color-acento;
+        color: $color-acento;
+      }
+
+      &.activo {
+        background: $color-primario;
+        border-color: $color-primario;
+        color: $color-fondo;
       }
     }
   }
 }
 
-// Grid de Proyectos
-.seccion-proyectos-grid {
-  @include section-padding;
+// Grid de proyectos
+.proyectos-grid-container {
+  padding: 4rem 2rem;
+
+  @media (max-width: $tablet) {
+    padding: 3rem 1.5rem;
+  }
+
+  @media (max-width: $mobile) {
+    padding: 2rem 1rem;
+  }
+
+  @media (max-width: 375px) {
+    padding: 1.5rem 0.75rem;
+  }
 
   .proyectos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: $spacing-xl;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
 
     @media (max-width: $tablet) {
-      grid-template-columns: 1fr;
-      gap: $spacing-lg;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
     }
-  }
 
-  .proyecto-card {
-    background: $color-fondo;
-    border-radius: 16px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border: 1px solid $color-borde;
-    position: relative;
+    @media (max-width: $mobile) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
 
-    @include hover-lift;
+    @media (max-width: 375px) {
+      gap: 1.5rem;
+    }
 
-    .proyecto-badges {
-      position: absolute;
-      top: $spacing-sm;
-      left: $spacing-sm;
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      gap: $spacing-xs;
+    .proyecto-card-minimal {
+      cursor: pointer;
+      overflow: hidden;
+      box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      border-radius: 5px;
 
-      .badge {
-        padding: 0.25rem 0.75rem;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
+      &:hover {
+        transform: translateY(-5px);
 
-        &.destacado {
-          background: $gradient-premium;
-          color: $color-fondo;
-        }
-
-        &.estado[data-estado="Completado"] {
-          background: #22c55e;
-          color: white;
-        }
-
-        &.estado[data-estado="En construcción"] {
-          background: #f59e0b;
-          color: white;
-        }
-
-        &.estado[data-estado="En diseño"] {
-          background: #3b82f6;
-          color: white;
+        .hover-overlay {
+          opacity: 1;
         }
       }
-    }
 
-    .proyecto-imagen {
-      height: 250px;
-      position: relative;
-      overflow: hidden;
+      &:focus {
+        outline: 2px solid $color-acento;
+        outline-offset: 4px;
+      }
 
-      .imagen-placeholder {
-        width: 100%;
-        height: 100%;
-        background: $gradient-overlay;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      .proyecto-imagen {
         position: relative;
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+        background: #f8f8f8;
 
-        .proyecto-inicial {
-          font-family: $font-display;
-          font-size: 4rem;
-          color: $color-acento;
-          opacity: 0.3;
-          font-weight: 700;
+        @media (max-width: $mobile) {
+          height: 250px;
         }
 
-        .proyecto-overlay {
+        @media (max-width: 375px) {
+          height: 200px;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.3s ease;
+        }
+
+        .imagen-placeholder {
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, $color-primario 0%, #3a3a3a 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .proyecto-numero {
+            font-family: $font-display;
+            font-size: clamp(2rem, 8vw, 3rem);
+            font-weight: 700;
+            color: $color-acento;
+            opacity: 0.3;
+          }
+        }
+
+        .hover-overlay {
           position: absolute;
-          inset: 0;
-          background: rgba($color-primario, 0.9);
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.8);
           display: flex;
           align-items: center;
           justify-content: center;
           opacity: 0;
           transition: opacity 0.3s ease;
 
-          .overlay-content {
-            text-align: center;
+          .ver-texto {
             color: $color-fondo;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+          }
+        }
 
-            .ver-mas {
-              display: block;
-              font-size: 1.1rem;
-              font-weight: 600;
-              margin-bottom: $spacing-xs;
-            }
+        &:hover img {
+          transform: scale(1.05);
+        }
+      }
 
-            .arrow {
-              font-size: 1.5rem;
-              color: $color-acento;
+      .proyecto-info {
+        padding: 1.5rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+        @media (max-width: $mobile) {
+          padding: 1.25rem;
+        }
+
+        @media (max-width: 375px) {
+          padding: 1rem;
+        }
+
+        .proyecto-titulo {
+          font-family: $font-display;
+          font-size: clamp(1.25rem, 3vw, 1.5rem);
+          font-weight: 600;
+          color: $color-primario;
+          margin-bottom: 0.75rem;
+          line-height: 1.2;
+        }
+
+        .proyecto-meta {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          font-size: 0.9rem;
+          color: $color-texto-claro;
+
+          @media (max-width: 375px) {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.25rem;
+
+            .separador {
+              display: none;
             }
+          }
+
+          .ubicacion {
+            font-weight: 500;
+          }
+
+          .separador {
+            opacity: 0.5;
+          }
+
+          .anio {
+            font-family: $font-mono;
+            font-weight: 600;
           }
         }
       }
-
-      &:hover .proyecto-overlay {
-        opacity: 1;
-      }
-    }
-
-    .proyecto-info {
-      padding: $spacing-md;
-
-      .proyecto-meta {
-        display: flex;
-        justify-content: space-between;
-        gap: 15px;
-        align-items: center;
-        margin-bottom: $spacing-sm;
-
-        .proyecto-anio {
-          color: $color-texto-claro;
-          font-family: $font-mono;
-          font-weight: 700;
-        }
-
-        .proyecto-tipo {
-          color: $color-acento;
-          font-weight: 600;
-          text-transform: uppercase;
-          font-size: 0.875rem;
-          letter-spacing: 0.05em;
-        }
-      }
-
-      .proyecto-titulo {
-        font-family: $font-display;
-        font-size: 1.5rem;
-        color: $color-primario;
-        margin-bottom: $spacing-sm;
-        line-height: 1.2;
-      }
-
-      .proyecto-ubicacion {
-        display: flex;
-        align-items: center;
-        gap: $spacing-xs;
-        color: $color-texto-claro;
-        margin-bottom: $spacing-sm;
-        font-size: 0.95rem;
-      }
-
-      .proyecto-descripcion {
-        color: $color-texto;
-        line-height: 1.6;
-        margin-bottom: $spacing-sm;
-      }
-
-      .proyecto-area {
-        display: flex;
-        justify-content: space-between;
-        padding-top: $spacing-sm;
-        border-top: 1px solid $color-borde;
-
-        .area-label {
-          color: $color-texto-claro;
-          font-size: 0.9rem;
-        }
-
-        .area-valor {
-          color: $color-acento;
-          font-weight: 600;
-        }
-      }
     }
   }
-}
 
-// CTA Proyectos
-.seccion-cta-proyectos {
-  @include section-padding;
-  background: linear-gradient(135deg, $color-primario 0%, #2d2d2d 100%);
-  color: $color-fondo;
-
-  .cta-content {
+  // Estado vacío
+  .estado-vacio {
     text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
+    padding: 4rem 2rem;
+    grid-column: 1 / -1;
 
-    h2 {
-      font-family: $font-display;
-      font-size: 3rem;
-      margin-bottom: $spacing-md;
+    @media (max-width: $mobile) {
+      padding: 3rem 1rem;
     }
 
     p {
-      font-size: 1.25rem;
-      margin-bottom: $spacing-xl;
-      opacity: 0.9;
+      font-size: 1.1rem;
+      color: $color-texto-claro;
+      margin-bottom: 1.5rem;
     }
 
-    .cta-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: $spacing-lg;
-      margin-bottom: $spacing-xl;
-
-      @media (max-width: $mobile) {
-        grid-template-columns: 1fr;
-        gap: $spacing-md;
-      }
-
-      .stat {
-        text-align: center;
-
-        .stat-numero {
-          display: block;
-          font-family: $font-display;
-          font-size: 2.5rem;
-          color: $color-acento;
-          font-weight: 700;
-          line-height: 1;
-        }
-
-        .stat-label {
-          font-size: 0.9rem;
-          opacity: 0.8;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-        }
-      }
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: $spacing-sm;
-      background: $gradient-premium;
-      color: $color-fondo;
+    .btn-reset {
+      padding: 0.75rem 1.5rem;
+      background: $color-primario;
       border: none;
-      padding: 1rem 2rem;
-      border-radius: 50px;
+      color: $color-fondo;
       font-weight: 600;
-      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
       cursor: pointer;
       transition: all 0.3s ease;
+      border-radius: 50px;
 
       &:hover {
+        background: darken($color-primario, 10%);
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
       }
     }
   }
 }
 
-// Extra Small (≤ 376px)
-@media (max-width: 376px) {
-  .seccion-filtros {
-    .filtros-header h2 {
-      font-size: 1.5rem !important;
-    }
-    .filtros-header p {
-      font-size: 0.9rem !important;
-    }
+// Botón volver flotante
+.btn-volver {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 
-    .filtros-buttons {
-      flex-direction: column;
-      gap: $spacing-sm;
-      button {
-        width: 100%;
+  @media (max-width: $tablet) {
+    bottom: 1.5rem;
+    left: 1.5rem;
+    width: 45px;
+    height: 45px;
+  }
+
+  @media (max-width: $mobile) {
+    bottom: 1rem;
+    left: 1rem;
+    width: 40px;
+    height: 40px;
+  }
+
+  @media (max-width: 375px) {
+    bottom: 0.75rem;
+    left: 0.75rem;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: $color-primario;
+    transition: fill 0.3s ease;
+
+    @media (max-width: $mobile) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &:hover {
+    background: $color-primario;
+    border-color: $color-primario;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+
+    svg {
+      fill: $color-fondo;
+    }
+  }
+
+  &:focus {
+    outline: 2px solid $color-acento;
+    outline-offset: 4px;
+  }
+}
+
+// Animaciones
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+// Breakpoints específicos para móviles muy pequeños
+@media (max-width: 320px) {
+  .proyectos-header {
+    padding: 3.5rem 0.5rem 1rem;
+
+    .header-content {
+      .titulo-principal {
+        font-size: 2rem;
+      }
+
+      .subtitulo {
         font-size: 0.85rem;
       }
     }
   }
 
-  .seccion-proyectos-grid {
-    .proyectos-grid {
-      grid-template-columns: 1fr !important; // siempre 1 columna
-      gap: $spacing-md;
-    }
+  .filtros-minimal {
+    padding: 0.75rem 0.5rem;
 
-    .proyecto-card {
-      .proyecto-imagen {
-        height: 180px; // más compacto
-        .proyecto-inicial {
-          font-size: 2.5rem !important;
-        }
-      }
-
-      .proyecto-info {
-        padding: $spacing-sm !important;
-
-        .proyecto-titulo {
-          font-size: 1.2rem !important;
-        }
-
-        .proyecto-descripcion {
-          font-size: 0.85rem !important;
-          line-height: 1.4;
-        }
-
-        .proyecto-meta {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: $spacing-xs;
-        }
-      }
-    }
-
-    .no-proyectos {
-      text-align: center;
-      h3 { font-size: 1.2rem !important; }
-      p { font-size: 0.9rem !important; }
-      .btn-secondary { width: 100%; }
+    .filtros-container .filtro-btn {
+      padding: 0.625rem 0.75rem;
+      font-size: 0.75rem;
     }
   }
 
-  .seccion-cta-proyectos {
-    .cta-content {
-      h2 {
-        font-size: 1.8rem !important;
-        line-height: 1.2;
-      }
-      p {
-        font-size: 1rem !important;
-      }
+  .proyectos-grid-container {
+    padding: 1rem 0.5rem;
 
-      .cta-stats {
-        grid-template-columns: 1fr !important;
-        gap: $spacing-sm;
-        .stat-numero {
-          font-size: 1.8rem !important;
+    .proyectos-grid {
+      gap: 1rem;
+
+      .proyecto-card-minimal {
+        .proyecto-imagen {
+          height: 180px;
+
+          .proyecto-numero {
+            font-size: 1.8rem;
+          }
+        }
+
+        .proyecto-info {
+          padding: 0.75rem 0;
+
+          .proyecto-titulo {
+            font-size: 1.1rem;
+          }
+
+          .proyecto-meta {
+            font-size: 0.8rem;
+          }
         }
       }
+    }
+  }
 
-      .btn-primary {
-        width: 100%;
-        justify-content: center;
-        font-size: 0.9rem;
-        padding: 0.75rem 1rem;
+  .btn-volver {
+    width: 35px;
+    height: 35px;
+    bottom: 0.5rem;
+    left: 0.5rem;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+// Estados de focus mejorados para accesibilidad
+.filtro-btn:focus,
+.proyecto-card-minimal:focus,
+.btn-reset:focus {
+  outline: 2px solid $color-acento;
+  outline-offset: 2px;
+}
+
+// Modo de alto contraste
+@media (prefers-contrast: high) {
+  .proyecto-card-minimal {
+    border: 2px solid $color-primario;
+
+    .proyecto-info {
+      border-bottom-width: 2px;
+    }
+  }
+
+  .filtro-btn {
+    border-width: 2px;
+  }
+}
+
+// Reducción de movimiento
+@media (prefers-reduced-motion: reduce) {
+  .proyecto-card-minimal,
+  .btn-volver,
+  .filtro-btn {
+    transition: none;
+  }
+
+  .loading-logo {
+    animation: none;
+  }
+
+  .proyecto-imagen img {
+    transition: none;
+  }
+
+  .hover-overlay {
+    transition: none;
+  }
+}
+
+// Optimizaciones de rendimiento
+.proyecto-card-minimal,
+.btn-volver,
+.filtro-btn {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+// Dark mode del sistema
+@media (prefers-color-scheme: dark) {
+  .proyectos-minimal {
+    background: $color-primario;
+    color: $color-fondo;
+  }
+
+  .proyectos-header {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+
+    .titulo-principal {
+      color: $color-fondo;
+    }
+
+    .subtitulo {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+
+  .filtros-minimal {
+    background: $color-primario;
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+
+    .filtro-btn {
+      border-color: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.8);
+
+      &:hover {
+        border-color: $color-acento;
+        color: $color-acento;
+      }
+
+      &.activo {
+        background: $color-fondo;
+        border-color: $color-fondo;
+        color: $color-primario;
+      }
+    }
+  }
+
+  .proyecto-card-minimal .proyecto-info {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+
+    .proyecto-titulo {
+      color: $color-fondo;
+    }
+
+    .proyecto-meta {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+
+  .btn-volver {
+    background: rgba(26, 26, 26, 0.95);
+    border-color: rgba(255, 255, 255, 0.2);
+
+    svg {
+      fill: $color-fondo;
+    }
+
+    &:hover {
+      background: $color-fondo;
+      border-color: $color-fondo;
+
+      svg {
+        fill: $color-primario;
       }
     }
   }

@@ -1,183 +1,146 @@
-@if(!cargando) {
-  <div class="inicio-container">
-    <section class="hero-section">
-      <div class="hero-contenido">
-        <h1 class="hero-titulo">{{ textoHero.titulo }}</h1>
-        <p class="hero-subtitulo">{{ textoHero.subtitulo }}</p>
-        <p class="hero-descripcion">{{ textoHero.descripcion }}</p>
-        
-        <div class="hero-acciones">
-          <button class="btn-primario" (click)="navegarAProyectos()">
-            Ver Proyectos
-          </button>
-          <button class="btn-secundario" (click)="navegarAEstudio()">
-            Conocer Estudio
-          </button>
+<div class="inicio-elegante">
+  
+  <!-- Loading state -->
+  @if (cargando) {
+    <div class="loading-elegante">
+      <div class="loading-content">
+        <div class="loading-logo">
+          <img src="/assets/get_logo.png" alt="Get" />
+        </div>
+        <div class="loading-text">Cargando experiencia...</div>
+        <div class="loading-progress">
+          <div class="progress-line"></div>
         </div>
       </div>
-    </section>
+    </div>
+  }
 
-    <section class="seccion-proyectos">
-      <div class="seccion-header">
-        <h2>Proyectos Destacados</h2>
-        <button class="link-ver-todos" (click)="navegarAProyectos()">
-          Ver todos los proyectos
-        </button>
-      </div>
-      <div class="proyectos-grid">
-        @for (proyecto of proyectosDestacados; track $index) {
-          <article 
-            class="proyecto-card"
-            (click)="verProyecto(proyecto.id)">
-            <div class="proyecto-imagen">
-              <div class="imagen-placeholder">
-                <span>{{ proyecto.titulo.charAt(0) }}</span>
-              </div>
-            </div>
-            <div class="proyecto-info">
-              <div class="proyecto-meta">
-                <span class="proyecto-anio">{{ proyecto.anio }}</span>
-                <span class="proyecto-tipo">{{ proyecto.tipo }}</span>
-              </div>
-              <h3 class="proyecto-titulo">{{ proyecto.titulo }}</h3>
-              <p class="proyecto-ubicacion">{{ proyecto.ubicacion }}</p>
-              <p class="proyecto-descripcion">{{ proyecto.descripcion }}</p>
-              
-              @if (proyecto.area || proyecto.estado) {
-                <div class="proyecto-detalles">
-                  @if (proyecto.area) {
-                    <span class="detalle">{{ proyecto.area }}</span>
-                  }
-                  @if (proyecto.estado) {
-                    <span class="detalle estado">{{ proyecto.estado }}</span>
-                  }
+  <!-- Carrusel principal elegante -->
+  @if (!cargando) {
+    <main class="hero-carousel-elegante" 
+          (mouseenter)="pausarCarrusel()" 
+          (mouseleave)="reanudarCarrusel()">
+      
+      <!-- Slides de proyectos -->
+      <section class="carousel-slides">
+        @for (proyecto of proyectosHero; track proyecto.id; let i = $index) {
+          <article class="slide-proyecto" 
+                   [class.activo]="proyectoActual === i"
+                   [style.background-image]="proyecto.imagen ? 'url(' + proyecto.imagen + ')' : 'none'">
+            
+            <!-- Overlay graduado para legibilidad -->
+            <div class="slide-overlay"></div>
+            
+            <!-- Placeholder artístico si no hay imagen -->
+            @if (!proyecto.imagen) {
+              <div class="slide-placeholder">
+                <div class="placeholder-geometric">
+                  <div class="geometric-shape shape-1"></div>
+                  <div class="geometric-shape shape-2"></div>
+                  <div class="geometric-shape shape-3"></div>
+                  <div class="project-number-large">{{ (i + 1).toString().padStart(2, '0') }}</div>
                 </div>
-              }
+              </div>
+            }
+            
+            <!-- Información del proyecto (mejor posicionada) -->
+            <div class="proyecto-info">
+              <div class="info-badge">
+                <span class="badge-number">{{ (i + 1).toString().padStart(2, '0') }}</span>
+                <span class="badge-year">{{ proyecto.anio }}</span>
+              </div>
+              
+              <div class="info-content">
+                <h1 class="proyecto-titulo">{{ proyecto.titulo }}</h1>
+                <p class="proyecto-ubicacion">
+                  <span class="ubicacion-icon"></span>
+                  {{ proyecto.ubicacion }}
+                </p>
+                <div class="proyecto-tipo">{{ proyecto.tipo }}</div>
+              </div>
             </div>
+
           </article>
         }
-      </div>
-    </section>
-
-    @if (informacionEstudio) {
-      <section class="seccion-estudio">
-        <div class="estudio-contenido">
-          <div class="estudio-texto">
-            <h2>{{ informacionEstudio.nombre }}</h2>
-            <p class="estudio-descripcion">{{ informacionEstudio.descripcion }}</p>
-            <p class="estudio-filosofia">{{ informacionEstudio.filosofia }}</p>
-            
-            <div class="estudio-stats">
-              <div class="stat">
-                <span class="stat-numero">
-                  {{ 2024 - informacionEstudio.anioFundacion }}+
-                </span>
-                <span class="stat-label">Años de experiencia</span>
-              </div>
-              <div class="stat">
-                <span class="stat-numero">{{ proyectosDestacados.length * 3 }}+</span>
-                <span class="stat-label">Proyectos completados</span>
-              </div>
-              @if (informacionEstudio.reconocimientos) {
-                <div class="stat">
-                  <span class="stat-numero">{{ informacionEstudio.reconocimientos.length }}</span>
-                  <span class="stat-label">Reconocimientos</span>
-                </div>
-              }
-            </div>
-
-            <button class="btn-secundario" (click)="navegarAEstudio()">
-              Más sobre nosotros
-            </button>
-          </div>
-
-          <div class="estudio-servicios">
-            <h3>Nuestros Servicios</h3>
-            <ul class="servicios-lista">
-              @for (servicio of informacionEstudio.servicios.slice(0, 6); track $index) {
-                <li>{{ servicio }}</li>
-              }
-            </ul>
-          </div>
-        </div>
       </section>
-    }
 
-    <section class="seccion-contacto-artistico">
-      <div class="contacto-grid">
+      <!-- Controles elegantes integrados -->
+      <nav class="carousel-navegacion" aria-label="Navegación del carrusel">
         
-        <div class="contacto-principal">
-          <div class="contacto-header">
-            <span class="contacto-numero">03</span>
-            <div class="contacto-titulo">
-              <h2>HABLEMOS DE<br>TU PROYECTO</h2>
-              <p>Cada proyecto es una oportunidad única de crear algo extraordinario</p>
+        <!-- Contador con progreso circular -->
+        <div class="contador-circular">
+          <div class="contador-content">
+            <span class="numero-actual">{{ (proyectoActual + 1).toString().padStart(2, '0') }}</span>
+            <div class="progreso-circular">
+              <svg viewBox="0 0 36 36" class="circular-chart">
+                <path class="circle-bg"
+                      d="M18 2.0845
+                         a 15.9155 15.9155 0 0 1 0 31.831
+                         a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                <path class="circle"
+                      [style.stroke-dasharray]="((proyectoActual + 1) / proyectosHero.length * 100) + ', 100'"
+                      d="M18 2.0845
+                         a 15.9155 15.9155 0 0 1 0 31.831
+                         a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              </svg>
             </div>
+            <span class="numero-total">{{ proyectosHero.length.toString().padStart(2, '0') }}</span>
           </div>
+        </div>
+
+        <!-- Dots elegantes -->
+        <div class="dots-elegantes">
+          @for (proyecto of proyectosHero; track proyecto.id; let i = $index) {
+            <button class="dot-elegante" 
+                    [class.activo]="proyectoActual === i"
+                    (click)="irAProyecto(i)"
+                    [attr.aria-label]="'Ver proyecto ' + (i + 1) + ': ' + proyecto.titulo">
+              <span class="dot-fill"></span>
+              <span class="dot-ripple"></span>
+            </button>
+          }
+        </div>
+
+        <!-- Flechas sofisticadas -->
+        <div class="flechas-navegacion">
+          <button class="flecha-nav anterior" 
+                  (click)="anteriorProyecto()"
+                  aria-label="Proyecto anterior">
+            <div class="flecha-bg"></div>
+            <svg class="flecha-icon" viewBox="0 0 24 24">
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+            </svg>
+          </button>
           
-          <div class="contacto-info">
-            <div class="info-item">
-              <span class="info-label">UBICACIÓN</span>
-              <span class="info-valor">Santiago, Chile</span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">EMAIL</span>
-              <span class="info-valor">contacto@gestionterritorial.cl</span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">TELÉFONO</span>
-              <span class="info-valor">+56 2 2234 5678</span>
-            </div>
-          </div>
+          <button class="flecha-nav siguiente" 
+                  (click)="siguienteProyecto()"
+                  aria-label="Siguiente proyecto">
+            <div class="flecha-bg"></div>
+            <svg class="flecha-icon" viewBox="0 0 24 24">
+              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+            </svg>
+          </button>
         </div>
-        
-        <div class="contacto-visual">
-          <div class="visual-composition">
-            <div class="contact-geo-1"></div>
-            <div class="contact-geo-2"></div>
-            <div class="contact-line"></div>
-            
-            <!-- CTA principal -->
-            <div class="cta-principal">
-              <button class="btn-contacto" (click)="navegarAEstudio()">
-                <span class="btn-text">INICIAR CONVERSACIÓN</span>
-                <div class="btn-icon">
-                  <div class="icon-circle"></div>
-                  <span class="icon-arrow">→</span>
-                </div>
-              </button>
-            </div>
-          </div>
-        </div>
-        
-      </div>
-      
-      <!-- Footer minimalista -->
-      <div class="footer-minimal">
-        <div class="footer-content">
-          <span class="footer-copy">© 2025 Get - Gestión Territorial</span>
-          <div class="footer-links">
-            <button class="footer-link" (click)="navegarAProyectos()">Proyectos</button>
-            <button class="footer-link" (click)="navegarANoticias()">Noticias</button>
-            <button class="footer-link" (click)="navegarAEstudio()">Estudio</button>
-          </div>
-          <span class="footer-location">Santiago, Chile</span>
-        </div>
-      </div>
-    </section>
-  </div>
-}
 
-<!-- Loading State Artístico -->
-@if (cargando) {
-  <div class="loading-artistico">
-    <div class="loading-composition">
-      <div class="loading-geometric">
-        <div class="load-rect-1"></div>
-        <div class="load-rect-2"></div>
-        <div class="load-line"></div>
+      </nav>
+
+    </main>
+  }
+
+  <!-- CTA flotante elegante -->
+  <a href="/proyectos" 
+     class="cta-flotante"
+     (click)="verProyectos(); $event.preventDefault()"
+     aria-label="Ver todos nuestros proyectos">
+    <div class="cta-content">
+      <span class="cta-texto">Ver Todos los Proyectos</span>
+      <div class="cta-icono">
+        <svg viewBox="0 0 24 24">
+          <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/>
+        </svg>
       </div>
-      <p class="loading-text">CARGANDO EXPERIENCIA</p>
     </div>
-  </div>
-}
+    <div class="cta-ripple"></div>
+  </a>
+
+</div>

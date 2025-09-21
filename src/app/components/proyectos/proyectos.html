@@ -1,151 +1,104 @@
-<div class="proyectos-container">
-  <!-- Hero Section -->
-  <section class="estudio-hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <span class="hero-label">NUESTROS LOGROS</span>
-      <h1 class="hero-titulo">
-        <span class="linea-1">Proyectos que</span>
-        <span class="linea-2">Transforman Territorios</span>
-      </h1>
-      <p class="hero-descripcion">
-        Casos de éxito en gestión territorial sostenible que demuestran 
-        el impacto positivo de nuestras soluciones ESG aplicadas
-      </p>
-    </div>
-    <div class="hero-decoration">
-      <div class="deco-line"></div>
-      <div class="deco-circle"></div>
-    </div>
-  </section>
-
-  @if(!cargando) {
-    <!-- Filtros de Proyectos -->
-    <section class="seccion-filtros">
-      <div class="container">
-        <div class="filtros-header">
-          <h2>Explora Nuestro Portfolio</h2>
-          <p>{{ proyectosFiltrados.length }} proyectos encontrados</p>
+<div class="proyectos-minimal">
+  
+  <!-- Loading state minimalista -->
+  @if (cargando) {
+    <div class="loading-minimal">
+      <div class="loading-content">
+        <div class="loading-logo">
+          <img src="/assets/get_logo.png" alt="Get" />
         </div>
-        
-        <div class="filtros-buttons">
-          @for (tipo of tiposProyecto; track tipo) {
-            <button 
-              class="filtro-btn"
-              [class.activo]="filtroActivo === tipo"
-              (click)="filtrarProyectos(tipo)">
-              {{ tipo === 'todos' ? 'Todos los Proyectos' : tipo }}
-            </button>
-          }
-        </div>
+        <div class="loading-text">Cargando proyectos...</div>
       </div>
-    </section>
+    </div>
+  }
 
-    <!-- Grid de Proyectos -->
-    <section class="seccion-proyectos-grid">
-      <div class="container">
-        <div class="proyectos-grid">
-          @for (proyecto of proyectosFiltrados; track proyecto.id) {
-            <article class="proyecto-card" (click)="verDetalleProyecto(proyecto.id)">
-              <!-- Badge de estado -->
-              <div class="proyecto-badges">
-                @if (proyecto.destacado) {
-                  <span class="badge destacado">Proyecto Destacado</span>
-                }
-                <span class="badge estado" [attr.data-estado]="proyecto.estado">
-                  {{ proyecto.estado }}
-                </span>
-              </div>
+  <!-- Contenido principal -->
+  @if (!cargando) {
+    
+    <!-- Header simple -->
+    <header class="proyectos-header">
+      <div class="header-content">
+        <h1 class="titulo-principal">Proyectos</h1>
+        <p class="subtitulo">{{ proyectos.length }} proyectos realizados</p>
+      </div>
+    </header>
 
-              <!-- Imagen del proyecto -->
-              <div class="proyecto-imagen">
-                <div class="imagen-placeholder">
-                  <span class="proyecto-inicial">{{ proyecto.titulo.charAt(0) }}</span>
-                  <div class="proyecto-overlay">
-                    <div class="overlay-content">
-                      <span class="ver-mas">Ver Detalles</span>
-                      <div class="arrow">→</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Info del proyecto -->
-              <div class="proyecto-info">
-                <div class="proyecto-meta">
-                  <span class="proyecto-anio">{{ proyecto.anio }}</span>
-                  <span class="proyecto-tipo">{{ proyecto.tipo }}</span>
-                </div>
-                
-                <h3 class="proyecto-titulo">{{ proyecto.titulo }}</h3>
-                
-                <div class="proyecto-ubicacion">
-                  <span class="ubicacion-icon">📍</span>
-                  <span>{{ proyecto.ubicacion }}</span>
-                </div>
-                
-                <p class="proyecto-descripcion">{{ proyecto.descripcion }}</p>
-                
-                @if (proyecto.area) {
-                  <div class="proyecto-area">
-                    <span class="area-label">Área:</span>
-                    <span class="area-valor">{{ proyecto.area }}</span>
-                  </div>
-                }
-              </div>
-            </article>
-          }
-        </div>
-
-        <!-- Mensaje si no hay proyectos -->
-        @if (proyectosFiltrados.length === 0) {
-          <div class="no-proyectos">
-            <h3>No hay proyectos de este tipo</h3>
-            <p>Prueba con otro filtro para ver más proyectos</p>
-            <button class="btn-secondary" (click)="filtrarProyectos('todos')">
-              Ver Todos los Proyectos
-            </button>
-          </div>
+    <!-- Filtros minimalistas (máximo 3) -->
+    <section class="filtros-minimal">
+      <div class="filtros-container">
+        @for (tipo of tiposProyecto.slice(0, 4); track tipo) {
+          <button class="filtro-btn" 
+                  [class.activo]="filtroActivo === tipo"
+                  (click)="filtrarProyectos(tipo)">
+            {{ tipo === 'todos' ? 'Todos' : tipo }}
+          </button>
         }
       </div>
     </section>
 
-    <!-- Sección CTA -->
-    <section class="seccion-cta-proyectos">
-      <div class="container">
-        <div class="cta-content">
-          <h2>¿Tienes un proyecto en mente?</h2>
-          <p>Conversemos sobre cómo podemos transformar tu territorio con criterios ESG aplicados</p>
-          <div class="cta-stats">
-            <div class="stat">
-              <span class="stat-numero">{{ proyectos.length }}+</span>
-              <span class="stat-label">Proyectos Realizados</span>
+    <!-- Grid de proyectos minimalista -->
+    <main class="proyectos-grid-container">
+      <div class="proyectos-grid">
+        @for (proyecto of proyectosFiltrados; track proyecto.id) {
+          <article class="proyecto-card-minimal" 
+                   (click)="verDetalleProyecto(proyecto.id)"
+                   tabindex="0"
+                   role="button"
+                   [attr.aria-label]="'Ver proyecto ' + proyecto.titulo">
+            
+            <!-- Imagen/placeholder simple -->
+            <div class="proyecto-imagen">
+              @if (proyecto.imagen) {
+                <img [src]="proyecto.imagen" 
+                     [alt]="proyecto.titulo"
+                     loading="lazy">
+              } @else {
+                <div class="imagen-placeholder">
+                  <span class="proyecto-numero">{{ (proyectosFiltrados.indexOf(proyecto) + 1).toString().padStart(2, '0') }}</span>
+                </div>
+              }
+              
+              <!-- Overlay minimalista -->
+              <div class="hover-overlay">
+                <span class="ver-texto">Ver proyecto</span>
+              </div>
             </div>
-            <div class="stat">
-              <span class="stat-numero">100%</span>
-              <span class="stat-label">Criterios Sostenibles</span>
+
+            <!-- Información esencial -->
+            <div class="proyecto-info">
+              <h2 class="proyecto-titulo">{{ proyecto.titulo }}</h2>
+              <div class="proyecto-meta">
+                <span class="ubicacion">{{ proyecto.ubicacion }}</span>
+                <span class="separador">•</span>
+                <span class="anio">{{ proyecto.anio }}</span>
+              </div>
             </div>
-            <div class="stat">
-              <span class="stat-numero">15+</span>
-              <span class="stat-label">Años de Experiencia</span>
-            </div>
-          </div>
-          <button class="btn-primary" (click)="navegarAContacto()">
-            <span>Iniciar Mi Proyecto</span>
-            <span class="btn-arrow">→</span>
+
+          </article>
+        }
+      </div>
+
+      <!-- Estado vacío -->
+      @if (proyectosFiltrados.length === 0) {
+        <div class="estado-vacio">
+          <p>No hay proyectos de este tipo</p>
+          <button class="btn-reset" (click)="filtrarProyectos('todos')">
+            Ver todos
           </button>
         </div>
-      </div>
-    </section>
+      }
+      
+    </main>
+
   }
 
-  <!-- Loading State -->
-  @if (cargando) {
-    <div class="loading-proyectos">
-      <div class="loading-content">
-        <div class="loading-spinner"></div>
-        <p>Cargando Proyectos...</p>
-      </div>
-    </div>
-  }
+  <!-- Botón volver flotante -->
+  <button class="btn-volver" 
+          (click)="volverAtras()"
+          aria-label="Volver atrás">
+    <svg viewBox="0 0 24 24">
+      <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+    </svg>
+  </button>
+
 </div>

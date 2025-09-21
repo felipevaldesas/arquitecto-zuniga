@@ -1,0 +1,129 @@
+<div class="oficina-minimal">
+
+  <!-- Contenido principal -->
+
+    <!-- Header simple -->
+    <header class="oficina-header">
+      <div class="header-content">
+        <h1 class="titulo-principal">Oficina</h1>
+        <p class="subtitulo">Gestión territorial sostenible</p>
+      </div>
+    </header>
+
+    <!-- Sección 01: Misión y Visión -->
+    <section class="seccion-filosofia">
+      <div class="container">
+        
+        <div class="filosofia-content">
+          <div class="mision-item">
+            <h2>Misión</h2>
+            <p>Contribuir al desarrollo sostenible de ciudades y territorios mediante soluciones innovadoras que promuevan la calidad de vida, la equidad social y el respeto por el medio ambiente.</p>
+          </div>
+          
+          <div class="vision-item">
+            <h2>Visión</h2>
+            <p>Ser líderes reconocidos en la transformación de territorios, creando entornos que inspiren, conecten y empoderen a las comunidades hacia un futuro más resiliente.</p>
+          </div>
+        </div>
+
+        <!-- Stats minimalistas -->
+        <div class="stats-minimal">
+          <div class="stat-item">
+            <span class="numero">15+</span>
+            <span class="label">Años de experiencia</span>
+          </div>
+          <div class="stat-item">
+            <span class="numero">100%</span>
+            <span class="label">Proyectos sostenibles</span>
+          </div>
+          <div class="stat-item">
+            <span class="numero">85%</span>
+            <span class="label">Reducción de costos operativos</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Sección 02: Servicios -->
+    <section class="seccion-servicios">
+      <div class="container">
+        <h2 class="titulo-seccion">Servicios</h2>
+        
+        <div class="servicios-grid">
+          @for (servicio of servicios; track servicio.titulo) {
+            <div class="servicio-card">
+              <h3>{{ servicio.titulo }}</h3>
+              <p>{{ servicio.descripcion }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 03: Equipo -->
+    <section class="seccion-equipo">
+      <div class="container">
+        <h2 class="titulo-seccion">Equipo</h2>
+        
+        <div class="equipo-grid">
+          @for (miembro of equipo; track miembro.nombre) {
+            <div class="miembro-card">
+              <div class="miembro-avatar">
+                {{ obtenerIniciales(miembro.nombre) }}
+              </div>
+              <div class="miembro-info">
+                <h3>{{ miembro.nombre }}</h3>
+                <p class="cargo">{{ miembro.cargo }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 04: Objetivos (simplificado) -->
+    <section class="seccion-objetivos">
+      <div class="container">
+        <h2 class="titulo-seccion">Objetivos</h2>
+        
+        <div class="objetivos-list">
+          @for (objetivo of objetivosEsenciales; track objetivo; let i = $index) {
+            <div class="objetivo-item">
+              <span class="numero">{{ (i + 1).toString().padStart(2, '0') }}</span>
+              <span class="texto">{{ objetivo }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 05: Proceso (simplificado) -->
+    <section class="seccion-proceso">
+      <div class="container">
+        <h2 class="titulo-seccion">Proceso</h2>
+        
+        <div class="proceso-steps">
+          @for (paso of procesoMinimal; track paso.titulo; let i = $index) {
+            <div class="proceso-step">
+              <div class="step-numero">{{ (i + 1).toString().padStart(2, '0') }}</div>
+              <div class="step-content">
+                <h3>{{ paso.titulo }}</h3>
+                <p>{{ paso.descripcion }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+  <!-- Botón volver flotante -->
+  <button class="btn-volver" 
+          (click)="volverAtras()"
+          aria-label="Volver atrás">
+    <svg viewBox="0 0 24 24">
+      <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+    </svg>
+  </button>
+
+</div>

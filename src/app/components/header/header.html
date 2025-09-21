@@ -1,58 +1,64 @@
-<!-- src/app/components/header/header.component.html -->
-
-<header class="header">
+<header [class]="getHeaderClasses()">
   <div class="header-container">
     
-    <!-- Logo/Nombre del estudio -->
-    <div class="logo" (click)="navegarA('/')">
-      <img class="img-logo" src="assets/get_logo.png" alt="">
+    <!-- Logo más grande según feedback del cliente -->
+    <div class="logo-large" 
+         (click)="navegarAInicio()" 
+         tabindex="0"
+         role="button"
+         aria-label="Ir al inicio">
+      <img class="img-logo" 
+           src="/assets/get_logo.png" 
+           alt="Get - Estudio de Arquitectura">
     </div>
 
-    <!-- Navegación desktop -->
-    <nav class="nav-desktop">
-      <a 
-        *ngFor="let item of itemsNavegacion" 
-        [routerLink]="item.ruta"
-        [class.activo]="esRutaActiva(item.ruta)"
-        class="nav-item">
+    <!-- Navegación desktop minimalista (solo 3 elementos) -->
+    <nav class="nav-minimal" role="navigation" aria-label="Navegación principal">
+      <a *ngFor="let item of itemsNavegacion; let i = index" 
+         [routerLink]="item.ruta"
+         [class.activo]="esRutaActiva(item.ruta)"
+         class="nav-link"
+         [attr.aria-label]="'Ir a ' + item.etiqueta">
         {{ item.etiqueta }}
       </a>
     </nav>
 
-    <!-- Botón menú móvil -->
-    <button 
-      class="menu-movil-btn"
-      (click)="alternarMenuMovil()"
-      [class.activo]="menuMovilAbierto"
-      aria-label="Abrir menú">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
+    <!-- Botón menú móvil simplificado -->
+    <button class="menu-btn-minimal"
+            [class.activo]="menuMovilAbierto"
+            (click)="alternarMenuMovil()"
+            [attr.aria-expanded]="menuMovilAbierto"
+            [attr.aria-label]="menuMovilAbierto ? 'Cerrar menú' : 'Abrir menú'"
+            aria-controls="nav-movil">
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
 
   </div>
 
   <!-- Navegación móvil -->
-  <nav 
-    class="nav-movil"
-    [class.abierto]="menuMovilAbierto">
-    <div class="nav-movil-contenido">
-      <a 
-        *ngFor="let item of itemsNavegacion" 
-        [routerLink]="item.ruta"
-        [class.activo]="esRutaActiva(item.ruta)"
-        class="nav-item-movil"
-        (click)="cerrarMenuMovil()">
-        {{ item.etiqueta }}
-      </a>
-    </div>
+  <nav id="nav-movil"
+       class="nav-movil-minimal"
+       [class.abierto]="menuMovilAbierto"
+       role="navigation" 
+       aria-label="Navegación móvil"
+       [attr.aria-hidden]="!menuMovilAbierto">
+    <a *ngFor="let item of itemsNavegacion; let i = index" 
+       [routerLink]="item.ruta"
+       [class.activo]="esRutaActiva(item.ruta)"
+       class="nav-link-movil"
+       (click)="cerrarMenuMovil()"
+       [attr.aria-label]="'Ir a ' + item.etiqueta">
+      {{ item.etiqueta }}
+    </a>
   </nav>
 
-  <!-- Overlay para cerrar menú móvil -->
-  <div 
-    class="overlay"
-    [class.visible]="menuMovilAbierto"
-    (click)="cerrarMenuMovil()">
+  <!-- Overlay -->
+  <div class="overlay-minimal"
+       [class.visible]="menuMovilAbierto"
+       (click)="cerrarMenuMovil()"
+       [attr.aria-hidden]="true">
   </div>
 
 </header>

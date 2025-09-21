@@ -2,8 +2,8 @@
 @use './../../../styles/mixins' as *;
 @use './../../../styles/animations' as *;
 
-// Header principal
-.header {
+// Header minimalista
+.header-minimal {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,127 +13,108 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  animation: fadeInDown 0.8s ease-out;
+  transition: all 0.3s ease;
 
-  // Efecto de glassmorphism en scroll
+  // Efecto en scroll
   &.scrolled {
     background: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-    
-    .header-container {
-      padding: 0.75rem 2rem;
-    }
-  }
-
-  // Header oscuro para ciertas páginas (opcional)
-  &.dark-mode {
-    background: rgba(26, 26, 26, 0.95);
-    border-bottom-color: rgba(255, 255, 255, 0.1);
-    
-    .nav-desktop .nav-item {
-      color: rgba(255, 255, 255, 0.9);
-      
-      &:hover {
-        color: $color-acento;
-      }
-    }
-    
-    .menu-movil-btn .hamburger-line {
-      background: $color-fondo;
-    }
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   }
 
   .header-container {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 1.25rem 2rem;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: padding 0.3s ease;
 
     @media (max-width: $tablet) {
-      padding: 1rem;
+      padding: 0.875rem 1.5rem;
+    }
+
+    @media (max-width: $mobile) {
+      padding: 0.75rem 1rem;
+    }
+
+    @media (max-width: 375px) {
+      padding: 0.75rem 0.75rem;
     }
   }
 
-  .logo {
-    width: 50px;
-    height: 50px;
+  // Logo más grande según feedback del cliente
+  .logo-large {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    .img-logo {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+
+      @media (max-width: $tablet) {
+        width: 50px;
+        height: 50px;
+      }
+
+      @media (max-width: $mobile) {
+        width: 45px;
+        height: 45px;
+      }
+
+      @media (max-width: 375px) {
+        width: 40px;
+        height: 40px;
+      }
+    }
   }
 
-  .img-logo {
-    width: 100%;
-  }
-
-
-  // Navegación desktop
-  .nav-desktop {
+  // Navegación desktop minimalista (solo 3 elementos)
+  .nav-minimal {
     display: flex;
     align-items: center;
     gap: 3rem;
 
     @media (max-width: $desktop) {
-      gap: 2rem;
+      gap: 2.5rem;
     }
 
     @media (max-width: $tablet) {
       display: none;
     }
 
-    .nav-item {
+    .nav-link {
       position: relative;
       color: $color-texto;
       text-decoration: none;
       font-size: 0.95rem;
       font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.05em;
       padding: 0.5rem 0;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      
-      // Efecto de subrayado animado
-      &::before {
+      transition: all 0.3s ease;
+
+      // Línea de subrayado simple
+      &::after {
         content: '';
         position: absolute;
-        bottom: 0;
+        bottom: -2px;
         left: 0;
-        width: 100%;
+        width: 0;
         height: 2px;
-        background: $gradient-premium;
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      // Número decorativo al hover
-      &::after {
-        content: attr(data-number);
-        position: absolute;
-        top: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-family: $font-mono;
-        font-size: 0.65rem;
-        color: $color-acento;
-        opacity: 0;
-        transition: all 0.3s ease;
-        pointer-events: none;
+        background: $color-acento;
+        transition: width 0.3s ease;
       }
 
       &:hover {
         color: $color-acento;
-        transform: translateY(-2px);
-        
-        &::before {
-          transform: scaleX(1);
-          transform-origin: left;
-        }
         
         &::after {
-          opacity: 0.5;
-          top: -25px;
+          width: 100%;
         }
       }
 
@@ -142,67 +123,72 @@
         color: $color-acento;
         font-weight: 600;
         
-        &::before {
-          transform: scaleX(1);
-          animation: lineGrow 0.6s ease-out;
-        }
-        
         &::after {
-          content: '•';
-          top: -15px;
-          opacity: 1;
-          font-size: 0.8rem;
+          width: 100%;
         }
       }
     }
   }
 
-  // Botón hamburger premium
-  .menu-movil-btn {
+  // Botón menú móvil simplificado
+  .menu-btn-minimal {
     display: none;
     position: relative;
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
     z-index: $z-header + 1;
-    transition: all 0.3s ease;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 
     @media (max-width: $tablet) {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 6px;
     }
 
-    &:hover {
-      transform: scale(1.1);
+    @media (max-width: $mobile) {
+      width: 26px;
+      height: 26px;
+      gap: 4px;
     }
 
-    .hamburger-line {
+    span {
       display: block;
-      width: 28px;
+      width: 24px;
       height: 2px;
       background: $color-primario;
-      border-radius: 2px;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      
-      &:nth-child(2) {
+      border-radius: 1px;
+      transition: all 0.3s ease;
+
+      @media (max-width: $mobile) {
         width: 20px;
-        margin-left: 8px;
+      }
+
+      &:nth-child(2) {
+        width: 18px;
+        margin-left: 6px;
+
+        @media (max-width: $mobile) {
+          width: 15px;
+          margin-left: 5px;
+        }
       }
     }
 
     // Animación X cuando está activo
     &.activo {
-      .hamburger-line {
+      span {
         &:nth-child(1) {
-          transform: translateY(8px) rotate(45deg);
+          transform: translateY(7px) rotate(45deg);
           background: $color-acento;
+
+          @media (max-width: $mobile) {
+            transform: translateY(6px) rotate(45deg);
+          }
         }
         
         &:nth-child(2) {
@@ -211,163 +197,110 @@
         }
         
         &:nth-child(3) {
-          transform: translateY(-8px) rotate(-45deg);
+          transform: translateY(-7px) rotate(-45deg);
           background: $color-acento;
+
+          @media (max-width: $mobile) {
+            transform: translateY(-6px) rotate(-45deg);
+          }
         }
       }
     }
   }
 }
 
-// Navegación móvil premium
-.nav-movil {
+// Navegación móvil minimalista
+.nav-movil-minimal {
   position: fixed;
   top: 0;
   right: -100%;
-  width: 85%;
-  max-width: 400px;
+  width: 280px;
   height: 100vh;
-  background: linear-gradient(180deg, rgba(26, 26, 26, 1) 85%, rgba(26, 26, 26, 0.9) 100%);
+  background: rgba(26, 26, 26, 0.98);
+  backdrop-filter: blur(20px);
   z-index: $z-menu;
-  transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.3);
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 5rem 2rem 2rem;
 
   @media (max-width: $mobile) {
     width: 100%;
-    max-width: none;
+    padding: 4rem 1.5rem 2rem;
+  }
+
+  @media (max-width: 375px) {
+    padding: 3.5rem 1rem 1.5rem;
   }
 
   &.abierto {
     right: 0;
-    
-    .nav-movil-contenido {
-      .nav-item-movil {
-        opacity: 1;
-        transform: translateX(0);
-      }
+
+    .nav-link-movil {
+      opacity: 1;
+      transform: translateX(0);
     }
   }
 
-  .nav-movil-contenido {
-    padding: 6rem 2rem 2rem;
-    height: 100%;
-    overflow-y: auto;
-    position: relative;
+  .nav-link-movil {
+    display: block;
+    color: $color-fondo;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.4s ease;
 
-    // Patrón decorativo
-    &::before {
-      content: '';
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 100px;
-      height: 100px;
-      border: 2px solid $color-acento;
-      opacity: 0.1;
-      transform: rotate(45deg);
+    @media (max-width: $mobile) {
+      font-size: 1.1rem;
+      padding: 0.875rem 0;
     }
 
-    .nav-item-movil {
-      display: block;
-      color: $color-fondo;
-      text-decoration: none;
-      font-size: 1.5rem;
-      font-family: $font-display;
-      padding: 1.5rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      position: relative;
-      opacity: 0;
-      transform: translateX(50px);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    @media (max-width: 375px) {
+      font-size: 1rem;
+      padding: 0.75rem 0;
+    }
 
-      // Animación escalonada
-      @for $i from 1 through 10 {
-        &:nth-child(#{$i}) {
-          transition-delay: #{$i * 0.05}s;
-        }
-      }
-
-      // Número de índice decorativo
-      &::before {
-        content: attr(data-index);
-        position: absolute;
-        left: -30px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-family: $font-mono;
-        font-size: 0.75rem;
-        color: $color-acento;
-        opacity: 0;
-        transition: all 0.3s ease;
-      }
-
-      // Línea decorativa al hover
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 1px;
-        background: $gradient-premium;
-        transition: width 0.4s ease;
-      }
-
-      &:hover {
-        color: $color-acento;
-        padding-left: 1rem;
-        
-        &::before {
-          opacity: 0.5;
-          left: -20px;
-        }
-        
-        &::after {
-          width: 100%;
-        }
-      }
-
-      &.activo {
-        color: $color-acento;
-        font-weight: 600;
-        
-        &::after {
-          width: 50px;
-          height: 2px;
-        }
+    // Animación escalonada
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        transition-delay: #{$i * 0.05}s;
       }
     }
-  }
 
-  // Footer del menú móvil
-  &::after {
-    content: 'MENÚ';
-    position: absolute;
-    bottom: 2rem;
-    left: 2rem;
-    font-size: 3rem;
-    font-family: $font-display;
-    color: rgba(255, 255, 255, 0.05);
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    pointer-events: none;
+    &:hover {
+      color: $color-acento;
+      padding-left: 0.5rem;
+    }
+
+    &.activo {
+      color: $color-acento;
+      font-weight: 600;
+      border-bottom-color: $color-acento;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
   }
 }
 
-// Overlay
-.overlay {
+// Overlay simplificado
+.overlay-minimal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
   opacity: 0;
   visibility: hidden;
   z-index: $z-overlay;
-  transition: all 0.4s ease;
-  cursor: pointer;
+  transition: all 0.3s ease;
 
   &.visible {
     opacity: 1;
@@ -375,113 +308,126 @@
   }
 }
 
-// Indicador de scroll (opcional)
-.scroll-indicator {
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: rgba(0, 0, 0, 0.05);
-  
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background: $gradient-premium;
-    width: var(--scroll-progress, 0%);
-    transition: width 0.1s linear;
+// Mejoras específicas para móviles muy pequeños
+@media (max-width: 375px) {
+  .header-minimal {
+    .header-container {
+      padding: 0.625rem 0.75rem;
+    }
+
+    .nav-minimal {
+      .nav-link {
+        font-size: 0.85rem;
+      }
+    }
+  }
+
+  .nav-movil-minimal {
+    .nav-link-movil {
+      font-size: 0.95rem;
+      padding: 0.625rem 0;
+    }
   }
 }
 
-// Estados especiales
-.header {
-  // Header transparente para hero
-  &.transparent {
-    background: transparent;
-    border-bottom: none;
-    
-    &:not(.scrolled) {
-      
-      .nav-desktop .nav-item {
-        color: rgba(255, 255, 255, 0.9);
+@media (max-width: 320px) {
+  .header-minimal {
+    .header-container {
+      padding: 0.5rem 0.5rem;
+    }
+
+    .logo-large .img-logo {
+      width: 35px;
+      height: 35px;
+    }
+
+    .menu-btn-minimal {
+      width: 24px;
+      height: 24px;
+
+      span {
+        width: 18px;
         
-        &.activo,
-        &:hover {
-          color: $color-acento;
+        &:nth-child(2) {
+          width: 14px;
+          margin-left: 4px;
         }
       }
-      
-      .menu-movil-btn .hamburger-line {
-        background: $color-fondo;
-      }
     }
   }
 
-  // Header compacto
-  &.compact {
-    .header-container {
-      padding: 0.5rem 2rem;
-    }
-  }
-}
+  .nav-movil-minimal {
+    padding: 3rem 0.75rem 1rem;
 
-// Animaciones de entrada mejoradas
-@media (prefers-reduced-motion: no-preference) {
-  .header {
-    animation: fadeInDown 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .nav-desktop .nav-item {
-    animation: fadeInDown 0.8s ease-out backwards;
-    
-    @for $i from 1 through 10 {
-      &:nth-child(#{$i}) {
-        animation-delay: #{$i * 0.1}s;
-      }
+    .nav-link-movil {
+      font-size: 0.9rem;
+      padding: 0.5rem 0;
     }
   }
 }
 
-// Mejoras de accesibilidad
-.header {
-  .nav-item,
-  .nav-item-movil,
-  .menu-movil-btn {
-    &:focus {
-      outline: 2px solid $color-acento;
-      outline-offset: 4px;
-      border-radius: 4px;
-    }
+// Estados de focus para accesibilidad
+.nav-link:focus,
+.nav-link-movil:focus,
+.menu-btn-minimal:focus,
+.logo-large:focus {
+  outline: 2px solid $color-acento;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+// Optimizaciones de rendimiento
+.nav-link,
+.nav-link-movil,
+.menu-btn-minimal,
+.logo-large {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+// Reducción de movimiento
+@media (prefers-reduced-motion: reduce) {
+  .header-minimal,
+  .nav-movil-minimal,
+  .overlay-minimal,
+  .nav-link,
+  .menu-btn-minimal span {
+    transition: none;
+  }
+
+  .nav-link-movil {
+    opacity: 1;
+    transform: none;
   }
 }
 
-// Soporte para temas oscuros del sistema
+// Modo oscuro del sistema
 @media (prefers-color-scheme: dark) {
-  .header {
-    &:not(.dark-mode) {
-      background: rgba(26, 26, 26, 0.95);
-      border-bottom-color: rgba(255, 255, 255, 0.1);
-      
-      .nav-desktop .nav-item {
-        color: rgba(255, 255, 255, 0.9);
-      }
+  .header-minimal {
+    background: rgba(26, 26, 26, 0.95);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+
+    .nav-minimal .nav-link {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .menu-btn-minimal span {
+      background: $color-fondo;
     }
   }
 }
 
 // Print styles
 @media print {
-  .header {
+  .header-minimal {
     position: static;
     background: transparent;
-    border-bottom: 1px solid $color-borde;
-    
-    .menu-movil-btn,
-    .nav-movil,
-    .overlay {
+    box-shadow: none;
+
+    .menu-btn-minimal,
+    .nav-movil-minimal,
+    .overlay-minimal {
       display: none !important;
     }
   }

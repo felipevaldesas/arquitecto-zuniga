@@ -1,0 +1,748 @@
+@use './../../../styles/variables' as *;
+@use './../../../styles/mixins' as *;
+@use './../../../styles/animations' as *;
+
+// Contenedor principal ultra minimalista
+.oficina-minimal {
+  min-height: 100vh;
+  background: $color-fondo;
+  font-family: $font-body;
+}
+
+// Loading state
+.loading-minimal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: $color-fondo;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+
+  .loading-content {
+    text-align: center;
+
+    .loading-logo {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1.5rem;
+      opacity: 0.8;
+      animation: pulse 2s ease-in-out infinite;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    .loading-text {
+      font-size: 0.9rem;
+      color: $color-texto-claro;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+  }
+}
+
+// Header ultra minimalista
+.oficina-header {
+  padding: 8rem 2rem 6rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+  @media (max-width: $tablet) {
+    padding: 6rem 1.5rem 4rem;
+  }
+
+  @media (max-width: $mobile) {
+    padding: 5rem 1rem 3rem;
+  }
+
+  @media (max-width: 375px) {
+    padding: 4rem 0.75rem 2rem;
+  }
+
+  .header-content {
+    max-width: 500px;
+    margin: 0 auto;
+
+    .titulo-principal {
+      font-family: $font-display;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      color: $color-primario;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitulo {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: $color-texto-claro;
+      font-weight: 400;
+    }
+  }
+}
+
+// Contenedor genérico
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  @media (max-width: $tablet) {
+    padding: 0 1.5rem;
+  }
+
+  @media (max-width: $mobile) {
+    padding: 0 1rem;
+  }
+
+  @media (max-width: 375px) {
+    padding: 0 0.75rem;
+  }
+}
+
+// Títulos de sección minimalistas
+.titulo-seccion {
+  font-family: $font-display;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  color: $color-primario;
+  margin-bottom: 3rem;
+  text-align: center;
+
+  @media (max-width: $mobile) {
+    margin-bottom: 2rem;
+  }
+}
+
+// Sección 01: Filosofía (Misión y Visión)
+.seccion-filosofia {
+  padding: 6rem 0;
+  background: $color-fondo;
+
+  @media (max-width: $mobile) {
+    padding: 4rem 0;
+  }
+
+  .filosofia-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 5rem;
+
+    @media (max-width: $tablet) {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    @media (max-width: $mobile) {
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .mision-item,
+    .vision-item {
+      text-align: left;
+
+      h2 {
+        font-family: $font-display;
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 600;
+        color: $color-primario;
+        margin-bottom: 1.5rem;
+      }
+
+      p {
+        font-size: clamp(1rem, 2vw, 1.125rem);
+        line-height: 1.7;
+        color: $color-texto;
+        font-weight: 400;
+      }
+    }
+  }
+
+  // Stats minimalistas
+  .stats-minimal {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    text-align: center;
+
+    @media (max-width: $mobile) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .stat-item {
+      padding: 2rem 1rem;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      .numero {
+        display: block;
+        font-family: $font-display;
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 700;
+        color: $color-acento;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+      }
+
+      .label {
+        font-size: 0.9rem;
+        color: $color-texto-claro;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+// Sección 02: Servicios
+.seccion-servicios {
+  padding: 6rem 0;
+  background: rgba(0, 0, 0, 0.02);
+
+  @media (max-width: $mobile) {
+    padding: 4rem 0;
+  }
+
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+
+    @media (max-width: $mobile) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .servicio-card {
+      padding: 2rem;
+      background: $color-fondo;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      h3 {
+        font-family: $font-display;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: $color-primario;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: $color-texto;
+      }
+    }
+  }
+}
+
+// Sección 03: Equipo
+.seccion-equipo {
+  padding: 6rem 0;
+  background: $color-fondo;
+
+  @media (max-width: $mobile) {
+    padding: 4rem 0;
+  }
+
+  .equipo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+
+    @media (max-width: $mobile) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .miembro-card {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-3px);
+      }
+
+      .miembro-avatar {
+        width: 60px;
+        height: 60px;
+        background: $color-acento;
+        color: $color-fondo;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+      }
+
+      .miembro-info {
+        h3 {
+          font-family: $font-display;
+          font-size: 1.125rem;
+          font-weight: 600;
+          color: $color-primario;
+          margin-bottom: 0.25rem;
+        }
+
+        .cargo {
+          font-size: 0.9rem;
+          color: $color-texto-claro;
+        }
+      }
+    }
+  }
+}
+
+// Sección 04: Objetivos simplificados
+.seccion-objetivos {
+  padding: 6rem 0;
+  background: rgba(0, 0, 0, 0.02);
+
+  @media (max-width: $mobile) {
+    padding: 4rem 0;
+  }
+
+  .objetivos-list {
+    max-width: 800px;
+    margin: 0 auto;
+
+    .objetivo-item {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+      @media (max-width: $mobile) {
+        gap: 1rem;
+        padding: 1rem 0;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .numero {
+        font-family: $font-mono;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: $color-acento;
+        flex-shrink: 0;
+
+        @media (max-width: $mobile) {
+          font-size: 1.25rem;
+        }
+      }
+
+      .texto {
+        font-size: 1.125rem;
+        line-height: 1.6;
+        color: $color-texto;
+
+        @media (max-width: $mobile) {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+// Sección 05: Proceso simplificado
+.seccion-proceso {
+  padding: 6rem 0;
+  background: $color-fondo;
+
+  @media (max-width: $mobile) {
+    padding: 4rem 0;
+  }
+
+  .proceso-steps {
+    display: grid;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+
+    .proceso-step {
+      display: flex;
+      gap: 2rem;
+      padding: 2rem;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+
+      @media (max-width: $mobile) {
+        gap: 1rem;
+        padding: 1.5rem;
+      }
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      .step-numero {
+        width: 50px;
+        height: 50px;
+        background: $color-acento;
+        color: $color-fondo;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: $font-mono;
+        font-weight: 700;
+        flex-shrink: 0;
+
+        @media (max-width: $mobile) {
+          width: 40px;
+          height: 40px;
+          font-size: 0.9rem;
+        }
+      }
+
+      .step-content {
+        h3 {
+          font-family: $font-display;
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: $color-primario;
+          margin-bottom: 0.5rem;
+        }
+
+        p {
+          font-size: 1rem;
+          line-height: 1.6;
+          color: $color-texto;
+        }
+      }
+    }
+  }
+}
+
+// Botón volver flotante
+.btn-volver {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: $tablet) {
+    bottom: 1.5rem;
+    left: 1.5rem;
+    width: 45px;
+    height: 45px;
+  }
+
+  @media (max-width: $mobile) {
+    bottom: 1rem;
+    left: 1rem;
+    width: 40px;
+    height: 40px;
+  }
+
+  @media (max-width: 375px) {
+    bottom: 0.75rem;
+    left: 0.75rem;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: $color-primario;
+    transition: fill 0.3s ease;
+
+    @media (max-width: $mobile) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &:hover {
+    background: $color-primario;
+    border-color: $color-primario;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+
+    svg {
+      fill: $color-fondo;
+    }
+  }
+
+  &:focus {
+    outline: 2px solid $color-acento;
+    outline-offset: 4px;
+  }
+}
+
+// Animaciones
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+// Breakpoints específicos para móviles muy pequeños
+@media (max-width: 320px) {
+  .oficina-header {
+    padding: 3.5rem 0.5rem 1.5rem;
+
+    .header-content {
+      .titulo-principal {
+        font-size: 2rem;
+      }
+
+      .subtitulo {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .seccion-filosofia,
+  .seccion-servicios,
+  .seccion-equipo,
+  .seccion-objetivos,
+  .seccion-proceso {
+    padding: 3rem 0;
+
+    .titulo-seccion {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .container {
+    padding: 0 0.5rem;
+  }
+
+  .filosofia-content {
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    .mision-item,
+    .vision-item {
+      h2 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .stats-minimal {
+    .stat-item {
+      padding: 1.5rem 0.75rem;
+
+      .numero {
+        font-size: 1.75rem;
+      }
+
+      .label {
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  .servicios-grid,
+  .equipo-grid {
+    .servicio-card,
+    .miembro-card {
+      padding: 1.5rem;
+    }
+  }
+
+  .miembro-card {
+    gap: 1rem;
+
+    .miembro-avatar {
+      width: 50px;
+      height: 50px;
+      font-size: 1rem;
+    }
+  }
+
+  .objetivos-list .objetivo-item {
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+
+    .numero {
+      font-size: 1.1rem;
+    }
+
+    .texto {
+      font-size: 0.9rem;
+    }
+  }
+
+  .proceso-steps .proceso-step {
+    gap: 0.75rem;
+    padding: 1rem;
+
+    .step-numero {
+      width: 35px;
+      height: 35px;
+      font-size: 0.8rem;
+    }
+
+    .step-content {
+      h3 {
+        font-size: 1.1rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .btn-volver {
+    width: 35px;
+    height: 35px;
+    bottom: 0.5rem;
+    left: 0.5rem;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+// Estados de focus para accesibilidad
+.servicio-card:focus,
+.miembro-card:focus,
+.objetivo-item:focus,
+.proceso-step:focus {
+  outline: 2px solid $color-acento;
+  outline-offset: 2px;
+}
+
+// Modo de alto contraste
+@media (prefers-contrast: high) {
+  .servicio-card,
+  .miembro-card,
+  .proceso-step,
+  .stat-item {
+    border-width: 2px;
+    border-color: $color-primario;
+  }
+}
+
+// Reducción de movimiento
+@media (prefers-reduced-motion: reduce) {
+  .servicio-card,
+  .miembro-card,
+  .proceso-step,
+  .stat-item,
+  .btn-volver {
+    transition: none;
+  }
+
+  .loading-logo {
+    animation: none;
+  }
+}
+
+// Optimizaciones de rendimiento
+.servicio-card,
+.miembro-card,
+.proceso-step,
+.stat-item,
+.btn-volver {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+// Dark mode del sistema
+@media (prefers-color-scheme: dark) {
+  .oficina-minimal {
+    background: $color-primario;
+    color: $color-fondo;
+  }
+
+  .oficina-header {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+
+    .titulo-principal {
+      color: $color-fondo;
+    }
+
+    .subtitulo {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+
+  .titulo-seccion {
+    color: $color-fondo;
+  }
+
+  .servicio-card,
+  .miembro-card,
+  .proceso-step,
+  .stat-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-volver {
+    background: rgba(26, 26, 26, 0.95);
+    border-color: rgba(255, 255, 255, 0.2);
+
+    svg {
+      fill: $color-fondo;
+    }
+
+    &:hover {
+      background: $color-fondo;
+      border-color: $color-fondo;
+
+      svg {
+        fill: $color-primario;
+      }
+    }
+  }
+}

@@ -1,26 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatosService } from '../../services/datos.service';
-import { Proyecto, Noticia, InformacionEstudio } from '../../models/interfaces';
+import { Proyecto } from '../../models/interfaces';
 
 @Component({
   selector: 'app-inicio',
-  imports: [],
+  standalone: true,
   templateUrl: './inicio.html',
   styleUrl: './inicio.scss'
 })
-export class Inicio {
- proyectosDestacados: Proyecto[] = [];
-  noticiasDestacadas: Noticia[] = [];
-  informacionEstudio?: InformacionEstudio | null = null;
+export class Inicio implements OnInit, OnDestroy {
+  
+  proyectosHero: Proyecto[] = [];
+  proyectoActual: number = 0;
+  intervalId: any;
   cargando: boolean = true;
-
-  // Texto de hero/banner principal
-  textoHero = {
-    titulo: 'Arquitectura que Transforma Espacios',
-    subtitulo: 'Creamos espacios significativos que mejoran la calidad de vida y respetan el entorno natural chileno.',
-    descripcion: 'Desde 2015, Felipe Zuñiga y su equipo desarrollan proyectos arquitectónicos que combinan innovación, sustentabilidad y sensibilidad hacia el contexto local.'
-  };
 
   constructor(
     private datosService: DatosService,
@@ -28,60 +22,115 @@ export class Inicio {
   ) { }
 
   ngOnInit(): void {
-    this.cargarDatos();
+    this.cargarProyectosHero();
+    this.iniciarCarruselAutomatico();
   }
 
-  cargarDatos(): void {
-    this.cargando = true;
+  ngOnDestroy(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
+
+  cargarProyectosHero(): void {
     this.datosService.getProyectosDestacados().subscribe({
       next: (proyectos) => {
-        this.proyectosDestacados = proyectos.slice(0, 3);
-      },
-      error: (error) => {
-        console.error('Error al cargar proyectos destacados:', error);
-      }
-    });
-    this.datosService.getNoticiasDestacadas().subscribe({
-      next: (noticias) => {
-        this.noticiasDestacadas = noticias.slice(0, 2);
-      },
-      error: (error) => {
-        console.error('Error al cargar noticias destacadas:', error);
-      }
-    });
-    this.datosService.getInformacionEstudio().subscribe({
-      next: (info) => {
-        this.informacionEstudio = info;
+        this.proyectosHero = proyectos.slice(0, 4);
         this.cargando = false;
       },
-      error: (error) => {
-        console.error('Error al cargar información del estudio:', error);
+      error: () => {
+        this.proyectosHero = [
+          {
+            id: 1,
+            titulo: 'Casa Sustentable Los Andes',
+            ubicacion: 'Los Andes, Chile',
+            anio: '2024',
+            tipo: 'Residencial',
+            imagen: '/assets/placeholder-project-1.jpg',
+            descripcion: 'Vivienda unifamiliar con criterios de sustentabilidad',
+            area: '180m²',
+            estado: 'Completado'
+          },
+          {
+            id: 2,
+            titulo: 'Centro Comunitario Valparaíso',
+            ubicacion: 'Valparaíso, Chile',
+            anio: '2024',
+            tipo: 'Público',
+            imagen: '/assets/placeholder-project-2.jpg',
+            descripcion: 'Espacio público comunitario',
+            area: '350m²',
+            estado: 'En construcción'
+          },
+          {
+            id: 3,
+            titulo: 'Oficinas Corporativas Santiago',
+            ubicacion: 'Santiago, Chile',
+            anio: '2023',
+            tipo: 'Comercial',
+            imagen: '/assets/placeholder-project-3.jpg',
+            descripcion: 'Edificio de oficinas con certificación verde',
+            area: '1200m²',
+            estado: 'Completado'
+          },
+          {
+            id: 4,
+            titulo: 'Complejo Habitacional Concepción',
+            ubicacion: 'Concepción, Chile',
+            anio: '2024',
+            tipo: 'Residencial',
+            imagen: '/assets/placeholder-project-4.jpg',
+            descripcion: 'Viviendas sociales sustentables',
+            area: '2500m²',
+            estado: 'En construcción'
+          }
+        ];
         this.cargando = false;
       }
     });
   }
 
-  navegarAProyectos(): void {
+  iniciarCarruselAutomatico(): void {
+    this.intervalId = setInterval(() => {
+      this.siguienteProyecto();
+    }, 5000);
+  }
+
+  pausarCarrusel(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
+
+  reanudarCarrusel(): void {
+    this.iniciarCarruselAutomatico();
+  }
+
+  siguienteProyecto(): void {
+    this.proyectoActual = (this.proyectoActual + 1) % this.proyectosHero.length;
+  }
+
+  anteriorProyecto(): void {
+    this.proyectoActual = this.proyectoActual === 0 
+      ? this.proyectosHero.length - 1 
+      : this.proyectoActual - 1;
+  }
+
+  irAProyecto(index: number): void {
+    this.proyectoActual = index;
+    this.pausarCarrusel();
+    setTimeout(() => {
+      this.reanudarCarrusel();
+    }, 3000);
+  }
+
+  verProyectos(): void {
     this.router.navigate(['/proyectos']);
   }
 
-  navegarANoticias(): void {
-    this.router.navigate(['/noticias']);
-  }
-
-  navegarAEstudio(): void {
-    this.router.navigate(['/estudio']);
-  }
-
-  verProyecto(id: number): void {
-    // Por ahora navega a la página de proyectos
-    // Más adelante se puede implementar una vista de detalle
-    this.router.navigate(['/proyectos']);
-  }
-
-  verNoticia(id: number): void {
-    // Por ahora navega a la página de noticias
-    // Más adelante se puede implementar una vista de detalle
-    this.router.navigate(['/noticias']);
+  verProyectoDetalle(proyecto: Proyecto): void {
+    this.router.navigate(['/proyectos'], { 
+      queryParams: { proyecto: proyecto.id } 
+    });
   }
 }
