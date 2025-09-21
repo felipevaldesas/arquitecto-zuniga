@@ -42,7 +42,7 @@
     }
   }
 
-  // Logo más grande según feedback del cliente
+  // Logo más grande según feedback del cliente - ACTUALIZADO
   .logo-large {
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -52,23 +52,23 @@
     }
 
     .img-logo {
-      width: 60px;
-      height: 60px;
+      width: 80px;
+      height: 80px;
       object-fit: contain;
 
       @media (max-width: $tablet) {
-        width: 50px;
-        height: 50px;
+        width: 70px;
+        height: 70px;
       }
 
       @media (max-width: $mobile) {
-        width: 45px;
-        height: 45px;
+        width: 60px;
+        height: 60px;
       }
 
       @media (max-width: 375px) {
-        width: 40px;
-        height: 40px;
+        width: 55px;
+        height: 55px;
       }
     }
   }
@@ -330,6 +330,7 @@
   }
 }
 
+// ACTUALIZADO: Móviles extremadamente pequeños
 @media (max-width: 320px) {
   .header-minimal {
     .header-container {
@@ -337,8 +338,8 @@
     }
 
     .logo-large .img-logo {
-      width: 35px;
-      height: 35px;
+      width: 50px;  // Incrementado de 35px
+      height: 50px;
     }
 
     .menu-btn-minimal {
